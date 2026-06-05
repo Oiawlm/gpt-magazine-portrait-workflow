@@ -205,10 +205,23 @@ skills/gpt-magazine-portrait/
 
 ## 效果展示
 
-| 参考图 | 生成效果图 | 风格 |
-|---|---|---|
-| ![良子参考图](assets/characters/良子/images/00-良子-多视角参考图.png) | ![秋日休闲复古风](assets/characters/良子/images/01-秋日休闲复古风.png) | 秋日休闲复古风 |
-| ![嘎子参考图](assets/characters/嘎子/images/00-嘎子-多视角参考图.png) | ![红绳镜面西装封面](assets/characters/嘎子/images/11-红绳镜面西装封面.png) | 杂志封面风 |
+### 完整流程对比（三列直观展示）
+**流程：用户原始照片 → AI生成标准化多视图参考图 → 最终杂志写真**
+| 用户原始参考照片 | AI生成多视图参考图（锁定人物一致性） | 最终生成效果 |
+|------------------|----------------------------------------|--------------|
+| <img src="assets/examples/liangzi_raw/image-1.png" width="80"> <img src="assets/examples/liangzi_raw/image-2.png" width="80"> <img src="assets/examples/liangzi_raw/image-3.png" width="80"> | <img src="assets/characters/良子/images/00-良子-多视角参考图.png" width="250"> | <img src="assets/characters/良子/images/10-试跑-港口硬朗西装风.png" width="250"> <br> 港口硬朗西装风 |
+| <img src="assets/examples/gazi_raw/195fc7e9567d5c6addc659277e02d50f.png" width="80"> <img src="assets/examples/gazi_raw/1b084ddab188eba4fe5c691f38160ce1.png" width="80"> <img src="assets/examples/gazi_raw/1c13035c651e9c145c481540e4359cb5.png" width="80"> | <img src="assets/characters/嘎子/images/00-嘎子-多视角参考图.png" width="250"> | <img src="assets/characters/嘎子/images/11-红绳镜面西装封面.png" width="250"> <br> 红绳镜面西装封面 |
+
+### 更多风格效果
+#### 良子其他风格
+| 未来都市机能风 | 新中式武侠风 | 海岛轻奢度假风 |
+|----------------|--------------|----------------|
+| <img src="assets/characters/良子/images/02-未来都市机能风.png" width="250"> | <img src="assets/characters/良子/images/04-新中式武侠风.png" width="250"> | <img src="assets/characters/良子/images/06-海岛轻奢度假风.png" width="250"> |
+
+#### 嘎子其他风格
+| 精英商务律师风 | 传统铸剑匠人风 | 星际舰队舰长风 |
+|----------------|--------------|----------------|
+| <img src="assets/characters/嘎子/images/02-精英商务律师风.png" width="250"> | <img src="assets/characters/嘎子/images/09-传统铸剑匠人风.png" width="250"> | <img src="assets/characters/嘎子/images/10-星际舰队舰长风.png" width="250"> |
 
 更多效果见 [assets/SHOWCASE.md](assets/SHOWCASE.md)。
 
