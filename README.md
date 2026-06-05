@@ -234,6 +234,9 @@ skills/gpt-magazine-portrait/
 
 欢迎提交 Issue 和 PR。贡献前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
+## 贡献者
+- [Oiawlm](https://github.com/Oiawlm) - 项目发起与核心开发，流程设计、风格资产整理、经验沉淀
+
 ## 许可证
 
 本项目采用 MIT 许可证，详见 [LICENSE](LICENSE)。
