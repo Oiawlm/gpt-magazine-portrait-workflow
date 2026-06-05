@@ -219,9 +219,9 @@ skills/gpt-magazine-portrait/
 | <img src="assets/characters/良子/images/02-未来都市机能风.png" width="250"> | <img src="assets/characters/良子/images/04-新中式武侠风.png" width="250"> | <img src="assets/characters/良子/images/06-海岛轻奢度假风.png" width="250"> |
 
 #### 嘎子其他风格
-| 精英商务律师风 | 传统铸剑匠人风 | 星际舰队舰长风 |
+| 极简近景肖像封面 | 报纸纪实侧颜封面 | 男士杂志海报 |
 |----------------|--------------|----------------|
-| <img src="assets/characters/嘎子/images/02-精英商务律师风.png" width="250"> | <img src="assets/characters/嘎子/images/09-传统铸剑匠人风.png" width="250"> | <img src="assets/characters/嘎子/images/10-星际舰队舰长风.png" width="250"> |
+| <img src="assets/characters/嘎子/images/12-极简近景肖像封面.png" width="250"> | <img src="assets/characters/嘎子/images/13-报纸纪实侧颜封面.png" width="250"> | <img src="assets/characters/嘎子/images/gazi_sp001_mens_magazine_poster.png" width="250"> |
 
 更多效果见 [assets/SHOWCASE.md](assets/SHOWCASE.md)。
 
