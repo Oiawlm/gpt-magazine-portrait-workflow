@@ -39,6 +39,12 @@
 
 其他模型可以参考本流程，但最终效果默认以 GPT Image 为基准。
 
+## 自动化方向
+
+这个仓库未来可以配套一个 Codex skill。仓库保存资产和规范，skill 负责让 Codex 在用户上传新人物多角度照片后，自动创建人物目录、准备提示词队列、等待用户确认、调用 GPT Image 生图、保存结果并更新记录。
+
+详见 [docs/AUTOMATION_SKILL_DESIGN.md](docs/AUTOMATION_SKILL_DESIGN.md)。
+
 ## 快速开始
 
 1. 把新人物多角度参考图放入 `assets/characters/<name>/reference/`。
