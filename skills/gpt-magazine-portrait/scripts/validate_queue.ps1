@@ -26,6 +26,12 @@ $requiredFields = @(
     "status",
     "priority"
 )
+# 可选字段列表
+$optionalFields = @(
+    "style_pack_name",
+    "style_adaptation_notes",
+    "belongs_to_style_line"
+)
 try {
     if (-not (Test-Path $QueuePath)) {
         throw "文件不存在: $QueuePath"
@@ -62,7 +68,23 @@ try {
             Write-Warning "任务 $taskNumber (ID: $($task.task_id)) 缺少必填字段: $($missingFields -join ', ')"
         }
         else {
-            Write-Host "任务 $taskNumber (ID: $($task.task_id)): 格式正确"
+            # 检查可选字段
+            $missingOptional = @()
+            foreach ($field in $optionalFields) {
+                if (-not $task.PSObject.Properties[$field] -or $null -eq $task.$field -or $task.$field -eq "") {
+                    $missingOptional += $field
+                }
+            }
+
+            if ($missingOptional.Count -eq $optionalFields.Count) {
+                Write-Host "任务 $taskNumber (ID: $($task.task_id)): 格式正确（无可选扩展字段）"
+            }
+            elseif ($missingOptional.Count -gt 0) {
+                Write-Host "任务 $taskNumber (ID: $($task.task_id)): 格式正确，缺少可选字段: $($missingOptional -join ', ')"
+            }
+            else {
+                Write-Host "任务 $taskNumber (ID: $($task.task_id)): 格式正确，包含所有可选扩展字段 ✅"
+            }
         }
     }
     Write-Host "`n验证完成！"

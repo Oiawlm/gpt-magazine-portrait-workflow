@@ -42,7 +42,8 @@
    - `output_filename`
    - `status`
    - `priority`
-4. Codex 审核任务队列，只修正明显规则问题，不随意扩张任务数量。
+5. 任务队列文件统一输出到：`assets/characters/<人物名>/tasks/` 目录，命名建议为 `first_round_prompt_queue.json`、`second_round_prompt_queue.json` 等。
+6. Codex 审核任务队列，只修正明显规则问题，不随意扩张任务数量。
 
 ## 阶段 5：生图前确认
 
@@ -117,10 +118,9 @@
 ## Skill 脚本使用说明
 ### 创建人物目录
 ```powershell
-cd skills/gpt-magazine-portrait/scripts
-.\make_character_dirs.ps1 -CharacterName "your_character_name"
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\make_character_dirs.ps1 -CharacterName "your_character_name"
 ```
 ### 验证任务队列
 ```powershell
-.\validate_queue.ps1 -QueuePath "path/to/your/task_queue.json"
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\validate_queue.ps1 -QueuePath "path/to/your/task_queue.json"
 ```

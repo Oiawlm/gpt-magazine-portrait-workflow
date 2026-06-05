@@ -49,6 +49,9 @@ Get-ChildItem -LiteralPath "D:\Download\agent_vault\ai-magazine-portrait-workflo
 
 ```powershell
 Get-ChildItem -LiteralPath "D:\Download\agent_vault\ai-magazine-portrait-workflow" -Recurse -File -Filter *.json | ForEach-Object { Get-Content -LiteralPath $_.FullName -Encoding UTF8 -Raw | ConvertFrom-Json | Out-Null; $_.FullName }
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\validate_queue.ps1 -QueuePath .\templates\generation_task.template.json
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\validate_queue.ps1 -QueuePath .\workflow-runs\2026-06-05-style-pack-v1\first_round_prompt_queue.json
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\validate_queue.ps1 -QueuePath .\workflow-runs\2026-06-05-style-pack-v1\second_round_prompt_queue.json
 ```
 
 ## 剩余风险
@@ -57,3 +60,4 @@ Get-ChildItem -LiteralPath "D:\Download\agent_vault\ai-magazine-portrait-workflo
 - 风格迁移不是简单抄参考图，必须提取构图、光影、色彩、字体、服装和气质。
 - DeepSeek V4 Pro 不能收发图片，只适合文本整理。
 - Codex 额度有限，不能为测试而生图。
+- `templates/generation_task.template.json` 必须保持合法 JSON；字段说明写入 `_field_notes`，不要使用 `/* ... */` 注释。

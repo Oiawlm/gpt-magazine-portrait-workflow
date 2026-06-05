@@ -14,5 +14,37 @@
   "output_filename": "<character>_<round>_<style>.png",
   "status": "pending",
   "priority": "high",
-  "belongs_to_style_line": "风格线"
+  "belongs_to_style_line": "风格线",
+  "_field_notes": {
+    "required": [
+      "task_id",
+      "character",
+      "style_pack_id",
+      "reference_character_image",
+      "reference_style_images",
+      "core_identity_constraints",
+      "final_prompt_zh",
+      "negative_prompt_zh",
+      "output_filename",
+      "status",
+      "priority"
+    ],
+    "optional": [
+      "style_pack_name",
+      "style_adaptation_notes",
+      "belongs_to_style_line"
+    ],
+    "status_values": [
+      "pending",
+      "processing",
+      "completed",
+      "failed",
+      "cancelled"
+    ],
+    "priority_values": [
+      "high",
+      "medium",
+      "low"
+    ]
+  }
 }
