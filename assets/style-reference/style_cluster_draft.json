@@ -1,0 +1,167 @@
+{
+  "source_review": "image_quality_review.json",
+  "excluded_images": ["IMG017", "IMG026"],
+  "total_clustered_images": 26,
+  "clusters": [
+    {
+      "cluster_id": "CL001",
+      "cluster_name": "黑袍纠察队男性角色海报系列",
+      "image_ids": ["IMG003", "IMG004", "IMG006", "IMG028"],
+      "image_paths": [
+        "13425113291250582.jpeg",
+        "13425113293882399.jpeg",
+        "13425113311552284.jpeg",
+        "s13425113301998501.jpegs.jpeg"
+      ],
+      "representative_image_id": "IMG003",
+      "cluster_rationale": "这四张图片均来自《黑袍纠察队》系列角色海报，具有完全统一的视觉设计语言和版式规范，是高度同质化的系列作品。",
+      "shared_composition": "均采用左侧人物大尺寸侧颜特写+右侧大面积留白的经典海报构图，人物占据画面约2/3宽度，视觉重心稳定。",
+      "shared_typography": "右侧留白区域均预留了大标题文字位置，文字排版高度统一，适合放置角色名称、宣传语等信息。",
+      "shared_lighting_color": "均采用深色背景+侧光打亮人物轮廓的光影设计，色调以冷色调为主，对比度高，质感强烈。",
+      "shared_pose_subject": "均为男性角色，姿态统一为侧面朝向镜头，表情严肃，具有强烈的英雄/反派人物气质。",
+      "shared_props_background": "背景均为纯色深色背景，无多余道具，突出人物主体。",
+      "likely_fit_liangzi": 1,
+      "likely_fit_gazi": 5,
+      "cluster_confidence": "high",
+      "risks": "版权风险，属于影视IP衍生设计，直接商用需要注意版权问题。",
+      "notes": "系列设计非常成熟，可直接复用版式进行男性角色海报创作。"
+    },
+    {
+      "cluster_id": "CL002",
+      "cluster_name": "黑袍纠察队女性角色海报系列",
+      "image_ids": ["IMG005", "IMG027"],
+      "image_paths": [
+        "13425113299664682.jpeg",
+        "s.jpeg"
+      ],
+      "representative_image_id": "IMG027",
+      "cluster_rationale": "与CL001同属《黑袍纠察队》系列海报，设计语言完全统一，但为女性角色，适合单独成组。",
+      "shared_composition": "与CL001完全一致的左侧人物侧颜特写+右侧留白构图，比例和布局完全相同。",
+      "shared_typography": "右侧同样预留大标题文字位置，排版规范与男性系列完全一致。",
+      "shared_lighting_color": "同样采用深色背景+侧光设计，冷色调为主，光影质感统一。",
+      "shared_pose_subject": "均为女性角色，侧面朝向镜头，表情坚定，具有强大的气场。",
+      "shared_props_background": "纯色深色背景，无多余道具，突出人物主体。",
+      "likely_fit_liangzi": 5,
+      "likely_fit_gazi": 1,
+      "cluster_confidence": "high",
+      "risks": "同样存在影视IP版权风险，商用需注意。",
+      "notes": "虽然只有2张，但设计高度统一，是非常成熟的女性角色海报版式参考。"
+    },
+    {
+      "cluster_id": "CL003",
+      "cluster_name": "现代女性时尚封面A（近景系列）",
+      "image_ids": ["IMG007", "IMG008", "IMG009", "IMG010", "IMG011"],
+      "image_paths": [
+        "13425113610152897.jpeg",
+        "13425113612305213.jpeg",
+        "13425113614552184.jpeg",
+        "13425113616712281.jpeg",
+        "13425113618937017.jpeg"
+      ],
+      "representative_image_id": "IMG011",
+      "cluster_rationale": "这五张图片均为现代女性时尚杂志封面风格，构图、光影、色调高度统一，属于同一系列的不同变体。",
+      "shared_composition": "均采用大尺寸人物近景/特写构图，人物占据画面大部分区域，视觉冲击力强。",
+      "shared_typography": "文字排版均位于画面顶部或边缘，采用纤细的无衬线字体，不遮挡人物主体。",
+      "shared_lighting_color": "均采用柔和的正面打光，肤色通透，色调以暖色调为主，整体氛围明亮舒适。",
+      "shared_pose_subject": "均为年轻女性，表情自然放松，姿态多样但都具有时尚感。",
+      "shared_props_background": "背景多为纯色或渐变背景，部分带有简单纹理，无复杂道具。",
+      "likely_fit_liangzi": 4,
+      "likely_fit_gazi": 1,
+      "cluster_confidence": "high",
+      "risks": "无明显风险，通用性很强。",
+      "notes": "非常适合作为现代女性时尚写真、社交媒体头像、个人宣传照的参考。"
+    },
+    {
+      "cluster_id": "CL004",
+      "cluster_name": "现代女性时尚封面B（半身系列）",
+      "image_ids": ["IMG012", "IMG013", "IMG014", "IMG015"],
+      "image_paths": [
+        "13425113621072932.jpeg",
+        "13425113623227348.jpeg",
+        "13425113625296142.jpeg",
+        "13425113627390017.jpeg"
+      ],
+      "representative_image_id": "IMG012",
+      "cluster_rationale": "这四张图片与CL003风格相近，但构图为半身而非近景，属于同一系列的不同构图变体。",
+      "shared_composition": "均采用人物半身构图，拍摄角度略微仰视，人物显得更加高挑修长。",
+      "shared_typography": "文字排版同样位于画面边缘，字体风格与CL003一致。",
+      "shared_lighting_color": "同样采用柔和正面光，暖色调为主，光影质感统一。",
+      "shared_pose_subject": "均为年轻女性，姿态更加舒展，展现身体线条和服装搭配。",
+      "shared_props_background": "背景多为纯色或简单场景，部分带有生活化道具。",
+      "likely_fit_liangzi": 4,
+      "likely_fit_gazi": 1,
+      "cluster_confidence": "high",
+      "risks": "无明显风险，通用性强。",
+      "notes": "适合作为全身/半身时尚写真、服装展示、个人形象照的参考。"
+    },
+    {
+      "cluster_id": "CL005",
+      "cluster_name": "高定时尚女性封面系列",
+      "image_ids": ["IMG016", "IMG018", "IMG019", "IMG020"],
+      "image_paths": [
+        "13425113629459161.jpeg",
+        "13425113633504468.jpeg",
+        "13425113635598225.jpeg",
+        "13425113638209287.jpeg"
+      ],
+      "representative_image_id": "IMG016",
+      "cluster_rationale": "这四张图片均为高端时尚杂志封面，设计更加复杂，具有强烈的艺术感和高级感。",
+      "shared_composition": "构图更加多样化，包括特写、半身、全身等多种构图，视觉层次更丰富。",
+      "shared_typography": "文字排版更加讲究，与画面融合度更高，部分采用艺术字体设计。",
+      "shared_lighting_color": "光影设计更加复杂，对比度更高，色调更具艺术感，部分采用特殊光影效果。",
+      "shared_pose_subject": "均为超模或高级时尚模特，姿态更加专业，气场强大，服装多为高级定制礼服。",
+      "shared_props_background": "背景和道具更加复杂，部分采用场景化设计，增强故事感。",
+      "likely_fit_liangzi": 3,
+      "likely_fit_gazi": 1,
+      "cluster_confidence": "medium",
+      "risks": "AI生成难度较高，对模型能力要求较高。",
+      "notes": "适合作为高端时尚写真、商业广告、杂志封面的参考。"
+    },
+    {
+      "cluster_id": "CL006",
+      "cluster_name": "男性商业/时尚海报系列",
+      "image_ids": ["IMG001", "IMG002", "IMG022", "IMG024"],
+      "image_paths": [
+        "13424928336559707.jpeg",
+        "13425113209914578.jpeg",
+        "58c3c96c5647f91d79c8204f14e6885a.png",
+        "image-5.png"
+      ],
+      "representative_image_id": "IMG002",
+      "cluster_rationale": "这四张图片均为男性商业/时尚风格海报，设计语言相近，适合男性形象宣传使用。",
+      "shared_composition": "均采用人物为主的构图，人物占据画面主体，视觉重心突出。",
+      "shared_typography": "文字排版简洁有力，多采用粗体无衬线字体，符合男性气质。",
+      "shared_lighting_color": "光影硬朗，对比度高，色调多为冷色调或中性色调，质感强烈。",
+      "shared_pose_subject": "均为男性角色，姿态自信，表情坚定，具有成熟男性魅力。",
+      "shared_props_background": "背景多为抽象或简单场景，部分带有科技感元素。",
+      "likely_fit_liangzi": 1,
+      "likely_fit_gazi": 4,
+      "cluster_confidence": "medium",
+      "risks": "部分图片可能包含版权元素，使用时需注意。",
+      "notes": "适合作为男性个人形象照、商业宣传海报、游戏角色设计的参考。"
+    },
+    {
+      "cluster_id": "CL007",
+      "cluster_name": "东亚女性甜美肖像系列",
+      "image_ids": ["IMG021", "IMG023", "IMG025"],
+      "image_paths": [
+        "22fe8035b26a3a6ec03cc3a924e9f473.jpg",
+        "640.webp",
+        "image-6.png"
+      ],
+      "representative_image_id": "IMG025",
+      "cluster_rationale": "这三张图片均为东亚女性面孔，风格甜美清新，符合东亚审美偏好。",
+      "shared_composition": "均采用近景/特写构图，突出人物面部表情和五官特点。",
+      "shared_typography": "文字排版较少，多为简单的装饰性文字，不影响人物主体。",
+      "shared_lighting_color": "光线柔和，肤色白皙通透，色调以明亮的暖色调为主，整体氛围甜美可爱。",
+      "shared_pose_subject": "均为年轻东亚女性，表情甜美可爱，姿态自然亲切。",
+      "shared_props_background": "背景多为清新自然的场景或纯色背景，道具简单可爱。",
+      "likely_fit_liangzi": 5,
+      "likely_fit_gazi": 2,
+      "cluster_confidence": "high",
+      "risks": "IMG025为明星肖像，商用需注意肖像权问题。",
+      "notes": "非常适合作为东亚女性甜美风格写真、社交媒体头像、青春题材创作的参考。"
+    }
+  ],
+  "unclustered_images": []
+}

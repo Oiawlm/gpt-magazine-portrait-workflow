@@ -1,0 +1,263 @@
+{
+  "version": "2026-06-05-v1",
+  "round": "second",
+  "description": "人物风格谱系主线扩展 + 外部风格库适配 平衡队列，覆盖良子全谱系核心方向和嘎子最强风格线；文字语言按风格判断，高奢/男刊优先英文或拼音，市井烟火/中文语境优先保留中文主视觉；无IP风险",
+  "tasks": [
+    {
+      "task_id": "T004",
+      "character": "良子",
+      "style_pack_id": "SP003+SP004",
+      "style_pack_name": "复古市井纪实升级版",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\00-良子-多视角参考图.png",
+      "reference_style_images": [
+        "D:\\Download\\agent_vault\\风格参考库\\13425113610152897.jpeg",
+        "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\08-复古市井纪实风.png"
+      ],
+      "core_identity_constraints": "完全保留良子外形特征：东亚肥胖男性，身高约175cm，体重150kg+，圆脸有双下巴，黑色短发两侧剃短，体型敦实，面部特征与参考图100%匹配，不得女性化、不得瘦弱、不得尖脸",
+      "style_adaptation_notes": "属于市井生活线核心扩展，融合SP003柔暖光影+SP004生活场景构图，升级现有复古市井风格。用户复盘认为市井烟火语境更适合中文主视觉，后续同类任务不应机械改成LIANGZI/英文。",
+      "final_prompt_zh": "东亚肥胖男性，圆脸双下巴，黑色短发两侧剃短，穿着花色夏威夷衬衫和宽松大短裤，坐在老城区宵夜摊塑料板凳上，面前摆着烤串和冰啤酒，暖黄色复古胶片质感，柔暖侧光打亮人物，画面顶部超大号粗体无衬线拼音大字「LIANGZI」，边角小字「URBAN LIFE 2026」，复古市井纪实杂志封面，高清4K，细节丰富，文字完整不裁切、无乱码",
+      "negative_prompt_zh": "女性化，瘦弱，尖脸，文字乱码，画面裁切，肢体变形，模糊，多余人像，杂乱背景，低俗元素",
+      "output_filename": "liangzi_v2_retro_street_documentary.png",
+      "status": "done",
+      "priority": "high",
+      "belongs_to_style_line": "市井生活线",
+      "output_path": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\liangzi_v2_retro_street_documentary.png",
+      "execution_method": "ChatGPT Plus browser fallback",
+      "completed_at": "2026-06-05 20:28 Asia/Shanghai",
+      "execution_notes": "MVP执行完成。人物一致性强，LIANGZI主视觉清楚，复古市井质感成立。",
+      "user_review_notes": "画面整体认可，但“烟火人间/市井生活”这类中文生活感封面不适合强行英文或拼音化；后续复跑应保留中文主视觉。"
+    },
+    {
+      "task_id": "T005",
+      "character": "良子",
+      "style_pack_id": "SP002+SP005",
+      "style_pack_name": "港口硬朗西装高级版",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\00-良子-多视角参考图.png",
+      "reference_style_images": [
+        "D:\\Download\\agent_vault\\风格参考库\\13425113299664682.jpeg",
+        "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\03-港口硬朗西装风.png"
+      ],
+      "core_identity_constraints": "完全保留良子外形特征：东亚肥胖男性，身高约175cm，体重150kg+，圆脸有双下巴，黑色短发两侧剃短，体型敦实，面部特征与参考图100%匹配，不得女性化、不得瘦弱、不得尖脸",
+      "style_adaptation_notes": "属于反差高级线核心扩展，融合SP002硬朗档案海报版式+SP005高定光影，升级现有港口西装风格，主视觉使用LIANGZI拼音大字，无IP元素",
+      "final_prompt_zh": "东亚肥胖男性，圆脸双下巴，黑色短发两侧剃短，穿着深色宽松大码正装西装，内搭白衬衫黑领带，左侧侧颜近景特写，占据画面2/3宽度，浅米白纸感纹理背景，硬侧光塑形突出面部轮廓，右侧大面积留白，右侧竖排灰色粗体拼音大字「LIANGZI」，底部小字「COUTURE PLUS 2026」，硬朗大码时尚杂志封面，纸感档案海报质感，高清4K，细节丰富，文字完整不裁切、无乱码",
+      "negative_prompt_zh": "女性化，瘦弱，尖脸，影视IP元素，文字乱码，画面裁切，肢体变形，模糊，多余人像，杂乱背景",
+      "output_filename": "liangzi_v2_portrait_suit_archive.png",
+      "status": "done",
+      "priority": "high",
+      "belongs_to_style_line": "反差高级线",
+      "output_path": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\liangzi_v2_portrait_suit_archive.png",
+      "execution_method": "ChatGPT Plus browser fallback",
+      "completed_at": "2026-06-05 20:28 Asia/Shanghai",
+      "execution_notes": "MVP执行完成。画面质量和人物一致性较好，但主视觉文字漂移为 URBAN PULSE，未严格遵循 LIANGZI；保留为MVP样张并列为后续提示词修正点。"
+    },
+    {
+      "task_id": "T006",
+      "character": "良子",
+      "style_pack_id": "SP005",
+      "style_pack_name": "未来都市机能惊喜版",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\00-良子-多视角参考图.png",
+      "reference_style_images": [
+        "D:\\Download\\agent_vault\\风格参考库\\13425113633504468.jpeg",
+        "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\02-未来都市机能风.png"
+      ],
+      "core_identity_constraints": "完全保留良子外形特征：东亚肥胖男性，身高约175cm，体重150kg+，圆脸有双下巴，黑色短发两侧剃短，体型敦实，面部特征与参考图100%匹配，不得女性化、不得瘦弱、不得尖脸",
+      "style_adaptation_notes": "属于街头潮流线扩展，融合SP005高定光影+未来机能元素，升级现有都市机能风格，主视觉使用LIANGZI拼音大字",
+      "final_prompt_zh": "东亚肥胖男性，圆脸双下巴，黑色短发两侧剃短，穿着亮面橙色oversize机能外套，佩戴橙色墨镜，未来都市摩天大楼玻璃幕墙背景，低角度仰拍，橙蓝撞色科技感，画面顶部超大号粗体拼音大字「LIANGZI」，边角小字「FUTURE CITY 2077」，未来机能时尚杂志封面，高清4K，细节丰富，文字完整不裁切、无乱码",
+      "negative_prompt_zh": "女性化，瘦弱，尖脸，文字乱码，画面裁切，肢体变形，模糊，多余人像，杂乱背景，霓虹过曝",
+      "output_filename": "liangzi_v2_future_techwear.png",
+      "status": "pending",
+      "priority": "medium",
+      "belongs_to_style_line": "街头潮流线"
+    },
+    {
+      "task_id": "T007",
+      "character": "良子",
+      "style_pack_id": "SP005",
+      "style_pack_name": "新中式武侠高级版",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\00-良子-多视角参考图.png",
+      "reference_style_images": [
+        "D:\\Download\\agent_vault\\风格参考库\\13425113629459161.jpeg",
+        "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\04-新中式武侠风.png"
+      ],
+      "core_identity_constraints": "完全保留良子外形特征：东亚肥胖男性，身高约175cm，体重150kg+，圆脸有双下巴，黑色短发两侧剃短，体型敦实，面部特征与参考图100%匹配，不得女性化、不得瘦弱、不得尖脸",
+      "style_adaptation_notes": "属于国风文化线扩展，融合SP005艺术感光影+新中式元素，升级现有武侠风格，主视觉使用LIANGZI拼音大字",
+      "final_prompt_zh": "东亚肥胖男性，圆脸双下巴，黑色短发两侧剃短，穿着暗纹刺绣黑色唐装，外罩红色纱质罩衫，手持乌木折扇，雨夜中式飞檐古建筑背景，冷调蓝红撞色，雨滴效果，画面顶部超大号粗体拼音大字「LIANGZI」，边角小字「ORIENTAL FORCE 2026」，新中式武侠时尚杂志封面，高清4K，细节丰富，文字完整不裁切、无乱码",
+      "negative_prompt_zh": "女性化，瘦弱，尖脸，文字乱码，画面裁切，肢体变形，模糊，多余人像，杂乱背景，古风文字错字",
+      "output_filename": "liangzi_v2_chinese_wuxia.png",
+      "status": "pending",
+      "priority": "medium",
+      "belongs_to_style_line": "国风文化线"
+    },
+    {
+      "task_id": "T008",
+      "character": "良子",
+      "style_pack_id": "SP003+SP004",
+      "style_pack_name": "柔暖松弛生活方式混合版",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\00-良子-多视角参考图.png",
+      "reference_style_images": [
+        "D:\\Download\\agent_vault\\风格参考库\\13425113618937017.jpeg",
+        "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\liangzi_sp004_casual_lifestyle.png"
+      ],
+      "core_identity_constraints": "完全保留良子外形特征：东亚肥胖男性，身高约175cm，体重150kg+，圆脸有双下巴，黑色短发两侧剃短，体型敦实，面部特征与参考图100%匹配，不得女性化、不得瘦弱、不得尖脸",
+      "style_adaptation_notes": "属于新增生活线核心扩展，融合SP003柔暖近景+SP004松弛场景，升级现有生活方式风格，主视觉使用LIANGZI拼音+英文混合，中文仅做小字点缀",
+      "final_prompt_zh": "东亚肥胖男性，圆脸双下巴，黑色短发两侧剃短，穿着宽松大码复古花衬衫和卡其色短裤，赤足站在木质背景的居家场景中，柔和暖光打亮人物，略微仰视半身构图，画面边缘纤细无衬线拼音大字「LIANGZI」，下方小字「CASUAL LIFESTYLE VOL.01」，柔暖松弛生活方式杂志封面，高清4K，细节丰富，文字完整不裁切、无乱码",
+      "negative_prompt_zh": "女性化，瘦弱，尖脸，文字乱码，画面裁切，肢体变形，模糊，多余人像，杂乱背景，杂物过多",
+      "output_filename": "liangzi_v2_soft_casual_lifestyle.png",
+      "status": "pending",
+      "priority": "high",
+      "belongs_to_style_line": "新增生活线"
+    },
+    {
+      "task_id": "T009",
+      "character": "嘎子",
+      "style_pack_id": "SP005",
+      "style_pack_name": "红绳镜面西装GAZI背景版",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\00-嘎子-多视角参考图.png",
+      "reference_style_images": [
+        "D:\\Download\\agent_vault\\风格参考库\\13425113635598225.jpeg",
+        "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\11-红绳镜面西装封面.png"
+      ],
+      "core_identity_constraints": "完全保留嘎子外形特征：东亚硬朗男性，身高175cm，体重70kg，健壮肌肉线条明显，黑色短寸发质硬，五官立体眉骨高，下颌线清晰，气质刚毅，面部特征与参考图100%匹配，不得肥胖、不得圆脸、不得女性化",
+      "style_adaptation_notes": "属于高奢西装线核心扩展，融合SP005高定光影+红绳镜面元素，严格遵循要求：白底、镜面、红绳、背景超大GAZI拼音艺术字",
+      "final_prompt_zh": "东亚硬朗男性，黑色短寸，五官立体下颌线清晰，穿着棕色细格纹双排扣西装，内搭白衬衫黑领带，半蹲在纯白镜面地面上，前景错落穿插红色粗绳做视觉层次，背景超大号暗红色艺术拼音大字「GAZI」，地面有清晰人物倒影，冷调柔和光影，高奢男士时尚大片质感，高清4K，细节丰富，文字完整不裁切、无乱码。画面中最大、最醒目的背景文字必须且只能是「GAZI」。不要出现 MODERN、ARCHIVE、ISSUE、SILENCE 等其他大型英文背景字；如果小字无法准确呈现，就完全省略小字。",
+      "negative_prompt_zh": "女性化，肥胖，圆脸，文字乱码，画面裁切，肢体变形，模糊，多余人像，杂乱背景，红绳位置错误",
+      "output_filename": "gazi_v2_red_rope_mirror_suit_gazi_logo.png",
+      "status": "done",
+      "priority": "high",
+      "belongs_to_style_line": "高奢西装线",
+      "output_path": "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\gazi_v2_red_rope_mirror_suit_gazi_logo.png",
+      "execution_method": "ChatGPT Plus browser fallback",
+      "completed_at": "2026-06-05 20:28 Asia/Shanghai",
+      "execution_notes": "MVP执行完成。初稿背景大字漂移为 MODERN，后续在同一ChatGPT页面做定向编辑，选用GAZI候选2覆盖保存。",
+      "user_review_notes": "用户复盘认为GAZI只有四个字母，作为红绳镜面背景超大字不如MODERN密集、有版式高级感；原MODERN版本应保留，另开XIEMENGWEI修正版。",
+      "preserve_variant_notes": "MODERN版本视觉上成立，不应删除或覆盖。当前项目目录未确认存在MODERN原图文件，后续需从ChatGPT历史重新导出或重生成后补入人物资料库。"
+    },
+    {
+      "task_id": "T010",
+      "character": "嘎子",
+      "style_pack_id": "SP006",
+      "style_pack_name": "极简近景肖像英文高级版",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\00-嘎子-多视角参考图.png",
+      "reference_style_images": [
+        "D:\\Download\\agent_vault\\风格参考库\\13425113209914578.jpeg",
+        "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\12-极简近景肖像封面.png"
+      ],
+      "core_identity_constraints": "完全保留嘎子外形特征：东亚硬朗男性，身高175cm，体重70kg，健壮肌肉线条明显，黑色短寸发质硬，五官立体眉骨高，下颌线清晰，气质刚毅，面部特征与参考图100%匹配，不得肥胖、不得圆脸、不得女性化",
+      "style_adaptation_notes": "属于极简肖像线核心扩展，融合SP006硬朗商业元素+极简光影，升级现有肖像风格，主视觉使用GAZI拼音竖排",
+      "final_prompt_zh": "东亚硬朗男性，黑色短寸，五官立体下颌线清晰，近景大特写，手肘支撑手轻靠下颌，纯净米白色背景，柔雾柔光打亮面部，画面左侧竖排粗黑体拼音大字「GAZI」，右上角小字「PORTRAIT ARCHIVE 2026」，底部小字「MINIMALISM ISSUE」，极简高级肖像杂志封面，高清4K，细节丰富，文字完整不裁切、无乱码",
+      "negative_prompt_zh": "女性化，肥胖，圆脸，文字乱码，画面裁切，肢体变形，模糊，多余人像，杂乱背景，光影过曝",
+      "output_filename": "gazi_v2_minimal_portrait_english.png",
+      "status": "pending",
+      "priority": "medium",
+      "belongs_to_style_line": "极简肖像线"
+    },
+    {
+      "task_id": "T011",
+      "character": "嘎子",
+      "style_pack_id": "SP001",
+      "style_pack_name": "报纸纪实侧颜拼音/英文版",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\00-嘎子-多视角参考图.png",
+      "reference_style_images": [
+        "D:\\Download\\agent_vault\\风格参考库\\13425113291250582.jpeg",
+        "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\13-报纸纪实侧颜封面.png"
+      ],
+      "core_identity_constraints": "完全保留嘎子外形特征：东亚硬朗男性，身高175cm，体重70kg，健壮肌肉线条明显，黑色短寸发质硬，五官立体眉骨高，下颌线清晰，气质刚毅，面部特征与参考图100%匹配，不得肥胖、不得圆脸、不得女性化",
+      "style_adaptation_notes": "属于报纸纪实线核心扩展，融合SP001硬朗男刊版式+报纸元素，升级现有纪实风格，主视觉使用GAZI拼音大字，无IP元素",
+      "final_prompt_zh": "东亚硬朗男性，黑色短寸，五官立体下颌线清晰，硬朗侧颜半身像，和左侧超大号竖排粗体拼音大字「GAZI」拼接融合，顶部报纸风格刊头，人物下方搭配段落小字正文，底部放置条形码，背景干净白色，带轻微复古印刷颗粒感，报纸纪实人像杂志封面，高清4K，细节丰富，文字完整不裁切、无乱码",
+      "negative_prompt_zh": "女性化，肥胖，圆脸，影视IP元素，文字乱码，画面裁切，肢体变形，模糊，多余人像，杂乱背景",
+      "output_filename": "gazi_v2_newspaper_profile_pinyin.png",
+      "status": "pending",
+      "priority": "medium",
+      "belongs_to_style_line": "报纸纪实线"
+    },
+    {
+      "task_id": "T012",
+      "character": "良子",
+      "style_pack_id": "SP005+G11",
+      "style_pack_name": "红绳镜面西装LIANGZI背景版",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\00-良子-多视角参考图.png",
+      "reference_style_images": [
+        "D:\\Download\\agent_vault\\风格参考库\\13425113635598225.jpeg",
+        "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\11-红绳镜面西装封面.png"
+      ],
+      "core_identity_constraints": "完全保留良子外形特征：东亚肥胖男性，身高约175cm，体重150kg+，圆脸有双下巴，黑色短发两侧剃短，体型敦实，面部特征与参考图100%匹配，不得女性化、不得瘦弱、不得尖脸",
+      "style_adaptation_notes": "属于反差高级线MVP临时追加任务，将嘎子当前最高级红绳镜面西装版式迁移到良子，验证大码男性在高奢符号化版式中的反差高级感；主视觉使用LIANGZI拼音艺术字",
+      "final_prompt_zh": "东亚肥胖男性，圆脸双下巴，黑色短发两侧剃短，穿着宽松大码棕色细格纹双排扣西装，内搭白衬衫黑领带，坐姿或稳定半蹲姿态置于纯白镜面地面上，前景错落穿插红色粗绳做视觉层次，背景超大号暗红色艺术拼音大字「LIANGZI」，地面有清晰人物倒影，冷调柔和光影，高奢大码男士时尚大片质感，左上角小字「MODERN ISSUE 09」，右下角小字「SILENCE IS STYLE」，高清4K，细节丰富，文字完整不裁切、无乱码，画面中最大、最醒目的背景文字只能是「LIANGZI」，不要把 MODERN、ARCHIVE、ISSUE、SILENCE 做成大型背景字，如无法准确呈现小字则宁可省略小字",
+      "negative_prompt_zh": "女性化，瘦弱，尖脸，文字乱码，画面裁切，肢体变形，模糊，多余人像，杂乱背景，红绳位置错误，西装过紧，廉价感",
+      "output_filename": "liangzi_v2_red_rope_mirror_suit_liangzi_logo.png",
+      "status": "done",
+      "priority": "high",
+      "belongs_to_style_line": "反差高级线",
+      "output_path": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\liangzi_v2_red_rope_mirror_suit_liangzi_logo.png",
+      "execution_method": "ChatGPT Plus browser fallback",
+      "completed_at": "2026-06-05 20:28 Asia/Shanghai",
+      "execution_notes": "MVP执行完成。红绳镜面版式成功迁移到良子，LIANGZI主视觉清楚。"
+    },
+    {
+      "task_id": "T013",
+      "character": "嘎子",
+      "style_pack_id": "SP005",
+      "style_pack_name": "红绳镜面西装XIEMENGWEI背景修正版",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\00-嘎子-多视角参考图.png",
+      "reference_style_images": [
+        "D:\\Download\\agent_vault\\风格参考库\\13425113635598225.jpeg",
+        "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\11-红绳镜面西装封面.png"
+      ],
+      "core_identity_constraints": "完全保留嘎子外形特征：东亚硬朗男性，身高175cm，体重70kg，健壮肌肉线条明显，黑色短寸发质硬，五官立体眉骨高，下颌线清晰，气质刚毅，面部特征与参考图100%匹配，不得肥胖、不得圆脸、不得女性化",
+      "style_adaptation_notes": "用户复盘提出：GAZI只有四个字母，作为背景超大字不如MODERN密集好看。本任务改用嘎子本名拼音XIEMENGWEI，或分组排布XIE MENG WEI，优先保证字母密度、红色背景艺术字和高奢镜面版式。不覆盖T009；原MODERN版如可找回应单独保留。",
+      "final_prompt_zh": "东亚硬朗男性，黑色短寸，五官立体下颌线清晰，穿着棕色细格纹双排扣西装，内搭白衬衫黑领带，半蹲在纯白镜面地面上，前景错落穿插红色粗绳做视觉层次，背景超大号暗红色艺术拼音大字「XIEMENGWEI」，也可以分组排布为「XIE MENG WEI」，字母横向密集铺满背景，形成类似MODERN的高密度时尚字形节奏，地面有清晰人物倒影，冷调柔和光影，高奢男士时尚大片质感，高清4K，细节丰富，文字完整不裁切、无乱码。画面中最大、最醒目的背景文字必须是「XIEMENGWEI」或「XIE MENG WEI」；不要出现GAZI作为大型背景字；如果小字无法准确呈现，就完全省略小字。",
+      "negative_prompt_zh": "女性化，肥胖，圆脸，文字乱码，画面裁切，肢体变形，模糊，多余人像，杂乱背景，红绳位置错误，背景大字过稀疏，GAZI四字母大背景",
+      "output_filename": "gazi_v2_red_rope_mirror_suit_xiemengwei_logo.png",
+      "status": "cancelled",
+      "priority": "high",
+      "belongs_to_style_line": "高奢西装线",
+      "cancelled_at": "2026-06-05 Asia/Shanghai",
+      "cancellation_reason": "用户明确取消，不再生成谢孟伟/XIEMENGWEI红绳镜面版；当前阶段优先搭建开源工作流，节省GPT Image额度。"
+    }
+  ],
+  "summary": {
+    "total_tasks": 10,
+    "liangzi_tasks": 6,
+    "gazi_tasks": 4,
+    "used_style_packs": [
+      "SP001",
+      "SP002",
+      "SP003",
+      "SP004",
+      "SP005",
+      "SP006"
+    ],
+    "unused_style_packs": [
+      "SP007（仅局部元素参考，稳定性不足暂不进入队列）"
+    ],
+    "covered_style_lines": {
+      "liangzi": [
+        "市井生活线",
+        "反差高级线",
+        "街头潮流线",
+        "国风文化线",
+        "新增生活线"
+      ],
+      "gazi": [
+        "高奢西装线",
+        "极简肖像线",
+        "报纸纪实线"
+      ]
+    },
+    "high_priority_tasks": 6,
+    "medium_priority_tasks": 4,
+    "ip_clean_status": "提示词已清理具体影视IP名称，仅保留通用风险提示",
+    "typography_rule": "文字语言按画面气质判断：市井烟火/中文语境保留中文主视觉，高奢/男刊/商业封面优先英文或拼音；背景超大字需考虑字母密度，短拼音可改用本名拼音。",
+    "mvp_executed_tasks": [
+      "T004",
+      "T005",
+      "T009",
+      "T012"
+    ],
+    "mvp_status": "done",
+    "mvp_review_status": "用户已反馈：良子市井图应保留中文气质；嘎子红绳GAZI四字母过短，MODERN视觉成功样张保留；XIEMENGWEI修正版已取消，当前停止生图，优先整理开源工作流。",
+    "cancelled_tasks": [
+      "T013"
+    ]
+  }
+}

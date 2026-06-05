@@ -1,0 +1,236 @@
+{
+  "style_packs": [
+    {
+      "style_pack_id": "SP001",
+      "source_cluster_id": "CL001",
+      "name": "硬朗男刊侧颜角色海报",
+      "images": [
+        {"image_id": "IMG003", "path": "13425113291250582.jpeg"},
+        {"image_id": "IMG004", "path": "13425113293882399.jpeg"},
+        {"image_id": "IMG006", "path": "13425113311552284.jpeg"},
+        {"image_id": "IMG028", "path": "s13425113301998501.jpegs.jpeg"}
+      ],
+      "representative_image_id": "IMG003",
+      "quality_level": "high",
+      "suitable_characters": "gazi",
+      "fit_liangzi": 1,
+      "fit_gazi": 5,
+      "transfer_mode": "direct",
+      "visual_summary": "Vought系列档案海报风格，左侧人物侧颜近景+右侧大面积留白，浅米白暖调，硬朗纸感质感",
+      "composition_rules": "人物占据画面约2/3宽度，左侧侧颜近景特写，右侧预留大尺寸文字区域，视觉重心稳定",
+      "typography_rules": "右侧留白区域放置灰色竖排大字，排版简洁有力，不遮挡人物主体",
+      "lighting_color_rules": "浅米白/暖米白背景，硬光/侧光塑形，带有纸感档案海报质感，对比清晰硬朗",
+      "pose_subject_rules": "男性角色侧面朝向镜头，表情严肃，气质硬朗有力量感",
+      "props_background_rules": "浅米白/暖米白纯色背景，带有纸张纹理质感，无多余道具，突出人物主体",
+      "character_adaptation_notes": "嘎子可直接复用该版式，替换人物为嘎子的硬朗短寸形象，保持光影、排版和纸感完全一致即可；完全不适合良子",
+      "risks": "属于影视IP衍生设计，直接商用存在版权风险，建议仅参考版式",
+      "priority": 5,
+      "status": "candidate",
+      "notes": "设计高度成熟，是非常优质的男性角色海报参考"
+    },
+    {
+      "style_pack_id": "SP002",
+      "source_cluster_id": "CL002",
+      "name": "Vought 侧颜档案海报迁移版式",
+      "images": [
+        {"image_id": "IMG005", "path": "13425113299664682.jpeg"},
+        {"image_id": "IMG027", "path": "s.jpeg"}
+      ],
+      "representative_image_id": "IMG027",
+      "quality_level": "high",
+      "suitable_characters": "liangzi",
+      "fit_liangzi": 3,
+      "fit_gazi": 1,
+      "transfer_mode": "adapt_composition, adapt_typography",
+      "visual_summary": "与SP001同属Vought系列档案海报，包含1张女性角色和1张男性角色，构图和排版规范完全统一，可用于反差时尚实验",
+      "composition_rules": "与SP001完全一致的左侧人物侧颜近景+右侧留白构图，比例和布局规范",
+      "typography_rules": "右侧留白区域放置灰色竖排大字，排版规范与SP001相同",
+      "lighting_color_rules": "浅米白/暖米白背景，硬光/侧光塑形，带有纸感档案海报质感",
+      "pose_subject_rules": "包含男性和女性角色，均为侧面朝向镜头，表情坚定，气场强大",
+      "props_background_rules": "浅米白/暖米白纯色背景，带有纸张纹理质感，无多余道具，突出人物主体",
+      "character_adaptation_notes": "仅可迁移其构图和排版，替换人物为良子的肥胖男性形象，属于反差实验性质，效果不稳定；完全不适合嘎子",
+      "risks": "属于影视IP衍生设计，直接商用存在版权风险，建议仅参考版式元素",
+      "priority": 3,
+      "status": "low_priority",
+      "notes": "experimental / high variance，反差效果依赖生成质量，不进入第一轮批量生成"
+    },
+    {
+      "style_pack_id": "SP003",
+      "source_cluster_id": "CL003",
+      "name": "柔暖近景生活感肖像",
+      "images": [
+        {"image_id": "IMG007", "path": "13425113610152897.jpeg"},
+        {"image_id": "IMG008", "path": "13425113612305213.jpeg"},
+        {"image_id": "IMG009", "path": "13425113614552184.jpeg"},
+        {"image_id": "IMG010", "path": "13425113616712281.jpeg"},
+        {"image_id": "IMG011", "path": "13425113618937017.jpeg"}
+      ],
+      "representative_image_id": "IMG011",
+      "quality_level": "high",
+      "suitable_characters": "liangzi",
+      "fit_liangzi": 4,
+      "fit_gazi": 1,
+      "transfer_mode": "adapt_lighting, adapt_composition",
+      "visual_summary": "现代女性时尚近景封面风格，柔和暖光，通透肤色，氛围明亮舒适",
+      "composition_rules": "大尺寸人物近景/特写构图，人物占据画面大部分区域，视觉冲击力强",
+      "typography_rules": "文字排版位于画面顶部或边缘，采用纤细无衬线字体，不遮挡人物主体",
+      "lighting_color_rules": "柔和正面打光，肤色通透，暖色调为主，整体氛围明亮舒适",
+      "pose_subject_rules": "人物表情自然放松，姿态多样富有亲和力",
+      "props_background_rules": "纯色或渐变背景，部分带有简单纹理，无复杂道具",
+      "character_adaptation_notes": "良子可迁移其光影和构图，柔和暖光适合表现良子的亲和力，近景特写适合市井、生活感风格；不适合嘎子的硬朗定位",
+      "risks": "无明显风险，通用性强",
+      "priority": 4,
+      "status": "candidate",
+      "notes": "非常适合良子的生活感、市井风格写真创作"
+    },
+    {
+      "style_pack_id": "SP004",
+      "source_cluster_id": "CL004",
+      "name": "松弛半身生活场景版式",
+      "images": [
+        {"image_id": "IMG012", "path": "13425113621072932.jpeg"},
+        {"image_id": "IMG013", "path": "13425113623227348.jpeg"},
+        {"image_id": "IMG014", "path": "13425113625296142.jpeg"},
+        {"image_id": "IMG015", "path": "13425113627390017.jpeg"}
+      ],
+      "representative_image_id": "IMG012",
+      "quality_level": "high",
+      "suitable_characters": "liangzi",
+      "fit_liangzi": 4,
+      "fit_gazi": 1,
+      "transfer_mode": "adapt_composition, adapt_props_background",
+      "visual_summary": "现代女性时尚半身封面风格，舒展姿态，生活化场景，氛围轻松自然",
+      "composition_rules": "人物半身构图，略微仰视角度，人物显得饱满舒展",
+      "typography_rules": "文字排版位于画面边缘，字体纤细简约，不遮挡人物主体",
+      "lighting_color_rules": "柔和正面光，暖色调为主，光影自然舒适",
+      "pose_subject_rules": "人物姿态舒展放松，展现服装搭配和身体线条",
+      "props_background_rules": "纯色或简单生活化场景，部分带有日常道具",
+      "character_adaptation_notes": "良子可迁移其构图和场景感，半身构图适合展现良子的大码穿搭，生活化场景适合市井、松弛风格；不适合嘎子",
+      "risks": "无明显风险，通用性强",
+      "priority": 4,
+      "status": "candidate",
+      "notes": "适合良子的大码穿搭展示、休闲生活风格创作"
+    },
+    {
+      "style_pack_id": "SP005",
+      "source_cluster_id": "CL005",
+      "name": "高定艺术感时尚版式",
+      "images": [
+        {"image_id": "IMG016", "path": "13425113629459161.jpeg"},
+        {"image_id": "IMG018", "path": "13425113633504468.jpeg"},
+        {"image_id": "IMG019", "path": "13425113635598225.jpeg"},
+        {"image_id": "IMG020", "path": "13425113638209287.jpeg"}
+      ],
+      "representative_image_id": "IMG016",
+      "quality_level": "medium",
+      "suitable_characters": "both",
+      "fit_liangzi": 3,
+      "fit_gazi": 2,
+      "transfer_mode": "adapt_lighting, adapt_visual_style",
+      "visual_summary": "高端时尚杂志封面风格，设计复杂，艺术感和高级感强烈",
+      "composition_rules": "构图多样化，包含特写、半身、全身等多种构图，视觉层次丰富",
+      "typography_rules": "文字排版讲究，与画面融合度高，部分采用艺术字体设计",
+      "lighting_color_rules": "光影设计复杂，对比度高，色调富有艺术感，部分采用特殊光影效果",
+      "pose_subject_rules": "人物姿态专业，气场强大，服装多为高级定制",
+      "props_background_rules": "背景和道具复杂，部分采用场景化设计，增强故事感",
+      "character_adaptation_notes": "嘎子可迁移其硬朗高定的光影和质感，用于西装高奢风格创作；良子可迁移其反差高级感，用于大码高定时尚创作；但AI生成难度较高",
+      "risks": "AI生成难度较高，对模型能力要求较高",
+      "priority": 2,
+      "status": "low_priority",
+      "notes": "适合高端定制化创作，不适合批量生成"
+    },
+    {
+      "style_pack_id": "SP006",
+      "source_cluster_id": "CL006",
+      "name": "硬朗商业男性海报",
+      "images": [
+        {"image_id": "IMG001", "path": "13424928336559707.jpeg"},
+        {"image_id": "IMG002", "path": "13425113209914578.jpeg"},
+        {"image_id": "IMG022", "path": "58c3c96c5647f91d79c8204f14e6885a.png"},
+        {"image_id": "IMG024", "path": "image-5.png"}
+      ],
+      "representative_image_id": "IMG002",
+      "quality_level": "medium",
+      "suitable_characters": "gazi",
+      "fit_liangzi": 1,
+      "fit_gazi": 3,
+      "transfer_mode": "element_reference_only",
+      "visual_summary": "男性商业时尚海报合集，内部版式混杂，风格不统一，仅可参考单张元素",
+      "composition_rules": "构图多样不统一，包含近景、半身、全身等多种构图，无统一规范",
+      "typography_rules": "排版风格混杂，包含粗体、细体、不同位置的文字布局，无统一规范",
+      "lighting_color_rules": "光影风格多样，包含冷调、暖调等多种光影处理，无统一规范",
+      "pose_subject_rules": "人物姿态风格不统一，包含不同角度和气质的男性形象",
+      "props_background_rules": "背景风格混杂，包含抽象、实景、科技感等多种类型",
+      "character_adaptation_notes": "不适合作为统一风格包复用，仅可单独参考单张图片的构图、光影或排版元素",
+      "risks": "内部风格混杂，强行统一使用会导致风格不稳定；部分图片可能包含版权元素",
+      "priority": 2,
+      "status": "low_priority",
+      "notes": "内部图片版式混杂，包含多种不相干的设计风格，不适合统一作为一个风格包使用，仅可单独参考单张元素，不进入第一轮批量生成"
+    },
+    {
+      "style_pack_id": "SP007",
+      "source_cluster_id": "CL007",
+      "name": "柔暖东亚审美肖像",
+      "images": [
+        {"image_id": "IMG021", "path": "22fe8035b26a3a6ec03cc3a924e9f473.jpg"},
+        {"image_id": "IMG023", "path": "640.webp"},
+        {"image_id": "IMG025", "path": "image-6.png"}
+      ],
+      "representative_image_id": "IMG025",
+      "quality_level": "medium",
+      "suitable_characters": "liangzi",
+      "fit_liangzi": 2,
+      "fit_gazi": 1,
+      "transfer_mode": "element_reference_only",
+      "visual_summary": "东亚女性肖像合集，内部风格不统一，包含甜美、清新等多种风格，仅可参考局部元素",
+      "composition_rules": "构图多样不统一，包含不同比例的近景/特写，无统一规范",
+      "typography_rules": "排版风格混杂，仅部分图片有简单装饰性文字，无统一规范",
+      "lighting_color_rules": "部分图片采用柔和暖光，肤色通透，可单独参考光影处理",
+      "pose_subject_rules": "人物姿态风格不统一，包含不同气质的女性形象",
+      "props_background_rules": "背景风格混杂，包含自然场景、纯色背景等多种类型",
+      "character_adaptation_notes": "不适合作为统一风格包复用，仅可单独参考局部光影、肤色处理或排版细节",
+      "risks": "IMG025为明星肖像，商用存在肖像权风险；内部风格不统一，复用风险高",
+      "priority": 1,
+      "status": "low_priority",
+      "notes": "内部图片风格不统一，仅可参考局部元素，不进入第一轮批量生成"
+    }
+  ],
+  "rejected_or_low_priority": [
+    {
+      "style_pack_id": "SP002",
+      "name": "Vought 侧颜档案海报迁移版式",
+      "reason": "属于实验性质的反差风格，效果不稳定；IP版权风险"
+    },
+    {
+      "style_pack_id": "SP005",
+      "name": "高定艺术感时尚版式",
+      "reason": "AI生成难度高，适合定制化创作，不适合批量生产"
+    },
+    {
+      "style_pack_id": "SP006",
+      "name": "硬朗商业男性海报",
+      "reason": "内部图片版式混杂，包含多种不相干设计风格，不适合作为统一风格包"
+    },
+    {
+      "style_pack_id": "SP007",
+      "name": "柔暖东亚审美肖像",
+      "reason": "内部风格不统一；包含明星肖像，存在版权风险，仅适合参考局部元素"
+    }
+  ],
+  "summary": {
+    "total_style_packs": 7,
+    "candidate_count": 3,
+    "low_priority_count": 4,
+    "rejected_count": 0,
+    "best_for_liangzi": [
+      "SP003 柔暖近景生活感肖像",
+      "SP004 松弛半身生活场景版式",
+      "SP005 高定艺术感时尚版式（备选）"
+    ],
+    "best_for_gazi": [
+      "SP001 硬朗男刊侧颜角色海报",
+      "SP005 高定艺术感时尚版式（备选）",
+      "SP006 硬朗商业男性海报（仅元素参考）"
+    ]
+  }
+}

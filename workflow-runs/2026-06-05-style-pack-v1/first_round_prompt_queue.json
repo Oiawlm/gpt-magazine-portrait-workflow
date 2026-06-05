@@ -1,0 +1,114 @@
+{
+  "run_id": "2026-06-05-v1",
+  "run_name": "第一轮风格包提示词队列",
+  "total_tasks": 3,
+  "tasks": [
+    {
+      "task_id": "T001",
+      "character": "良子",
+      "style_pack_id": "SP003",
+      "style_pack_name": "柔暖近景生活感肖像",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\00-良子-多视角参考图.png",
+      "reference_style_images": [
+        "13425113610152897.jpeg",
+        "13425113612305213.jpeg",
+        "13425113614552184.jpeg",
+        "13425113616712281.jpeg",
+        "13425113618937017.jpeg"
+      ],
+      "core_identity_constraints": [
+        "东亚肥胖男性，身高约175cm，体重150kg+，圆脸有双下巴，黑色短发两侧剃短，体型敦实，面部特征与参考图完全一致",
+        "不得修改人物面部特征",
+        "不得修改人物体型特征",
+        "不得改变人物发型特征",
+        "顶部刊名完整显示，不得出现裁切"
+      ],
+      "style_adaptation_notes": "迁移柔和暖光和近景特写构图，表现良子的亲和力和市井生活感，搭配大码休闲穿搭，暖色调明亮氛围",
+      "final_prompt_zh": "时尚杂志封面，东亚肥胖男性（良子），圆脸双下巴，黑色短发两侧剃短，150kg+体型敦实，面部特征完全与参考图一致。大尺寸人物近景特写，占据画面大部分区域。柔和正面暖光，肤色通透自然，暖色调明亮舒适氛围。穿搭为宽松大码休闲外套+圆领内搭，姿态自然放松，表情亲和。纯色暖米色渐变背景，带有细微纸张纹理。画面顶部放置纤细无衬线字体刊名大字「市井生活志 2026夏季刊」，边缘点缀小字期数和slogan「好好生活 慢慢相遇」，文字不遮挡人物主体。整体为生活感写真风格，画质高清，细节丰富，电影级质感。",
+      "negative_prompt_zh": "女性化特征，瘦削体型，瓜子脸，尖下巴，长发，奇怪的肢体，扭曲的面部，模糊的五官，文字裁切，错字，低分辨率，噪点，过度美颜，卡通风格，二次元，动漫，多余的道具，杂乱的背景。",
+      "output_filename": "liangzi_sp003_life_portrait.png",
+      "output_path": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\liangzi_sp003_life_portrait.png",
+      "execution_method": "ChatGPT Plus browser fallback",
+      "completed_at": "2026-06-05 16:02 Asia/Shanghai",
+      "status": "done"
+    },
+    {
+      "task_id": "T002",
+      "character": "良子",
+      "style_pack_id": "SP004",
+      "style_pack_name": "松弛半身生活场景版式",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\00-良子-多视角参考图.png",
+      "reference_style_images": [
+        "13425113621072932.jpeg",
+        "13425113623227348.jpeg",
+        "13425113625296142.jpeg",
+        "13425113627390017.jpeg"
+      ],
+      "core_identity_constraints": [
+        "东亚肥胖男性，身高约175cm，体重150kg+，圆脸有双下巴，黑色短发两侧剃短，体型敦实，面部特征与参考图完全一致",
+        "不得修改人物面部特征",
+        "不得修改人物体型特征",
+        "不得改变人物发型特征",
+        "顶部刊名完整显示，不得出现裁切"
+      ],
+      "style_adaptation_notes": "迁移半身构图和生活化场景感，略微仰视角度展现大码穿搭，松弛休闲风格，柔和暖光",
+      "final_prompt_zh": "时尚杂志封面，东亚肥胖男性（良子），圆脸双下巴，黑色短发两侧剃短，150kg+体型敦实，面部特征完全与参考图一致。人物半身构图，略微仰视角度，人物显得饱满舒展。柔和正面暖光，肤色自然，暖色调舒适氛围。穿搭为宽松大码复古花衬衫+卡其色休闲短裤，赤足站在木质地板上，姿态松弛放松，手里拿着冰可乐。背景为浅色墙面搭配简易木质置物架，上面放着复古收音机和绿植，充满生活气息。画面边缘放置纤细无衬线字体文字「大码风尚 2026夏季特刊」「松弛即自由」，文字不遮挡人物主体。整体为休闲生活风格，画质高清，细节丰富，自然光影质感。",
+      "negative_prompt_zh": "女性化特征，瘦削体型，瓜子脸，尖下巴，长发，奇怪的肢体，扭曲的面部，模糊的五官，文字裁切，错字，低分辨率，噪点，过度美颜，卡通风格，二次元，动漫，正式西装，严肃表情，杂乱的背景。",
+      "output_filename": "liangzi_sp004_casual_lifestyle.png",
+      "output_path": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\liangzi_sp004_casual_lifestyle.png",
+      "execution_method": "ChatGPT Plus browser fallback",
+      "completed_at": "2026-06-05 16:02 Asia/Shanghai",
+      "status": "done"
+    },
+    {
+      "task_id": "T003",
+      "character": "嘎子",
+      "style_pack_id": "SP001",
+      "style_pack_name": "硬朗男刊侧颜角色海报",
+      "reference_character_image": "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\00-嘎子-多视角参考图.png",
+      "reference_style_images": [
+        "13425113291250582.jpeg",
+        "13425113293882399.jpeg",
+        "13425113311552284.jpeg",
+        "s13425113301998501.jpegs.jpeg"
+      ],
+      "core_identity_constraints": [
+        "东亚男性，身高175cm，体重70kg，健壮肌肉线条明显，黑色短寸发质硬，五官立体眉骨高，眼神坚定，鼻梁挺直，下颌线清晰，面部轮廓硬朗气质刚毅，面部及身材特征和参考图100%匹配",
+        "不得修改人物面部特征",
+        "不得修改人物体型特征",
+        "不得改变人物发型特征",
+        "顶部刊名完整显示，不得出现裁切"
+      ],
+      "style_adaptation_notes": "直接复用版式和纸感档案海报质感，左侧侧颜近景+右侧留白，硬光塑形，浅米白背景，灰色竖排大字，未使用任何IP相关元素",
+      "final_prompt_zh": "高端男性杂志封面，东亚硬朗男性（嘎子），黑色短寸，五官立体，下颌线清晰，眼神坚定，健壮肌肉身材，面部特征完全与参考图一致。左侧人物侧颜近景特写，占据画面约2/3宽度，右侧大面积留白。浅米白/暖米白纯色背景，带有细微纸张纹理质感，硬侧光打亮人物轮廓，对比清晰硬朗，整体为纸感档案海报质感。人物侧面朝向镜头，表情严肃，气质硬朗有力量感，穿搭为黑色修身西装外套。右侧留白区域放置灰色竖排粗体大字「锋范 2026秋季刊」，下方搭配小字slogan「刚者致胜」，排版简洁有力，不遮挡人物主体。整体为硬朗男刊风格，画质高清，细节丰富，高对比度质感。",
+      "negative_prompt_zh": "肥胖体型，圆脸，双下巴，长发，女性化特征，柔和表情，彩色背景，复杂道具，多余的人物，模糊的五官，扭曲的面部，文字裁切，错字，低分辨率，噪点，卡通风格，二次元，动漫，任何影视IP相关元素。",
+      "output_filename": "gazi_sp001_mens_magazine_poster.png",
+      "output_path": "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\gazi_sp001_mens_magazine_poster.png",
+      "execution_method": "ChatGPT Plus browser fallback",
+      "completed_at": "2026-06-05 16:02 Asia/Shanghai",
+      "status": "done"
+    }
+  ],
+  "excluded_style_packs": [
+    {
+      "style_pack_id": "SP002",
+      "name": "Vought 侧颜档案海报迁移版式",
+      "reason": "实验性质反差风格，效果不稳定，存在影视IP版权风险，标注为experimental/high variance"
+    },
+    {
+      "style_pack_id": "SP005",
+      "name": "高定艺术感时尚版式",
+      "reason": "AI生成难度较高，对模型能力要求高，适合定制化创作，不适合第一轮批量生成"
+    },
+    {
+      "style_pack_id": "SP006",
+      "name": "硬朗商业男性海报",
+      "reason": "内部图片版式混杂，包含多种不相干设计风格，不适合作为统一风格包使用"
+    },
+    {
+      "style_pack_id": "SP007",
+      "name": "柔暖东亚审美肖像",
+      "reason": "内部图片风格不统一，包含明星肖像存在版权风险，仅适合参考局部元素"
+    }
+  ]
+}

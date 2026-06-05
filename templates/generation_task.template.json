@@ -1,0 +1,18 @@
+{
+  "task_id": "T000",
+  "character": "人物名称",
+  "style_pack_id": "SP000",
+  "style_pack_name": "风格名称",
+  "reference_character_image": "assets/characters/<name>/reference/<file>.png",
+  "reference_style_images": [
+    "assets/style-reference/<file>.jpeg"
+  ],
+  "core_identity_constraints": "人物身份固定约束",
+  "style_adaptation_notes": "风格迁移说明",
+  "final_prompt_zh": "最终正向提示词",
+  "negative_prompt_zh": "负向提示词",
+  "output_filename": "<character>_<round>_<style>.png",
+  "status": "pending",
+  "priority": "high",
+  "belongs_to_style_line": "风格线"
+}

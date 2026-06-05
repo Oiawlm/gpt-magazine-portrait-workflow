@@ -1,0 +1,261 @@
+{
+  "total_images": 28,
+  "images": [
+    {
+      "id": "IMG001",
+      "path": "13424928336559707.jpeg",
+      "filename": "13424928336559707.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 115174,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG002",
+      "path": "13425113209914578.jpeg",
+      "filename": "13425113209914578.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 917303,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG003",
+      "path": "13425113291250582.jpeg",
+      "filename": "13425113291250582.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 155792,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG004",
+      "path": "13425113293882399.jpeg",
+      "filename": "13425113293882399.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 179762,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG005",
+      "path": "13425113299664682.jpeg",
+      "filename": "13425113299664682.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 178903,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG006",
+      "path": "13425113311552284.jpeg",
+      "filename": "13425113311552284.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 184083,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG007",
+      "path": "13425113610152897.jpeg",
+      "filename": "13425113610152897.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 230913,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG008",
+      "path": "13425113612305213.jpeg",
+      "filename": "13425113612305213.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 211799,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG009",
+      "path": "13425113614552184.jpeg",
+      "filename": "13425113614552184.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 134529,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG010",
+      "path": "13425113616712281.jpeg",
+      "filename": "13425113616712281.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 245414,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG011",
+      "path": "13425113618937017.jpeg",
+      "filename": "13425113618937017.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 236403,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG012",
+      "path": "13425113621072932.jpeg",
+      "filename": "13425113621072932.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 190882,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG013",
+      "path": "13425113623227348.jpeg",
+      "filename": "13425113623227348.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 96610,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG014",
+      "path": "13425113625296142.jpeg",
+      "filename": "13425113625296142.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 253621,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG015",
+      "path": "13425113627390017.jpeg",
+      "filename": "13425113627390017.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 286201,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG016",
+      "path": "13425113629459161.jpeg",
+      "filename": "13425113629459161.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 283899,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG017",
+      "path": "13425113631530655.jpeg",
+      "filename": "13425113631530655.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 220185,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG018",
+      "path": "13425113633504468.jpeg",
+      "filename": "13425113633504468.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 293539,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG019",
+      "path": "13425113635598225.jpeg",
+      "filename": "13425113635598225.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 250919,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG020",
+      "path": "13425113638209287.jpeg",
+      "filename": "13425113638209287.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 294528,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG021",
+      "path": "22fe8035b26a3a6ec03cc3a924e9f473.jpg",
+      "filename": "22fe8035b26a3a6ec03cc3a924e9f473.jpg",
+      "extension": ".jpg",
+      "size_bytes": 199735,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG022",
+      "path": "58c3c96c5647f91d79c8204f14e6885a.png",
+      "filename": "58c3c96c5647f91d79c8204f14e6885a.png",
+      "extension": ".png",
+      "size_bytes": 798890,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG023",
+      "path": "640.webp",
+      "filename": "640.webp",
+      "extension": ".webp",
+      "size_bytes": 73458,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG024",
+      "path": "image-5.png",
+      "filename": "image-5.png",
+      "extension": ".png",
+      "size_bytes": 1626530,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG025",
+      "path": "image-6.png",
+      "filename": "image-6.png",
+      "extension": ".png",
+      "size_bytes": 1668551,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG026",
+      "path": "image-7.png",
+      "filename": "image-7.png",
+      "extension": ".png",
+      "size_bytes": 310537,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG027",
+      "path": "s.jpeg",
+      "filename": "s.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 196398,
+      "possible_duplicate": false,
+      "notes": ""
+    },
+    {
+      "id": "IMG028",
+      "path": "s13425113301998501.jpegs.jpeg",
+      "filename": "s13425113301998501.jpegs.jpeg",
+      "extension": ".jpeg",
+      "size_bytes": 177422,
+      "possible_duplicate": false,
+      "notes": "文件名包含双重扩展名：.jpegs.jpeg"
+    }
+  ],
+  "non_image_files": [],
+  "warnings": [
+    "存在异常文件名：s13425113301998501.jpegs.jpeg，包含双重.jpeg扩展名"
+  ]
+}

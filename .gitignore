@@ -1,0 +1,21 @@
+# Local runtime
+.env
+.env.*
+node_modules/
+.venv/
+venv/
+__pycache__/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# Local scratch
+_local/
+tmp/
+temp/
+
+# Keep assets tracked by default.
+!assets/
