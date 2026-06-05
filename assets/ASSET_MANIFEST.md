@@ -28,6 +28,10 @@
 
 每个人物目录包含人物 Markdown、任务 JSON、参考图和生成样张。
 
+效果展示索引：
+
+- `assets/SHOWCASE.md`
+
 ## 原始对话和提示词记录
 
 位置：`assets/source-notes/root-conversations/`

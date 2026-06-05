@@ -55,3 +55,20 @@
 6. 执行生图后更新人物 Markdown 和运行记录。
 
 详细步骤见 [docs/WORKFLOW.md](docs/WORKFLOW.md)。
+## 效果展示
+| 参考图 | 生成效果图 | 风格 |
+|--------|------------|------|
+| ![良子参考图](assets/characters/良子/images/00-良子-多视角参考图.png) | ![秋日休闲复古风](assets/characters/良子/images/01-秋日休闲复古风.png) | 秋日休闲复古风 |
+| ![嘎子参考图](assets/characters/嘎子/images/00-嘎子-多视角参考图.png) | ![红绳镜面西装封面](assets/characters/嘎子/images/11-红绳镜面西装封面.png) | 杂志封面风 |
+更多效果见 [assets/SHOWCASE.md](assets/SHOWCASE.md)。
+## 许可证
+本项目采用 MIT 许可证，详见 [LICENSE](LICENSE) 文件。
+## 贡献
+欢迎提交 Issue 和 PR！贡献前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
+## 常见问题
+### Q: 为什么只能用 GPT Image？
+A: 本工作流的提示词和风格是针对 GPT Image 优化的，其他模型可能无法达到相同效果。你可以尝试适配其他模型，但效果不做保证。
+### Q: 需要多少张参考图？
+A: 至少需要正脸、45° 侧脸、正侧脸各一张，越多角度效果越好。参考图分辨率建议 ≥1024x1024，光线均匀，无强阴影。
+### Q: 生图质量不好怎么办？
+A: 首先检查提示词是否准确描述了人物特征和风格，然后尝试调整负面提示词排除不需要的元素。如果是 GPT Image 的文字漂移问题，可以尝试定向编辑。

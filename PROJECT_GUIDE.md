@@ -16,6 +16,8 @@
 - `docs/PROMPT_RULES.md`：提示词规则和已验证经验。
 - `docs/AUTOMATION_SKILL_DESIGN.md`：配套 Codex skill 的设计方向。
 - `docs/HANDOFF_TO_CLAUDE_CODE.md`：交接给 Claude Code 的当前状态和下一步。
+- `skills/gpt-magazine-portrait/SKILL.md`：配套 Codex skill 主文档。
+- `skills/gpt-magazine-portrait/scripts/`：人物目录创建和任务队列校验脚本。
 - `templates/`：人物资料、任务队列、风格包模板。
 - `assets/`：随仓库发布的风格参考、人物资产和生成样张。
 - `assets/ASSET_MANIFEST.md`：资产清单。

@@ -30,7 +30,8 @@
       "output_path": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\liangzi_sp003_life_portrait.png",
       "execution_method": "ChatGPT Plus browser fallback",
       "completed_at": "2026-06-05 16:02 Asia/Shanghai",
-      "status": "done"
+      "status": "done",
+      "priority": "high"
     },
     {
       "task_id": "T002",
@@ -58,7 +59,8 @@
       "output_path": "D:\\Download\\agent_vault\\人物资料库\\良子\\images\\liangzi_sp004_casual_lifestyle.png",
       "execution_method": "ChatGPT Plus browser fallback",
       "completed_at": "2026-06-05 16:02 Asia/Shanghai",
-      "status": "done"
+      "status": "done",
+      "priority": "high"
     },
     {
       "task_id": "T003",
@@ -86,7 +88,8 @@
       "output_path": "D:\\Download\\agent_vault\\人物资料库\\嘎子\\images\\gazi_sp001_mens_magazine_poster.png",
       "execution_method": "ChatGPT Plus browser fallback",
       "completed_at": "2026-06-05 16:02 Asia/Shanghai",
-      "status": "done"
+      "status": "done",
+      "priority": "high"
     }
   ],
   "excluded_style_packs": [
