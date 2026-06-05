@@ -42,6 +42,13 @@ output-records/           试跑记录、复盘和交接记录
 | Codex | 调度流程、审核任务、保存文件、更新记录、维护仓库 |
 | 用户 | 提供人物参考图、确认是否生图、做审美反馈 |
 
+## 🔴 v1.0.0 MVP 版本重要说明
+当前为首个开源MVP版本，有以下客观限制，请知晓：
+1. **生图环节需手动操作**：多视图参考图和最终生图需要您手动在ChatGPT Plus/GPT Image中操作，目前GPT Image无公开API可实现完全自动化
+2. **Doubao依赖**：自动生成任务队列需要Claude Code已配置CC Switch可切换到Doubao-Seed-2.0-Pro；无Doubao时可按照文档手动生成任务队列
+3. **少量人工干预**：需要您手动上传人物照片、填写人物资料、选择风格包、确认生图，全流程约需要4-5次人工操作
+4. **效果依赖GPT Image**：本工作流的提示词和风格优化均针对GPT Image/ChatGPT Plus，使用其他生图模型效果不做保证
+
 ## 🚀 5分钟快速开始
 只需要7步，从0到1生成你的第一组杂志写真：
 
@@ -67,8 +74,8 @@ output-records/           试跑记录、复盘和交接记录
 ### 2. 克隆仓库并创建人物目录
 ```powershell
 # 克隆仓库
-git clone https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
-cd gpt-magazine-portrait-workflow
+git clone https://github.com/Oiawlm/ai-magazine-portrait-workflow.git
+cd ai-magazine-portrait-workflow
 
 # 创建人物目录（将 xiaoming 替换为你的人物名）
 powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\make_character_dirs.ps1 -CharacterName "xiaoming"
