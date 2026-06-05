@@ -42,163 +42,143 @@ output-records/           试跑记录、复盘和交接记录
 | Codex | 调度流程、审核任务、保存文件、更新记录、维护仓库 |
 | 用户 | 提供人物参考图、确认是否生图、做审美反馈 |
 
-## 最短使用流程
+## 🚀 5分钟快速开始
+只需要7步，从0到1生成你的第一组杂志写真：
 
-### 1. 克隆仓库
+| 步骤 | 操作 | 耗时 | 负责方 |
+|------|------|------|--------|
+| 1 | 准备人物照片 | 5分钟 | 用户 |
+| 2 | 创建人物目录 | 1分钟 | Codex/Claude |
+| 3 | 生成多视图参考图 | 5分钟 | GPT Image |
+| 4 | 填写人物资料 | 3分钟 | 用户 |
+| 5 | 生成任务队列 | 2分钟 | Doubao-Seed |
+| 6 | 确认并生图 | 10分钟 | GPT Image |
+| 7 | 保存并记录结果 | 2分钟 | Codex/Claude |
 
+---
+
+### 1. 准备人物照片
+准备至少3张多角度照片：
+- ✅ 正脸清晰照
+- ✅ 45°侧脸照  
+- ✅ 正侧脸照
+- 📌 提示：光线均匀、无遮挡的照片效果最好
+
+### 2. 克隆仓库并创建人物目录
 ```powershell
+# 克隆仓库
 git clone https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 cd gpt-magazine-portrait-workflow
-```
 
-如果你已经在本地：
-
-```powershell
-cd D:\Download\agent_vault\ai-magazine-portrait-workflow
-```
-
-### 2. 创建一个新人物目录
-
-用仓库里的 skill 脚本创建目录：
-
-```powershell
+# 创建人物目录（将 xiaoming 替换为你的人物名）
 powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\make_character_dirs.ps1 -CharacterName "xiaoming"
 ```
-
-执行后会得到：
-
+自动生成目录结构：
 ```text
 assets/characters/xiaoming/
-  reference/      放人物多角度参考图
-  generated/      放最终生成图
-  tasks/          放任务队列 JSON
-  xiaoming.md     人物资料模板
+  reference/      → 放入你准备的人物照片
+  generated/      → 最终生成的图片存在这里
+  tasks/          → 自动生成的任务队列存在这里
+  xiaoming.md     → 人物资料模板，填写人物信息
 ```
 
-### 3. 放入人物多角度图片
+### 3. （关键）生成多视图参考图
+**这步是人物不崩的核心！必须用 GPT Image 生成：**
+1. 打开 GPT Image / ChatGPT Plus
+2. 复制提示词：`templates/multiview_reference_prompt.template.md`
+3. 上传你准备的3张人物照片
+4. 生成包含"正面+左侧面+右侧面+三分之四侧脸"的多视图参考图
+5. 保存到 `assets/characters/xiaoming/reference/` 目录
 
-把这个人的参考图放入：
-
-```text
-assets/characters/xiaoming/reference/
-```
-
-建议至少准备：
-
-- 正脸
-- 45 度侧脸
-- 正侧脸
-- 全身或半身
-
-图片越稳定，人物一致性越好。
+⚠️ 重要提示：Doubao-Seed 只负责读图，不负责生成这张图！
 
 ### 4. 填写人物资料
+编辑 `assets/characters/xiaoming/xiaoming.md`，重点写：
+- 基本信息：年龄、性别、体型
+- 面部特征：脸型、五官、发型、标志性特征（如痣、疤痕）
+- 气质定位：适合的风格和场景
+- **不可改变项**：比如"必须保留右脸的痣""不要改变发型""不要瘦身"
 
-编辑：
-
+### 5. 生成任务队列
+把这段复制给 Claude Code，自动生成任务队列：
 ```text
-assets/characters/xiaoming/xiaoming.md
+按 gpt-magazine-portrait 工作流处理：
+人物名：xiaoming
+多视图参考图已放在 assets/characters/xiaoming/reference/
+人物资料已写在 assets/characters/xiaoming/xiaoming.md
+生成第一轮3-5个杂志写真任务队列
 ```
+Claude Code 会自动：
+- 调用 Doubao-Seed-2.0-Pro 读图
+- 结合风格库生成提示词
+- 输出任务队列到 `assets/characters/xiaoming/tasks/`
+- 自动运行校验脚本验证格式
 
-重点写清楚：
+### 6. 确认并生图
+生图前会自动给你确认：
+- 📋 本轮要生成几张
+- 🎨 每个任务的风格
+- 📂 输出路径
+- 💰 预计消耗额度
 
-- 年龄、性别、体型
-- 脸型、五官、发型
-- 气质
-- 不可改变项
+你确认后，Codex 会自动调用 GPT Image 批量生成，生成的图片自动保存到 `generated/` 目录。
 
-不可改变项很重要，比如“不要瘦身”“不要改变发型”“不要变成另一个人”。
+### 7. 记录与优化
+生成完成后：
+1. 评价每张图的效果（像不像？好不好看？）
+2. 系统自动记录反馈，优化后续提示词
+3. 满意的图可以作为样例，不满意的可以调整后重新生成
 
-### 5. 让 Claude Code / Doubao 生成任务队列
+---
 
-把下面这段复制给 Claude Code：
+## 完整详细流程
+如果需要更多控制，可以按下面的完整流程操作：
 
-```text
-请接手 gpt-magazine-portrait-workflow 项目。
+<details>
+<summary>点击展开完整流程</summary>
 
-先阅读：
-1. PROJECT_GUIDE.md
-2. README.md
-3. docs/WORKFLOW.md
-4. docs/PROMPT_RULES.md
-5. docs/AGENT_ROLES.md
-6. skills/gpt-magazine-portrait/SKILL.md
+### 完整流程1：准备阶段
+- 1.1 克隆仓库到本地
+- 1.2 收集人物多角度参考图（至少3张）
+- 1.3 运行脚本创建人物目录结构
+- 1.4 将参考图放入 reference 目录
 
-当前任务：
-我已经把新人物多角度参考图放在：
-assets/characters/<人物名>/reference/
+### 完整流程2：多视图生成
+- 2.1 使用多视图提示词模板
+- 2.2 通过 GPT Image 生成标准化多视图参考图
+- 2.3 保存到 reference 目录作为核心参考
 
-人物资料在：
-assets/characters/<人物名>/<人物名>.md
+### 完整流程3：人物资料完善
+- 3.1 填写人物基本信息
+- 3.2 详细描述面部特征和体型
+- 3.3 明确气质定位和适合风格
+- 3.4 列出不可改变的核心特征
 
-请使用 Claude Code 当前可用的 Doubao-Seed-2.0-Pro 做图片理解，读取这个人物参考图，并结合 assets/style-reference/ 中的风格资产，生成第一轮人物杂志写真任务队列。
+### 完整流程4：任务队列生成
+- 4.1 选择适合的风格包
+- 4.2 调用 Doubao-Seed 读取人物图和风格图
+- 4.3 生成结构化任务队列JSON
+- 4.4 运行校验脚本验证格式正确性
 
-要求：
-1. 不要生图。
-2. 不要新增图片资源。
-3. 不要做风格迁移试跑。
-4. 只生成任务队列 JSON 和人工可读 Markdown。
-5. 每个任务必须包含 task_id、character、style_pack_id、reference_character_image、reference_style_images、core_identity_constraints、final_prompt_zh、negative_prompt_zh、output_filename、status、priority。
-6. 第一轮建议 3 到 5 个任务，不要贪多。
-7. 任务状态全部写 pending。
-8. 输出到 assets/characters/<人物名>/tasks/。
-9. 完成后运行 skills/gpt-magazine-portrait/scripts/validate_queue.ps1 验证任务队列。
-```
+### 完整流程5：生图前确认
+- 5.1 列出所有任务详情（ID、风格、输出路径）
+- 5.2 确认是否覆盖已有文件
+- 5.3 用户确认后才允许执行生图
 
-把 `<人物名>` 替换成你的目录名，例如 `xiaoming`。
+### 完整流程6：GPT Image 执行
+- 6.1 逐条提交任务到 GPT Image
+- 6.2 每生成一张立即保存到指定路径
+- 6.3 验证文件完整性和可访问性
+- 6.4 实时更新任务状态
 
-### 6. 校验任务队列
+### 完整流程7：记录与迭代
+- 7.1 更新人物 Markdown，添加生成图片和评价
+- 7.2 更新任务队列的最终状态
+- 7.3 记录用户反馈到 output-records
+- 7.4 沉淀有效规则到 PROMPT_RULES.md
+- 7.5 生成下一轮优化建议
 
-Claude Code 生成任务队列后，运行：
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\validate_queue.ps1 -QueuePath .\assets\characters\xiaoming\tasks\first_round_prompt_queue.json
-```
-
-通过后再进入下一步。
-
-### 7. 生图前必须确认
-
-在真正调用 GPT Image 前，Codex 必须先列出：
-
-- 本轮生成几张
-- 每个任务 ID
-- 使用哪些人物参考图
-- 使用哪些风格参考图
-- 输出文件路径
-- 是否覆盖旧文件
-
-用户确认后才允许生图。
-
-### 8. 用 GPT Image / ChatGPT Plus 生图
-
-推荐执行方式：
-
-1. Codex 读取任务队列。
-2. Codex 逐条提交给 GPT Image / ChatGPT Plus。
-3. 每生成一张，保存到任务指定路径。
-4. 保存后检查图片文件存在、大小正常、能打开。
-5. 更新人物 Markdown 和任务状态。
-
-不要为了测试而生图。额度紧张时，先改提示词和任务队列。
-
-### 9. 用户锐评并写回规则
-
-生图完成后，用户评价每张图：
-
-- 人物像不像
-- 风格高级不高级
-- 文字有没有错
-- 哪些方向值得扩展
-- 哪些方向不要再做
-
-Codex 需要把这些反馈写回：
-
-```text
-docs/PROMPT_RULES.md
-assets/characters/<人物名>/<人物名>.md
-output-records/
-```
+</details>
 
 ## Codex Skill 用法
 

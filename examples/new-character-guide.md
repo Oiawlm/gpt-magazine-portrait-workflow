@@ -88,11 +88,62 @@ reference/
 验证完成！
 所有任务格式正确 ✅
 ```
-## 7. 确认与生图
-列出本轮任务信息，等待用户确认后，使用 GPT Image 按任务队列生图。
-## 8. 记录与迭代
-生成完成后：
-1. 将图片保存到 `assets/characters/xiaoming/generated/` 目录
-2. 更新 `xiaoming.md`，添加生成的图片和效果评价
-3. 更新任务队列的 `status` 为 `completed`
-4. 记录用户反馈，沉淀到提示词规则
+## 7. 生成多视图参考图（关键步骤）
+在生成正式写真前，必须先生成多视图参考图保证人物一致性：
+1. 复制 `templates/multiview_reference_prompt.template.md` 中的提示词
+2. 打开 ChatGPT Plus，选择 GPT-4o 模型
+3. 上传 `assets/characters/xiaoming/reference/` 中的3张参考图
+4. 粘贴提示词并生成多视图参考图
+5. 将生成的多视图参考图保存为 `assets/characters/xiaoming/reference/00-xiaoming-多视图参考图.png`
+
+## 8. 确认与生图
+### 8.1 生图前确认
+Codex 会自动列出本轮任务信息供你确认：
+```
+📋 本轮任务确认：
+- 任务数量：3个
+- 任务ID：XM001、XM002、XM003
+- 输出目录：assets/characters/xiaoming/generated/
+- 覆盖旧文件：否
+- 预计耗时：10分钟
+```
+确认后开始执行生图。
+
+### 8.2 执行生图
+1. 打开 ChatGPT Plus，选择 GPT-4o 模型
+2. 上传多视图参考图 `00-xiaoming-多视图参考图.png` 作为人物参考
+3. 按任务队列中的提示词逐一生成
+4. 每生成一张，右键保存到对应的输出路径
+5. 保持文件名与任务队列中的 `output_filename` 一致
+
+## 9. 记录与迭代
+生成完成后，使用 `templates/generation_result.template.md` 模板记录结果：
+1. 将生成的图片保存到 `assets/characters/xiaoming/generated/` 目录
+2. 填写生成结果记录，包含每个任务的状态、评价、优缺点
+3. 更新 `xiaoming.md`，添加生成的图片链接和效果评价
+4. 将任务队列中对应任务的 `status` 更新为 `completed` 或 `failed`
+5. 记录用户反馈，提炼可复用规则沉淀到 `docs/PROMPT_RULES.md`
+6. 根据反馈生成下一轮优化建议
+
+## 示例生成结果记录
+```markdown
+# 生成结果记录：xiaoming - 第一轮
+## 基本信息
+- 人物名称：xiaoming
+- 任务轮次：第一轮
+- 执行日期：2026-06-06
+- 任务数量：3个
+- 成功数量：3个
+
+## 任务执行详情
+| 任务ID | 风格名称 | 输出文件 | 状态 | 备注 |
+|--------|----------|----------|------|------|
+| XM001 | 日式杂志封面风 | assets/characters/xiaoming/generated/01-日式杂志封面.png | 成功 | 人物相似度90%，风格匹配度高 |
+| XM002 | 都市休闲风 | assets/characters/xiaoming/generated/02-都市休闲风.png | 成功 | 光影效果很好，气质符合 |
+| XM003 | 运动时尚风 | assets/characters/xiaoming/generated/03-运动时尚风.png | 成功 | 动作自然，适合后续扩展 |
+
+## 整体反馈
+- 优点：人物一致性很好，风格都比较匹配
+- 不足：日式封面的文字有点漂移，可以后续优化
+- 下一轮建议：增加商务风格和复古风格的任务
+```
