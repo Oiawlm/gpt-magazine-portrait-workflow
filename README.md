@@ -32,6 +32,8 @@ workflow-runs/            已跑过的任务队列和风格谱系
 output-records/           试跑记录、复盘和交接记录
 ```
 
+注意：`assets/characters/*/generation_tasks.json` 是早期人物风格记录，用来展示已有风格探索历史；它不是 `validate_queue.ps1` 的标准任务队列输入。标准任务队列请参考 `templates/generation_task.template.json` 和 `workflow-runs/*/*prompt_queue.json`。
+
 ## 工具分工
 
 | 工具 | 负责什么 |

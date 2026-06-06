@@ -54,6 +54,13 @@ examples/                 新人物接入示例
 - `cancelled`：用户取消或不再需要。
 - `failed`：执行失败，需要记录原因。
 
+## 任务队列与历史记录
+
+- `templates/generation_task.template.json` 是标准任务队列模板。
+- `workflow-runs/*/*prompt_queue.json` 是可被 `validate_queue.ps1` 校验的任务队列示例或历史队列。
+- `assets/characters/*/generation_tasks.json` 是早期人物风格记录，用来展示该人物已有风格探索，不是标准任务队列输入。
+- 标准任务队列中的图片路径应使用仓库相对路径，例如 `assets/characters/<name>/images/...` 或 `assets/style-reference/...`，不要使用作者本机绝对路径。
+
 ## 用户反馈回写
 
 用户说某张图好看或不好看时，不只记录分数，还要提炼规则。
