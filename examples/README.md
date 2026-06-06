@@ -1,11 +1,20 @@
 # Examples
 
-## 接入新人物
+## 新人物接入
 
-1. 在 `assets/characters/` 下创建新人物目录。
-2. 创建 `reference/`，放入正脸、侧脸、背面或多角度参考图。
-3. 按 `templates/character_profile.template.md` 编写人物资料。
-4. 从 `assets/style-reference/` 选择要迁移的风格图。
-5. 按 `templates/generation_task.template.json` 创建任务。
-6. 用 GPT Image 生成后，把结果放入 `generated/`。
-7. 更新人物 Markdown 和运行记录。
+推荐先读 [new-character-guide.md](new-character-guide.md)。
+
+MVP 顺序：
+
+1. 在仓库根目录运行 `make_character_dirs.ps1` 创建人物目录。
+2. 将人物多角度照片放入 `assets/characters/<name>/reference/`。
+3. 使用 `templates/multiview_reference_prompt.template.md` 在 GPT Image 生成多视图参考图，并保存到 `reference/`。
+4. 填写人物资料 Markdown。
+5. 使用 Doubao-Seed-2.0-Pro 生成任务队列，保存到 `tasks/`。
+6. 运行 `validate_queue.ps1` 校验队列。
+7. 用户确认后，在 ChatGPT Plus / GPT Image 手动出图并保存到 `generated/`。
+8. 更新人物 Markdown、任务状态和必要运行记录。
+
+## 无生图测试
+
+见 [../docs/QUICKSTART_TEST.md](../docs/QUICKSTART_TEST.md)。

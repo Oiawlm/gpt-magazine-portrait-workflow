@@ -39,8 +39,8 @@ output-records/           试跑记录、复盘和交接记录
 | GPT Image / ChatGPT Plus | 最终生图 |
 | Claude Code + Doubao-Seed-2.0-Pro | 读人物图、读风格图、提取风格、生成提示词队列 |
 | DeepSeek V4 Pro | 只做文本整理和文档总结，不能读图 |
-| Codex | 调度流程、审核任务、保存文件、更新记录、维护仓库 |
-| 用户 | 提供人物参考图、确认是否生图、做审美反馈 |
+| Codex | 调度流程、审核任务、维护文件、记录结果 |
+| 用户 | 提供人物参考图、确认是否生图、手动执行 GPT Image 出图 |
 
 ## 🔴 v1.0.0 MVP 版本重要说明
 当前为首个开源MVP版本，有以下客观限制，请知晓：
@@ -128,13 +128,13 @@ Claude Code 会自动：
 - 📂 输出路径
 - 💰 预计消耗额度
 
-你确认后，Codex 会自动调用 GPT Image 批量生成，生成的图片自动保存到 `generated/` 目录。
+你确认后，按任务队列逐条在 ChatGPT Plus / GPT Image 中生成图片，并把结果保存到 `generated/` 目录。当前 MVP 不提供 GPT Image API 自动批量调用；Codex/Claude 负责整理任务、确认清单和记录结果。
 
-### 7. 记录与优化
+### 7. 记录结果
 生成完成后：
-1. 评价每张图的效果（像不像？好不好看？）
-2. 系统自动记录反馈，优化后续提示词
-3. 满意的图可以作为样例，不满意的可以调整后重新生成
+1. 将图片保存到任务指定目录。
+2. 更新任务状态和人物资料。
+3. 必要时把执行结果写入 `output-records/`。
 
 ---
 
@@ -178,12 +178,10 @@ Claude Code 会自动：
 - 6.3 验证文件完整性和可访问性
 - 6.4 实时更新任务状态
 
-### 完整流程7：记录与迭代
-- 7.1 更新人物 Markdown，添加生成图片和评价
+### 完整流程7：记录结果
+- 7.1 更新人物 Markdown，添加生成图片路径
 - 7.2 更新任务队列的最终状态
-- 7.3 记录用户反馈到 output-records
-- 7.4 沉淀有效规则到 PROMPT_RULES.md
-- 7.5 生成下一轮优化建议
+- 7.3 记录执行结果到 output-records
 
 </details>
 
@@ -201,7 +199,11 @@ skills/gpt-magazine-portrait/
 - `scripts/make_character_dirs.ps1`：创建新人物目录
 - `scripts/validate_queue.ps1`：校验任务队列 JSON
 
-之后可以把这个 skill 安装到 Codex skills 目录，让 Codex 在用户说“按 gpt-magazine-portrait 工作流跑这个人”时自动触发。
+当前仓库内的 skill 是流程说明和脚本集合。MVP 阶段可以直接让 Codex/Claude Code 阅读 `skills/gpt-magazine-portrait/SKILL.md` 执行；如果要安装成 Codex 本地 skill，可在后续把 `skills/gpt-magazine-portrait/` 复制到 Codex skills 目录。
+
+## 无生图测试
+
+如果你只是想确认仓库脚本和模板能运行，不需要准备人物照片，也不需要消耗 GPT Image 额度。见 [docs/QUICKSTART_TEST.md](docs/QUICKSTART_TEST.md)。
 
 ## 效果展示
 
