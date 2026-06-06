@@ -33,7 +33,7 @@ docs/
   STANDARD.md             目录、命名、任务、反馈规范
   PROMPT_RULES.md         提示词规则
   GPT_IMAGE_GUIDE.md      Codex 生图执行说明
-  AGENT_ROLES.md          Codex / Claude Code / Doubao / DeepSeek 分工
+  AGENT_ROLES.md          Codex / Claude Code / Doubao 分工
 skills/
   gpt-magazine-portrait/  Codex skill 草案和脚本
 templates/                人物资料、风格包、任务队列模板
@@ -49,14 +49,13 @@ output-records/           试跑记录、复盘和交接记录
 |---|---|
 | Codex | 主控流程、创建默认目录、审核任务、最终生图、保存文件、记录结果 |
 | Claude Code + Doubao-Seed-2.0-Pro | 读人物图、读风格图、提取风格、生成提示词队列 |
-| DeepSeek V4 Pro | 可选文本整理和文档总结，不能读图，不能替代 Doubao |
 | 用户 | 提供人物参考图；后续可选给审美反馈 |
 
 ## 🔴 v1.0.0 MVP 版本重要说明
 当前为首个开源MVP版本，有以下客观限制，请知晓：
 1. **Codex 生图依赖**：标准路线要求 Codex 具备可用的生图能力，用于生成多视图参考图和最终杂志写真。
 2. **Doubao 依赖**：自动生成任务队列需要 Claude Code 已配置 CC Switch，或通过等价方式接入 Doubao-Seed-2.0-Pro。
-3. **DeepSeek 边界**：DeepSeek V4 Pro 只能做文本整理，不能读图，不能替代 Doubao-Seed-2.0-Pro 的图片理解职责。
+3. **DeepSeek 边界**：当前工作流不使用 DeepSeek V4 Pro；不要把它作为任务队列、文本整理、fallback 或可选步骤写入本项目流程。
 4. **禁止 UI 自动化路线**：本项目不使用控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端作为工作流、fallback 或未来规划。
 5. **效果基准**：本工作流的提示词和风格优化以 GPT Image 效果为基准，使用其他生图模型效果不做保证。
 
@@ -229,9 +228,9 @@ skills/gpt-magazine-portrait/
 
 这套风格资产和提示词经验以 GPT Image 效果为基准，但本项目的标准执行路线是由 Codex 直接完成多视图参考图和最终图片生成，不使用 ChatGPT 网页版或桌面端操作。
 
-### DeepSeek V4 Pro 能不能读图？
+### DeepSeek V4 Pro 在这个流程里用不用？
 
-不能。它只适合文本整理、规则总结、文档改写，不负责图像理解。
+不用。当前标准工作流只使用 Codex、Claude Code 和 Doubao-Seed-2.0-Pro；DeepSeek V4 Pro 不进入本项目执行路线。
 
 ### 第一轮应该生成多少张？
 

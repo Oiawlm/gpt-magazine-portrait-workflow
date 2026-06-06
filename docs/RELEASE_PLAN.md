@@ -93,7 +93,7 @@ It provides an asset-backed workflow for generating GPT Image-style magazine por
 
 - Codex with image generation capability
 - Claude Code with CC Switch, or equivalent access to Doubao-Seed-2.0-Pro
-- DeepSeek V4 Pro is optional for text-only cleanup; it cannot read images
+- DeepSeek V4 Pro is not used in the current workflow
 
 ## Important boundary
 

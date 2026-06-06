@@ -20,7 +20,7 @@ Codex 不得把控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端作为
 
 负责长文本整理和模型切换协作：
 
-- 通过 CC Switch 或等价方式选择 Doubao-Seed-2.0-Pro 或 DeepSeek V4 Pro。
+- 通过 CC Switch 或等价方式选择 Doubao-Seed-2.0-Pro。
 - 接收 Codex 或用户给出的任务说明。
 - 生成风格包、任务队列、复盘草案。
 - 适合处理较长 Markdown 和 JSON 文件。
@@ -40,15 +40,9 @@ Codex 不得把控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端作为
 
 ## DeepSeek V4 Pro
 
-只作为文本模型使用：
+当前不使用。
 
-- 适合整理文档。
-- 适合总结规则。
-- 适合改写提示词文本。
-- 不负责读图、看图或图片理解。
-
-不要把图片输入能力假设给 DeepSeek V4 Pro。
-DeepSeek V4 Pro 不能替代 Doubao-Seed-2.0-Pro 的图片理解职责。
+本项目的标准流程不把 DeepSeek V4 Pro 作为任务队列、文本整理、fallback 或可选步骤。需要文字整理时，仍由 Codex 或 Claude Code 在当前执行上下文中完成；图片理解和提示词队列继续依赖 Doubao-Seed-2.0-Pro。
 
 ## Codex 生图能力 / GPT Image 效果基准
 

@@ -73,7 +73,7 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 - 不要继续争版权/授权问题。
 - 不要消耗 GPT Image 额度做测试。
 - 不要把“等待用户确认”作为新人物 MVP 的必经步骤。
-- DeepSeek V4 Pro 是纯文本模型，不能读图。
+- 当前工作流不使用 DeepSeek V4 Pro；不要把它写入任务队列、文本整理、fallback 或可选步骤。
 - 最终出图由 Codex 生图能力执行，视觉效果以 GPT Image 经验为基准。
 - Claude Code 必须通过 CC Switch 或等价方式使用 Doubao-Seed-2.0-Pro 做图片理解和提示词队列生成。
 - 不要把控制浏览器、ChatGPT 网页版或 GPT 桌面端作为工作流、fallback 或未来路线。
