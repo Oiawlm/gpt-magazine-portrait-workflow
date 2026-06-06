@@ -67,7 +67,7 @@ gpt-magazine-portrait/
 图片资产仍然放在本仓库：
 
 ```text
-ai-magazine-portrait-workflow/
+gpt-magazine-portrait-workflow/
   assets/
   docs/
   templates/

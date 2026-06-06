@@ -5,7 +5,7 @@
 Codex 已经创建并初始化开源仓库：
 
 ```text
-D:\Download\agent_vault\ai-magazine-portrait-workflow
+D:\Download\agent_vault\gpt-magazine-portrait-workflow
 ```
 
 GitHub 远程目标：
@@ -59,10 +59,9 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 
 不要继续做谢孟伟/XIEMENGWEI 红绳镜面版。
 
-`T013` 已在以下两个队列中标为 `cancelled`：
+`T013` 已在当前仓库的以下队列中标为 `cancelled`：
 
-- `D:\Download\agent_vault\ai-portrait-workflow\runs\2026-06-05-style-pack-v1\second_round_prompt_queue.json`
-- `D:\Download\agent_vault\ai-magazine-portrait-workflow\workflow-runs\2026-06-05-style-pack-v1\second_round_prompt_queue.json`
+- `D:\Download\agent_vault\gpt-magazine-portrait-workflow\workflow-runs\2026-06-05-style-pack-v1\second_round_prompt_queue.json`
 
 原因：用户明确取消，当前优先搭建开源工作流，节省 GPT Image 额度。
 
@@ -92,7 +91,7 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 如果 Codex 尚未推送，可执行：
 
 ```powershell
-cd D:\Download\agent_vault\ai-magazine-portrait-workflow
+cd D:\Download\agent_vault\gpt-magazine-portrait-workflow
 git remote add origin https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 git branch -M main
 git push -u origin main

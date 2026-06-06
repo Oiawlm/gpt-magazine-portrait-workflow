@@ -15,7 +15,7 @@
 **操作**：运行 `make_character_dirs.ps1` 脚本创建 demo_character 目录
 **执行命令**：
 ```powershell
-powershell -ExecutionPolicy Bypass -File "D:\Download\agent_vault\ai-magazine-portrait-workflow\skills\gpt-magazine-portrait\scripts\make_character_dirs.ps1" -CharacterName "demo_character"
+powershell -ExecutionPolicy Bypass -File "D:\Download\agent_vault\gpt-magazine-portrait-workflow\skills\gpt-magazine-portrait\scripts\make_character_dirs.ps1" -CharacterName "demo_character"
 ```
 **执行结果**：
 - 成功创建目录结构：`assets/characters/demo_character/`
@@ -53,7 +53,7 @@ powershell -ExecutionPolicy Bypass -File "D:\Download\agent_vault\ai-magazine-po
 **操作**：运行 `validate_queue.ps1` 脚本验证任务队列
 **执行命令**：
 ```powershell
-powershell -ExecutionPolicy Bypass -File "D:\Download\agent_vault\ai-magazine-portrait-workflow\skills\gpt-magazine-portrait\scripts\validate_queue.ps1" -QueuePath "D:\Download\agent_vault\ai-magazine-portrait-workflow\assets\characters\demo_character\tasks\demo_test_queue.json"
+powershell -ExecutionPolicy Bypass -File "D:\Download\agent_vault\gpt-magazine-portrait-workflow\skills\gpt-magazine-portrait\scripts\validate_queue.ps1" -QueuePath "D:\Download\agent_vault\gpt-magazine-portrait-workflow\assets\characters\demo_character\tasks\demo_test_queue.json"
 ```
 **执行结果**：
 ```

@@ -1,7 +1,7 @@
 # 2026-06-06 MVP 完整性审计报告
 
 ## 审计范围
-ai-magazine-portrait-workflow 仓库全量文档、脚本、模板和示例
+gpt-magazine-portrait-workflow 仓库全量文档、脚本、模板和示例
 
 ## 已完成的能力
 1. ✅ 用户准备新人物多角度照片 - 文档明确要求至少正脸、45°侧脸、正侧脸，目录结构支持reference目录存放

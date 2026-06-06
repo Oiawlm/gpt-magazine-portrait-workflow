@@ -3,7 +3,7 @@
 把下面这段直接复制给 Claude Code 使用。
 
 ```text
-请接手 D:\Download\agent_vault\ai-magazine-portrait-workflow 项目。
+请接手 D:\Download\agent_vault\gpt-magazine-portrait-workflow 项目。
 
 先阅读：
 1. PROJECT_GUIDE.md

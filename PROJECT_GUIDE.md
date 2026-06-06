@@ -1,4 +1,4 @@
-# AI Magazine Portrait Workflow 项目指南
+# GPT Magazine Portrait Workflow 项目指南
 
 ## 项目定位
 
@@ -39,16 +39,16 @@
 本项目当前是文档和资产项目，没有构建命令。修改后至少执行：
 
 ```powershell
-Get-ChildItem -LiteralPath "D:\Download\agent_vault\ai-magazine-portrait-workflow" -Recurse -File | Select-Object FullName,Length,LastWriteTime
+Get-ChildItem -LiteralPath "D:\Download\agent_vault\gpt-magazine-portrait-workflow" -Recurse -File | Select-Object FullName,Length,LastWriteTime
 $pattern = ('TO' + 'DO:' + '|TB' + 'D:' + '|待' + '补：' + '|未' + '完成：')
-Get-ChildItem -LiteralPath "D:\Download\agent_vault\ai-magazine-portrait-workflow" -Recurse -File -Filter *.md | Select-String -Pattern $pattern
-Get-ChildItem -LiteralPath "D:\Download\agent_vault\ai-magazine-portrait-workflow\assets" -Recurse -File | Measure-Object
+Get-ChildItem -LiteralPath "D:\Download\agent_vault\gpt-magazine-portrait-workflow" -Recurse -File -Filter *.md | Select-String -Pattern $pattern
+Get-ChildItem -LiteralPath "D:\Download\agent_vault\gpt-magazine-portrait-workflow\assets" -Recurse -File | Measure-Object
 ```
 
 如果更新了任务 JSON，还要执行：
 
 ```powershell
-Get-ChildItem -LiteralPath "D:\Download\agent_vault\ai-magazine-portrait-workflow" -Recurse -File -Filter *.json | ForEach-Object { Get-Content -LiteralPath $_.FullName -Encoding UTF8 -Raw | ConvertFrom-Json | Out-Null; $_.FullName }
+Get-ChildItem -LiteralPath "D:\Download\agent_vault\gpt-magazine-portrait-workflow" -Recurse -File -Filter *.json | ForEach-Object { Get-Content -LiteralPath $_.FullName -Encoding UTF8 -Raw | ConvertFrom-Json | Out-Null; $_.FullName }
 powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\validate_queue.ps1 -QueuePath .\templates\generation_task.template.json
 powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\validate_queue.ps1 -QueuePath .\workflow-runs\2026-06-05-style-pack-v1\first_round_prompt_queue.json
 powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\validate_queue.ps1 -QueuePath .\workflow-runs\2026-06-05-style-pack-v1\second_round_prompt_queue.json

@@ -1,4 +1,4 @@
-# AI Magazine Portrait Workflow
+# GPT Magazine Portrait Workflow
 
 一套基于 GPT Image 的人物杂志写真资产化工作流。
 
@@ -74,8 +74,8 @@ output-records/           试跑记录、复盘和交接记录
 ### 2. 克隆仓库并创建人物目录
 ```powershell
 # 克隆仓库
-git clone https://github.com/Oiawlm/ai-magazine-portrait-workflow.git
-cd ai-magazine-portrait-workflow
+git clone https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
+cd gpt-magazine-portrait-workflow
 
 # 创建人物目录（将 xiaoming 替换为你的人物名）
 powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\make_character_dirs.ps1 -CharacterName "xiaoming"
