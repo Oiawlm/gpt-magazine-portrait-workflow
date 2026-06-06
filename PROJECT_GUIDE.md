@@ -19,7 +19,7 @@
 - `docs/HANDOFF_TO_CLAUDE_CODE.md`：交接给 Claude Code 的当前状态和下一步。
 - `docs/CLAUDE_CODE_NEXT_PROMPT.md`：可直接复制给 Claude Code 的下一步指令。
 - `skills/gpt-magazine-portrait/SKILL.md`：配套 Codex skill 主文档。
-- `skills/gpt-magazine-portrait/scripts/`：人物目录创建和任务队列校验脚本。
+- `skills/gpt-magazine-portrait/scripts/`：前置检查、默认运行启动、人物目录创建和任务队列校验脚本。
 - `templates/`：人物资料、任务队列、风格包模板。
 - `assets/`：随仓库发布的风格参考、人物资产和生成样张。
 - `assets/ASSET_MANIFEST.md`：资产清单。
@@ -32,7 +32,9 @@
 - `agent_vault` 是作者的原始工作区名，新用户不需要创建或拥有这个目录。
 - 原始工作区中的 `人物资料库`、`风格参考库` 只作为历史复制来源；对外发布后应使用仓库内的 `assets/characters/` 和 `assets/style-reference/`。
 - 新增资产应放入 `assets/` 对应子目录，并同步更新清单或人物 Markdown。
-- 生图前必须列出任务 ID、输出路径、是否覆盖旧图，并等待用户确认。
+- 用户拖入人物照片并触发 `gpt-magazine-portrait` 工作流，视为授权按默认 MVP 自动执行；正常新人物运行不再二次确认。
+- 默认路径为 `assets/characters/<auto-character-id>/reference/originals/`、`reference/multiview/`、`tasks/`、`generated/`、`runs/`。
+- 只有缺少关键前置能力、任务队列无法修复、输入路径不存在或输出会覆盖旧图时，才暂停并说明原因。
 - 本项目标准路线由 Codex 生图能力执行最终出图；不要把控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端写入工作流、计划、fallback 或未来规划。
 - 提示词队列生成标准路线依赖 Claude Code + CC Switch 或等价方式接入 Doubao-Seed-2.0-Pro；DeepSeek V4 Pro 只能做文本整理，不能读图。
 - 当前阶段优先完善仓库和文档，不继续消耗生图额度。
@@ -48,6 +50,7 @@ Get-ChildItem -LiteralPath $repo -Recurse -File | Select-Object FullName,Length,
 $pattern = ('TO' + 'DO:' + '|TB' + 'D:' + '|待' + '补：' + '|未' + '完成：')
 Get-ChildItem -LiteralPath $repo -Recurse -File -Filter *.md | Select-String -Pattern $pattern
 Get-ChildItem -LiteralPath (Join-Path $repo "assets") -Recurse -File | Measure-Object
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\check_workflow_prereqs.ps1
 ```
 
 如果更新了任务 JSON，还要执行：
@@ -66,4 +69,5 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 - 风格迁移不是简单抄参考图，必须提取构图、光影、色彩、字体、服装和气质。
 - DeepSeek V4 Pro 不能收发图片，只适合文本整理。
 - Codex 额度有限，不能为测试而生图。
+- 公开 MVP 追求拖图即跑；不要把人物名、目录、张数、路径和“是否开始”变成用户必填项。
 - `templates/generation_task.template.json` 必须保持合法 JSON；字段说明写入 `_field_notes`，不要使用 `/* ... */` 注释。

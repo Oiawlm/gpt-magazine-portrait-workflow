@@ -12,12 +12,16 @@ param(
     [Parameter(Mandatory=$true)]
     [string]$CharacterName
 )
-$charactersPath = Join-Path $PSScriptRoot "..\..\..\assets\characters"
+$repoRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..\..\..")).Path
+$charactersPath = Join-Path $repoRoot "assets\characters"
 $basePath = Join-Path $charactersPath $CharacterName
 $directories = @(
     "reference",
+    "reference\originals",
+    "reference\multiview",
     "generated",
-    "tasks"
+    "tasks",
+    "runs"
 )
 try {
     # 创建基础目录
@@ -34,15 +38,16 @@ try {
         }
     }
     # 复制人物资料模板
-    $templatePath = Join-Path $PSScriptRoot "..\..\..\templates\character_profile.template.md"
+    $templatePath = Join-Path $repoRoot "templates\character_profile.template.md"
     $outputPath = Join-Path $basePath "$CharacterName.md"
     if (-not (Test-Path $outputPath)) {
         Copy-Item -Path $templatePath -Destination $outputPath
         Write-Host "创建人物资料模板: $outputPath"
     }
     Write-Host "`n人物目录结构创建完成！"
-    Write-Host "请将参考图放入: $basePath\reference\"
-    Write-Host "请编辑人物资料: $outputPath"
+    Write-Host "原始参考图默认目录: $basePath\reference\originals\"
+    Write-Host "多视图参考图默认目录: $basePath\reference\multiview\"
+    Write-Host "人物资料模板: $outputPath"
 }
 catch {
     Write-Error "创建目录失败: $_"

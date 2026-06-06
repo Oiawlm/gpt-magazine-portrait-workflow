@@ -6,10 +6,20 @@
 
 在仓库根目录执行以下命令。Windows PowerShell 可直接使用。
 
-## 1. 创建测试人物目录
+## 1. 检查仓库前置条件
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\make_character_dirs.ps1 -CharacterName "demo_character"
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\check_workflow_prereqs.ps1
+```
+
+预期结果：脚本能找到关键目录、模板和校验脚本，并成功校验任务模板。
+
+## 2. 启动一次默认测试运行
+
+```powershell
+$tmpImage = Join-Path $env:TEMP "gmpw-demo-source.png"
+"demo image placeholder" | Set-Content -LiteralPath $tmpImage -Encoding UTF8
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\start_character_run.ps1 -CharacterName "demo_character" -RunId "run-demo-test" -SourceImagePath $tmpImage
 ```
 
 预期生成：
@@ -17,23 +27,28 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 ```text
 assets/characters/demo_character/
 ├── reference/
+│   ├── originals/
+│   └── multiview/
 ├── generated/
 ├── tasks/
+├── runs/
 └── demo_character.md
 ```
 
-## 2. 检查目录是否存在
+## 3. 检查目录是否存在
 
 ```powershell
-Test-Path .\assets\characters\demo_character\reference
+Test-Path .\assets\characters\demo_character\reference\originals
+Test-Path .\assets\characters\demo_character\reference\multiview
 Test-Path .\assets\characters\demo_character\generated
 Test-Path .\assets\characters\demo_character\tasks
+Test-Path .\assets\characters\demo_character\runs\run-demo-test-manifest.json
 Test-Path .\assets\characters\demo_character\demo_character.md
 ```
 
-四行结果都应为 `True`。
+六行结果都应为 `True`。
 
-## 3. 校验任务模板
+## 4. 校验任务模板
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\validate_queue.ps1 -QueuePath .\templates\generation_task.template.json
@@ -41,7 +56,7 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 
 预期结果：脚本能识别模板中的示例任务，并提示必填字段完整。
 
-## 4. 校验历史任务队列
+## 5. 校验历史任务队列
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\validate_queue.ps1 -QueuePath .\workflow-runs\2026-06-05-style-pack-v1\first_round_prompt_queue.json
@@ -50,7 +65,7 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 
 预期结果：两个队列都通过必填字段校验。
 
-## 5. 可选：检查所有 JSON 可解析
+## 6. 可选：检查所有 JSON 可解析
 
 ```powershell
 $repo = (Get-Location).Path
@@ -62,10 +77,11 @@ Get-ChildItem -LiteralPath $repo -Recurse -File -Filter *.json | ForEach-Object 
 
 如果命令没有报错，说明仓库内 JSON 文件语法有效。
 
-## 6. 清理测试目录
+## 7. 清理测试目录
 
 ```powershell
 Remove-Item -LiteralPath .\assets\characters\demo_character -Recurse -Force
+Remove-Item -LiteralPath $tmpImage -Force
 ```
 
 只删除本次测试创建的 `demo_character` 目录。
@@ -74,7 +90,9 @@ Remove-Item -LiteralPath .\assets\characters\demo_character -Recurse -Force
 
 以上步骤通过后，说明仓库的最小可用流程已经可执行：
 
-1. 能创建新人物目录。
-2. 能读取任务模板。
-3. 能校验任务队列。
-4. 能进入后续“上传人物参考图 -> Codex 生成多视图 -> 生成任务队列 -> Codex 生图”的主流程。
+1. 能检查仓库前置条件。
+2. 能按默认路径启动新人物运行。
+3. 能复制用户拖入图片到 `reference/originals/`。
+4. 能读取任务模板。
+5. 能校验任务队列。
+6. 能进入后续“拖入人物参考图 -> Codex 生成多视图 -> Doubao 生成任务队列 -> Codex 自动生图”的主流程。

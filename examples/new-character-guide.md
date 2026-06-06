@@ -1,44 +1,57 @@
 # 新人物接入示例
 
-本文以虚拟人物 `xiaoming` 为例，演示当前 MVP 的完整接入流程。标准路线由 Codex 生成多视图参考图和最终杂志写真，不使用控制浏览器、ChatGPT 网页版或 GPT 桌面端。
+本文以虚拟人物 `xiaoming` 为例，演示当前 MVP 的完整接入流程。普通用户只需要把多角度照片拖给 Codex 并触发工作流；下面的命令和路径主要说明 Codex 内部会如何落盘。标准路线由 Codex 生成多视图参考图和最终杂志写真，不使用控制浏览器、ChatGPT 网页版或 GPT 桌面端。
 
-## 1. 创建人物目录
+## 1. 用户触发
 
-在仓库根目录运行：
+用户把同一人物的多角度照片拖给 Codex，然后发送：
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\make_character_dirs.ps1 -CharacterName "xiaoming"
+```text
+按 gpt-magazine-portrait 工作流处理这些照片。
 ```
 
-执行后会生成：
+触发语和照片本身视为本轮 MVP 执行授权；正常新人物运行不再二次询问人物名、目录、张数或是否开始。
+
+## 2. Codex 自动创建人物目录
+
+Codex 在仓库根目录调用：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\start_character_run.ps1 -SourceImagePath "D:\input\front.png","D:\input\side.png","D:\input\three-quarter.png"
+```
+
+如果没有指定人物名，脚本会自动生成类似 `character-20260607-153000` 的目录。以 `xiaoming` 为例，目录结构为：
 
 ```text
 assets/characters/xiaoming/
 ├── reference/
+│   ├── originals/
+│   └── multiview/
 ├── generated/
 ├── tasks/
+├── runs/
 └── xiaoming.md
 ```
 
-## 2. 准备人物原始参考图
+## 3. 保存人物原始参考图
 
-将同一个人的多角度照片放入：
+Codex 将用户拖入的照片复制到：
 
 ```text
-assets/characters/xiaoming/reference/
+assets/characters/xiaoming/reference/originals/
 ```
 
 建议至少包含：
 
 ```text
-reference/
+reference/originals/
 ├── 01-front.png
 ├── 02-three-quarter.png
 ├── 03-side.png
 └── 04-full-body.png
 ```
 
-## 3. 生成多视图参考图
+## 4. 生成多视图参考图
 
 正式生成杂志写真前，先让 Codex 生成一张多视图参考图，目的是锁定人物一致性。
 
@@ -50,14 +63,14 @@ reference/
 4. 保存到：
 
 ```text
-assets/characters/xiaoming/reference/00-xiaoming-multiview-reference.png
+assets/characters/xiaoming/reference/multiview/00-xiaoming-multiview-reference.png
 ```
 
 后续任务队列中的 `reference_character_image` 优先指向这张多视图参考图。
 
-## 4. 填写人物资料
+## 5. 自动草拟人物资料
 
-编辑：
+Codex 先根据图片可观察信息自动草拟：
 
 ```text
 assets/characters/xiaoming/xiaoming.md
@@ -89,11 +102,13 @@ assets/characters/xiaoming/xiaoming.md
 - 不要生成女性化五官
 ```
 
-## 5. 生成任务队列
+用户后续可以补充不可改变项，但 MVP 不要求用户先手动填写。
+
+## 6. 生成任务队列
 
 将以下内容交给支持图片输入的 Claude Code / Doubao-Seed-2.0-Pro 会话。推荐通过 CC Switch 或等价方式接入 Doubao-Seed-2.0-Pro：
 
-1. `assets/characters/xiaoming/reference/00-xiaoming-multiview-reference.png`
+1. `assets/characters/xiaoming/reference/multiview/00-xiaoming-multiview-reference.png`
 2. `assets/characters/xiaoming/xiaoming.md`
 3. 选定的风格参考图，例如 `assets/style-reference/13425113610152897.jpeg`
 4. `templates/generation_task.template.json`
@@ -113,7 +128,7 @@ assets/characters/xiaoming/tasks/20260606-first-round.json
     "character": "xiaoming",
     "style_pack_id": "SP001",
     "style_pack_name": "soft city portrait",
-    "reference_character_image": "assets/characters/xiaoming/reference/00-xiaoming-multiview-reference.png",
+    "reference_character_image": "assets/characters/xiaoming/reference/multiview/00-xiaoming-multiview-reference.png",
     "reference_style_images": [
       "assets/style-reference/13425113610152897.jpeg"
     ],
@@ -129,37 +144,28 @@ assets/characters/xiaoming/tasks/20260606-first-round.json
 ]
 ```
 
-## 6. 校验任务队列
+## 7. 校验任务队列
 
-在仓库根目录运行：
+Codex 在仓库根目录运行：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\validate_queue.ps1 -QueuePath .\assets\characters\xiaoming\tasks\20260606-first-round.json
 ```
 
-校验通过后，再进入生图。校验不代表提示词质量一定好，只代表 JSON 格式和必填字段满足工作流要求。
+校验通过后进入自动生图。校验不代表提示词质量一定好，只代表 JSON 格式和必填字段满足工作流要求。
 
-## 7. 确认并由 Codex 出图
+## 8. 由 Codex 自动出图
 
-生图前先列出本轮信息：
-
-```text
-任务数量：1
-任务ID：XM001
-角色：xiaoming
-输出路径：assets/characters/xiaoming/generated/
-是否覆盖旧图：否
-执行方式：Codex 生图能力
-```
-
-用户确认后：
+如果输出不会覆盖旧图，且 Codex 生图能力和 Doubao 队列都可用，则直接执行：
 
 1. Codex 读取 `00-xiaoming-multiview-reference.png`。
 2. Codex 读取任务队列中的 `final_prompt_zh` 和 `negative_prompt_zh`。
 3. Codex 生成图片。
 4. 将结果保存为任务中的 `output_filename`。
 
-## 8. 记录结果
+只有输出会覆盖旧图、关键路径不存在、队列校验无法修复或前置能力缺失时，才暂停并说明原因。
+
+## 9. 记录结果
 
 出图完成后只做必要记录：
 

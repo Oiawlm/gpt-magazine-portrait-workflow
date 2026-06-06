@@ -27,6 +27,8 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 
 用户希望别人拿到仓库后，不需要重新收集风格图，只要上传一个人的多角度照片，就可以按这套效果路线生成高质量杂志写真。
 
+最新执行口径：普通用户只需要把人物多角度照片拖给 Codex 并触发工作流。仓库和 skill 应使用默认目录、默认命名和第一轮默认 4 张的 MVP 策略；不要要求用户手动输入人物名、路径、张数或“是否开始”。触发语和照片本身视为执行授权，只有覆盖旧文件、缺前置能力、路径不存在或队列无法修复时才暂停。
+
 ## 已完成文件
 
 关键入口：
@@ -70,6 +72,7 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 - 不要写素材声明类文档。
 - 不要继续争版权/授权问题。
 - 不要消耗 GPT Image 额度做测试。
+- 不要把“等待用户确认”作为新人物 MVP 的必经步骤。
 - DeepSeek V4 Pro 是纯文本模型，不能读图。
 - 最终出图由 Codex 生图能力执行，视觉效果以 GPT Image 经验为基准。
 - Claude Code 必须通过 CC Switch 或等价方式使用 Doubao-Seed-2.0-Pro 做图片理解和提示词队列生成。
@@ -82,10 +85,11 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
    - skill 名称建议：`gpt-magazine-portrait`
    - skill 不内置大量图片，只引用仓库资产路径。
 3. 补一个更明确的新人物接入示例。
-4. 可选：写两个脚本：
-   - 创建新人物目录。
-   - 校验任务队列 JSON。
-5. 等用户确认后，再用一个新人物做端到端验证。
+4. 维护三个关键脚本：
+   - `check_workflow_prereqs.ps1`：检查仓库前置条件。
+   - `start_character_run.ps1`：按默认路径启动新人物运行。
+   - `validate_queue.ps1`：校验任务队列 JSON。
+5. 后续用一个新人物做端到端验证，但不要为验证消耗不必要生图额度。
 
 ## 推送命令
 
