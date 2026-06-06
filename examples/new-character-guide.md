@@ -1,6 +1,6 @@
 # 新人物接入示例
 
-本文以虚拟人物 `xiaoming` 为例，演示当前 MVP 的完整接入流程。这个流程不调用 GPT Image API，也不要求 Codex 自动生图；正式出图仍由用户在 ChatGPT Plus / GPT Image 中手动完成。
+本文以虚拟人物 `xiaoming` 为例，演示当前 MVP 的完整接入流程。标准路线由 Codex 生成多视图参考图和最终杂志写真，不使用控制浏览器、ChatGPT 网页版或 GPT 桌面端。
 
 ## 1. 创建人物目录
 
@@ -40,15 +40,14 @@ reference/
 
 ## 3. 生成多视图参考图
 
-正式生成杂志写真前，先用 GPT Image 生成一张多视图参考图，目的是锁定人物一致性。
+正式生成杂志写真前，先让 Codex 生成一张多视图参考图，目的是锁定人物一致性。
 
 操作方式：
 
-1. 打开 ChatGPT Plus / GPT Image。
-2. 上传 `reference/` 中的人物多角度照片。
-3. 复制 `templates/multiview_reference_prompt.template.md` 中的提示词。
-4. 生成多视图参考图。
-5. 保存到：
+1. 读取 `templates/multiview_reference_prompt.template.md` 中的提示词。
+2. 使用 `reference/` 中的人物多角度照片作为参考。
+3. 由 Codex 生图能力生成多视图参考图。
+4. 保存到：
 
 ```text
 assets/characters/xiaoming/reference/00-xiaoming-multiview-reference.png
@@ -92,7 +91,7 @@ assets/characters/xiaoming/xiaoming.md
 
 ## 5. 生成任务队列
 
-将以下内容交给支持图片输入的 Claude Code / Doubao-Seed-2.0-Pro 会话：
+将以下内容交给支持图片输入的 Claude Code / Doubao-Seed-2.0-Pro 会话。推荐通过 CC Switch 或等价方式接入 Doubao-Seed-2.0-Pro：
 
 1. `assets/characters/xiaoming/reference/00-xiaoming-multiview-reference.png`
 2. `assets/characters/xiaoming/xiaoming.md`
@@ -140,7 +139,7 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 
 校验通过后，再进入生图。校验不代表提示词质量一定好，只代表 JSON 格式和必填字段满足工作流要求。
 
-## 7. 确认并手动出图
+## 7. 确认并由 Codex 出图
 
 生图前先列出本轮信息：
 
@@ -150,16 +149,15 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 角色：xiaoming
 输出路径：assets/characters/xiaoming/generated/
 是否覆盖旧图：否
-执行方式：ChatGPT Plus / GPT Image 手动出图
+执行方式：Codex 生图能力
 ```
 
 用户确认后：
 
-1. 打开 ChatGPT Plus / GPT Image。
-2. 上传 `00-xiaoming-multiview-reference.png`。
-3. 复制任务队列中的 `final_prompt_zh` 和 `negative_prompt_zh`。
-4. 生成图片。
-5. 将结果保存为任务中的 `output_filename`。
+1. Codex 读取 `00-xiaoming-multiview-reference.png`。
+2. Codex 读取任务队列中的 `final_prompt_zh` 和 `negative_prompt_zh`。
+3. Codex 生成图片。
+4. 将结果保存为任务中的 `output_filename`。
 
 ## 8. 记录结果
 

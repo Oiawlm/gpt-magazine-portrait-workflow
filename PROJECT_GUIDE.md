@@ -4,7 +4,7 @@
 
 本项目是用于开源发布的人物杂志写真自动化工作流仓库。它包含流程文档、规范、模板、风格参考资产、人物样张、运行记录和可复用提示词经验。
 
-本项目不做前端集成，不提供一键 SaaS，不承诺所有生图模型都有同样效果。最终出图效果以 GPT Image / ChatGPT Plus 为主。
+本项目不做前端集成，不提供一键 SaaS，不承诺所有生图模型都有同样效果。标准执行路线由 Codex 生图能力完成最终出图，视觉质量以 GPT Image 效果为基准。
 
 ## 主要入口
 
@@ -13,7 +13,7 @@
 - `docs/WORKFLOW.md`：完整工作流。
 - `docs/STANDARD.md`：目录、命名、任务和反馈规范。
 - `docs/AGENT_ROLES.md`：Codex、Claude Code、Doubao、DeepSeek、GPT Image 的分工。
-- `docs/GPT_IMAGE_GUIDE.md`：GPT Image 执行说明。
+- `docs/GPT_IMAGE_GUIDE.md`：Codex 生图执行说明和 GPT Image 效果基准。
 - `docs/PROMPT_RULES.md`：提示词规则和已验证经验。
 - `docs/AUTOMATION_SKILL_DESIGN.md`：配套 Codex skill 的设计方向。
 - `docs/HANDOFF_TO_CLAUDE_CODE.md`：交接给 Claude Code 的当前状态和下一步。
@@ -33,6 +33,8 @@
 - 原始工作区中的 `人物资料库`、`风格参考库` 只作为历史复制来源；对外发布后应使用仓库内的 `assets/characters/` 和 `assets/style-reference/`。
 - 新增资产应放入 `assets/` 对应子目录，并同步更新清单或人物 Markdown。
 - 生图前必须列出任务 ID、输出路径、是否覆盖旧图，并等待用户确认。
+- 本项目标准路线由 Codex 生图能力执行最终出图；不要把控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端写入工作流、计划、fallback 或未来规划。
+- 提示词队列生成标准路线依赖 Claude Code + CC Switch 或等价方式接入 Doubao-Seed-2.0-Pro；DeepSeek V4 Pro 只能做文本整理，不能读图。
 - 当前阶段优先完善仓库和文档，不继续消耗生图额度。
 - 谢孟伟/XIEMENGWEI 红绳重做任务已取消，不再执行。
 
@@ -60,7 +62,7 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 
 ## 剩余风险
 
-- GPT Image 对文字有漂移概率，尤其是大型背景字、小字和中文标语。
+- Codex 生图能力可能出现文字漂移，尤其是大型背景字、小字和中文标语。
 - 风格迁移不是简单抄参考图，必须提取构图、光影、色彩、字体、服装和气质。
 - DeepSeek V4 Pro 不能收发图片，只适合文本整理。
 - Codex 额度有限，不能为测试而生图。

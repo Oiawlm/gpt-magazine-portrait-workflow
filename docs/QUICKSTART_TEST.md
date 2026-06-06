@@ -77,4 +77,4 @@ Remove-Item -LiteralPath .\assets\characters\demo_character -Recurse -Force
 1. 能创建新人物目录。
 2. 能读取任务模板。
 3. 能校验任务队列。
-4. 能进入后续“上传人物参考图 -> 生成多视图 -> 生成任务队列 -> 手动 GPT Image 出图”的主流程。
+4. 能进入后续“上传人物参考图 -> Codex 生成多视图 -> 生成任务队列 -> Codex 生图”的主流程。

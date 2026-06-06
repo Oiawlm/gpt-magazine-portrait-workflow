@@ -14,7 +14,7 @@ GitHub 远程目标：
 https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 ```
 
-本仓库目标不是通用 AI 生图工具，而是用户自己的资产化 GPT Image 人物杂志写真工作流。仓库内已经包含风格参考、良子/嘎子人物资料、生成样张、历史任务队列、运行记录和规范文档。
+本仓库目标不是通用 AI 生图工具，而是用户自己的资产化人物杂志写真工作流。仓库内已经包含风格参考、良子/嘎子人物资料、生成样张、历史任务队列、运行记录和规范文档。
 
 ## 用户最新意图
 
@@ -23,7 +23,7 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 更准确的产品形态：
 
 - GitHub 仓库：保存资产、文档、模板、风格参考、样张和运行记录。
-- Codex skill：让 Codex 在用户上传一个新人物多角度照片后，知道如何调用这套资产和流程，把整个生成流程跑起来。
+- Codex skill：让 Codex 在用户上传一个新人物多角度照片后，知道如何调用这套资产和流程，把整个生成流程跑起来，并由 Codex 生图能力完成最终出图。
 
 用户希望别人拿到仓库后，不需要重新收集风格图，只要上传一个人的多角度照片，就可以按这套效果路线生成高质量杂志写真。
 
@@ -71,8 +71,9 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 - 不要继续争版权/授权问题。
 - 不要消耗 GPT Image 额度做测试。
 - DeepSeek V4 Pro 是纯文本模型，不能读图。
-- 最终生图效果以 GPT Image / ChatGPT Plus 为准。
-- Claude Code 可通过 CC Switch 使用 Doubao-Seed-2.0-Pro 做图片理解和提示词生成。
+- 最终出图由 Codex 生图能力执行，视觉效果以 GPT Image 经验为基准。
+- Claude Code 必须通过 CC Switch 或等价方式使用 Doubao-Seed-2.0-Pro 做图片理解和提示词队列生成。
+- 不要把控制浏览器、ChatGPT 网页版或 GPT 桌面端作为工作流、fallback 或未来路线。
 
 ## 下一步建议
 

@@ -1,8 +1,8 @@
 # GPT Magazine Portrait Workflow
 
-一套基于 GPT Image 的人物杂志写真资产化工作流。
+一套基于 Codex 生图能力和 GPT Image 效果基准的人物杂志写真资产化工作流。
 
-它不是通用 AI 生图工具，也不是前端项目。它的目标很具体：用户准备一个人物的多角度参考图，复用本仓库里的风格资产、提示词规则和任务模板，经由 Claude Code / Doubao-Seed-2.0-Pro 做图片理解和提示词整理，由 Codex 调度、确认、落盘，最终用 GPT Image / ChatGPT Plus 生成高质量杂志写真。
+它不是通用 AI 生图工具，也不是前端项目。它的目标很具体：用户准备一个人物的多角度参考图，复用本仓库里的风格资产、提示词规则和任务模板，经由 Claude Code / Doubao-Seed-2.0-Pro 做图片理解和提示词队列整理，由 Codex 调度、确认、最终生图和落盘，生成高质量杂志写真。
 
 ## 你能用它做什么
 
@@ -23,7 +23,7 @@ docs/
   WORKFLOW.md             完整工作流
   STANDARD.md             目录、命名、任务、反馈规范
   PROMPT_RULES.md         提示词规则
-  GPT_IMAGE_GUIDE.md      GPT Image 执行说明
+  GPT_IMAGE_GUIDE.md      Codex 生图执行说明
   AGENT_ROLES.md          Codex / Claude Code / Doubao / DeepSeek 分工
 skills/
   gpt-magazine-portrait/  Codex skill 草案和脚本
@@ -38,18 +38,18 @@ output-records/           试跑记录、复盘和交接记录
 
 | 工具 | 负责什么 |
 |---|---|
-| GPT Image / ChatGPT Plus | 最终生图 |
+| Codex | 主控流程、审核任务、最终生图、保存文件、记录结果 |
 | Claude Code + Doubao-Seed-2.0-Pro | 读人物图、读风格图、提取风格、生成提示词队列 |
-| DeepSeek V4 Pro | 只做文本整理和文档总结，不能读图 |
-| Codex | 调度流程、审核任务、维护文件、记录结果 |
-| 用户 | 提供人物参考图、确认是否生图、手动执行 GPT Image 出图 |
+| DeepSeek V4 Pro | 可选文本整理和文档总结，不能读图，不能替代 Doubao |
+| 用户 | 提供人物参考图、确认是否生图 |
 
 ## 🔴 v1.0.0 MVP 版本重要说明
 当前为首个开源MVP版本，有以下客观限制，请知晓：
-1. **生图环节需手动操作**：多视图参考图和最终生图需要您手动在ChatGPT Plus/GPT Image中操作，目前GPT Image无公开API可实现完全自动化
-2. **Doubao依赖**：自动生成任务队列需要Claude Code已配置CC Switch可切换到Doubao-Seed-2.0-Pro；无Doubao时可按照文档手动生成任务队列
-3. **少量人工干预**：需要您手动上传人物照片、填写人物资料、选择风格包、确认生图，全流程约需要4-5次人工操作
-4. **效果依赖GPT Image**：本工作流的提示词和风格优化均针对GPT Image/ChatGPT Plus，使用其他生图模型效果不做保证
+1. **Codex 生图依赖**：标准路线要求 Codex 具备可用的生图能力，用于生成多视图参考图和最终杂志写真。
+2. **Doubao 依赖**：自动生成任务队列需要 Claude Code 已配置 CC Switch，或通过等价方式接入 Doubao-Seed-2.0-Pro。
+3. **DeepSeek 边界**：DeepSeek V4 Pro 只能做文本整理，不能读图，不能替代 Doubao-Seed-2.0-Pro 的图片理解职责。
+4. **禁止 UI 自动化路线**：本项目不使用控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端作为工作流、fallback 或未来规划。
+5. **效果基准**：本工作流的提示词和风格优化以 GPT Image 效果为基准，使用其他生图模型效果不做保证。
 
 ## 🚀 5分钟快速开始
 只需要7步，从0到1生成你的第一组杂志写真：
@@ -58,10 +58,10 @@ output-records/           试跑记录、复盘和交接记录
 |------|------|------|--------|
 | 1 | 准备人物照片 | 5分钟 | 用户 |
 | 2 | 创建人物目录 | 1分钟 | Codex/Claude |
-| 3 | 生成多视图参考图 | 5分钟 | GPT Image |
+| 3 | 生成多视图参考图 | 5分钟 | Codex |
 | 4 | 填写人物资料 | 3分钟 | 用户 |
 | 5 | 生成任务队列 | 2分钟 | Doubao-Seed |
-| 6 | 确认并生图 | 10分钟 | GPT Image |
+| 6 | 确认并生图 | 10分钟 | Codex |
 | 7 | 保存并记录结果 | 2分钟 | Codex/Claude |
 
 ---
@@ -92,12 +92,11 @@ assets/characters/xiaoming/
 ```
 
 ### 3. （关键）生成多视图参考图
-**这步是人物不崩的核心！必须用 GPT Image 生成：**
-1. 打开 GPT Image / ChatGPT Plus
-2. 复制提示词：`templates/multiview_reference_prompt.template.md`
-3. 上传你准备的3张人物照片
-4. 生成包含"正面+左侧面+右侧面+三分之四侧脸"的多视图参考图
-5. 保存到 `assets/characters/xiaoming/reference/` 目录
+**这步是人物不崩的核心，由 Codex 生图能力生成：**
+1. 读取提示词：`templates/multiview_reference_prompt.template.md`
+2. 使用你准备的多角度人物照片作为参考
+3. 生成包含"正面+左侧面+右侧面+三分之四侧脸"的多视图参考图
+4. 保存到 `assets/characters/xiaoming/reference/` 目录
 
 ⚠️ 重要提示：Doubao-Seed 只负责读图，不负责生成这张图！
 
@@ -130,7 +129,7 @@ Claude Code 会自动：
 - 📂 输出路径
 - 💰 预计消耗额度
 
-你确认后，按任务队列逐条在 ChatGPT Plus / GPT Image 中生成图片，并把结果保存到 `generated/` 目录。当前 MVP 不提供 GPT Image API 自动批量调用；Codex/Claude 负责整理任务、确认清单和记录结果。
+你确认后，Codex 按任务队列逐张生成图片，并把结果保存到 `generated/` 目录。本项目不使用控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端作为执行路线。
 
 ### 7. 记录结果
 生成完成后：
@@ -154,7 +153,7 @@ Claude Code 会自动：
 
 ### 完整流程2：多视图生成
 - 2.1 使用多视图提示词模板
-- 2.2 通过 GPT Image 生成标准化多视图参考图
+- 2.2 通过 Codex 生图能力生成标准化多视图参考图
 - 2.3 保存到 reference 目录作为核心参考
 
 ### 完整流程3：人物资料完善
@@ -174,8 +173,8 @@ Claude Code 会自动：
 - 5.2 确认是否覆盖已有文件
 - 5.3 用户确认后才允许执行生图
 
-### 完整流程6：GPT Image 执行
-- 6.1 逐条提交任务到 GPT Image
+### 完整流程6：Codex 生图执行
+- 6.1 Codex 按任务队列逐条生成图片
 - 6.2 每生成一张立即保存到指定路径
 - 6.3 验证文件完整性和可访问性
 - 6.4 实时更新任务状态
@@ -205,7 +204,7 @@ skills/gpt-magazine-portrait/
 
 ## 无生图测试
 
-如果你只是想确认仓库脚本和模板能运行，不需要准备人物照片，也不需要消耗 GPT Image 额度。见 [docs/QUICKSTART_TEST.md](docs/QUICKSTART_TEST.md)。
+如果你只是想确认仓库脚本和模板能运行，不需要准备人物照片，也不需要消耗生图额度。见 [docs/QUICKSTART_TEST.md](docs/QUICKSTART_TEST.md)。
 
 ## 效果展示
 
@@ -231,9 +230,9 @@ skills/gpt-magazine-portrait/
 
 ## 常见问题
 
-### 为什么最终生图推荐 GPT Image？
+### 为什么强调 Codex 生图能力？
 
-这套风格资产和提示词经验是围绕 GPT Image / ChatGPT Plus 试出来的。其他模型可以参考流程，但不保证同样效果。
+这套风格资产和提示词经验以 GPT Image 效果为基准，但本项目的标准执行路线是由 Codex 直接完成多视图参考图和最终图片生成，不使用 ChatGPT 网页版或桌面端操作。
 
 ### DeepSeek V4 Pro 能不能读图？
 
@@ -245,7 +244,7 @@ skills/gpt-magazine-portrait/
 
 ### 文字总是漂移怎么办？
 
-减少小字要求，明确最大主视觉文字；如果画面很好但文字错了，优先在同一 GPT Image 对话里定向编辑。
+减少小字要求，明确最大主视觉文字；必要时让 Codex 基于同一任务做定向修正，不要无限重跑。
 
 ## 贡献
 

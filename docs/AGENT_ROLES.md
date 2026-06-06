@@ -2,26 +2,30 @@
 
 ## Codex
 
-负责调度和工程化整理：
+负责主控、工程化整理和最终生图：
 
 - 维护仓库结构。
 - 审核任务队列。
 - 生图前列清单并等待确认。
-- 控制 GPT Image / ChatGPT Plus 执行层。
-- 保存图片。
+- 使用 Codex 生图能力生成多视图参考图和最终杂志写真。
+- 保存生成图片。
 - 更新人物 Markdown、任务队列和运行记录。
 - 把用户反馈写回规则。
 
 Codex 不应在额度紧张时做无意义测试。
 
+Codex 不得把控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端作为本项目工作流、fallback 或未来规划。
+
 ## Claude Code
 
 负责长文本整理和模型切换协作：
 
-- 通过 CC Switch 选择 Doubao-Seed-2.0-Pro 或 DeepSeek V4 Pro。
+- 通过 CC Switch 或等价方式选择 Doubao-Seed-2.0-Pro 或 DeepSeek V4 Pro。
 - 接收 Codex 或用户给出的任务说明。
 - 生成风格包、任务队列、复盘草案。
 - 适合处理较长 Markdown 和 JSON 文件。
+
+标准提示词队列生成路线要求 Claude Code 能接入 Doubao-Seed-2.0-Pro；没有 CC Switch 时，需要具备等价的 Doubao-Seed-2.0-Pro 接入方式。
 
 ## Doubao-Seed-2.0-Pro
 
@@ -44,14 +48,16 @@ Codex 不应在额度紧张时做无意义测试。
 - 不负责读图、看图或图片理解。
 
 不要把图片输入能力假设给 DeepSeek V4 Pro。
+DeepSeek V4 Pro 不能替代 Doubao-Seed-2.0-Pro 的图片理解职责。
 
-## GPT Image / ChatGPT Plus
+## Codex 生图能力 / GPT Image 效果基准
 
-负责最终生图：
+负责最终视觉结果：
 
-- 最终效果以 GPT Image 为基准。
+- 最终执行由 Codex 生图能力完成。
+- 风格和提示词经验以 GPT Image 效果为基准。
 - 其他模型可以参考流程，但不保证同等效果。
-- 文字漂移时优先尝试定向编辑。
+- 文字漂移时优先尝试定向修正。
 - 生成图必须落盘并记录。
 
 ## 用户

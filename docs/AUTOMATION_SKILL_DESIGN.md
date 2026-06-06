@@ -21,7 +21,7 @@
 6. 读取并审核提示词队列。
 7. 列出本轮生图任务、数量、输出路径和是否覆盖旧图。
 8. 等用户确认。
-9. 使用 GPT Image / ChatGPT Plus 批量生图。
+9. 使用 Codex 生图能力批量生图。
 10. 保存图片。
 11. 更新人物 Markdown、任务队列、运行记录。
 12. 等用户锐评。
@@ -32,6 +32,7 @@
 - 不内置大量图片资产。
 - 不绕开用户确认直接生图。
 - 不默认使用 DeepSeek V4 Pro 看图，因为它不能看图。
+- 不允许用 DeepSeek V4 Pro 替代 Doubao-Seed-2.0-Pro 的图片理解职责。
 - 不承诺其他生图模型能达到 GPT Image 的效果。
 - 不在额度紧张时做测试图。
 
@@ -82,13 +83,43 @@ gpt-magazine-portrait-workflow/
 - 能创建人物目录。
 - 能准备 Claude Code / Doubao 任务包。
 - 能审核返回的任务队列。
-- 能让 Codex 执行 GPT Image 生图并落盘。
+- 能让 Codex 执行最终生图并落盘。
 
-后续再考虑完全自动化控制 Claude Code、浏览器或 ChatGPT 桌面端。
+## v1.1 两阶段使用模型
+
+### 配置阶段
+
+用户第一次使用或换电脑时执行一次：
+
+1. 克隆 `gpt-magazine-portrait-workflow` 仓库。
+2. 运行 `docs/QUICKSTART_TEST.md` 中的无生图测试。
+3. 确认 Codex 具备可用生图能力。
+4. 确认 Claude Code 可通过 CC Switch 或等价方式调用 Doubao-Seed-2.0-Pro。
+5. 记录仓库路径，便于后续新 Codex 窗口直接复用。
+
+### 日常拖图生成阶段
+
+用户隔天或隔一段时间再次使用时，只需要把人物多角度照片拖给 Codex，并输入触发语：
+
+```text
+按 gpt-magazine-portrait 工作流处理这些照片，生成 6 张高级杂志写真。
+```
+
+Codex 应执行：
+
+1. 找到已配置的仓库路径。
+2. 创建人物目录并保存用户上传的原始照片。
+3. 使用 Codex 生图能力生成该人物多视图参考图。
+4. 将多视图参考图、人物资料、风格参考图交给 Claude Code / Doubao-Seed-2.0-Pro。
+5. 读取 Claude Code 输出的任务队列 JSON 和 Markdown。
+6. 运行 `validate_queue.ps1` 校验任务队列。
+7. 生图前列出任务数量、风格、输出路径和是否覆盖旧图，等待用户确认。
+8. 用户确认后，由 Codex 生成最终杂志写真并保存到 `generated/`。
+9. 更新人物 Markdown、任务状态和运行记录。
 
 ## 当前优先级
 
 1. 先把仓库推到 GitHub。
 2. 让 Claude Code 接手继续完善 README、模板和 skill 设计。
-3. 再创建真正的 Codex skill。
+3. 将当前 skill 草案收敛为可安装/可触发的 Codex skill。
 4. 最后用一个新人物跑一次端到端验证。
