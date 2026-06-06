@@ -62,48 +62,50 @@ character-reference
 标题：
 
 ```text
-v0.1.0-mvp: drag-photo magazine portrait workflow
+v0.1.0-mvp：拖图即跑的人物杂志写真工作流
 ```
 
 正文：
 
 ```markdown
-## What this release contains
+## 这个版本包含什么
 
-This is the first public MVP of `gpt-magazine-portrait-workflow`.
+这是 `gpt-magazine-portrait-workflow` 的第一个公开 MVP 版本。
 
-It provides an asset-backed workflow for generating GPT Image-style magazine portraits from multi-angle character photos:
+它提供一套带资产库的人物杂志写真工作流：用户准备同一人物的多角度照片，仓库复用内置风格参考、提示词规则、任务模板和 Codex skill 草案，生成接近 GPT Image 审美基准的人物杂志写真。
 
-- built-in style reference assets
-- example character assets and generated samples
-- prompt rules and workflow documents
-- Codex skill draft
-- PowerShell scripts for prerequisite checks, default character run setup, directory creation, and queue validation
-- task queue templates and historical workflow runs
+- 内置风格参考资产
+- 良子、嘎子示例人物资产和生成样张
+- 提示词规则和完整工作流文档
+- `gpt-magazine-portrait` Codex skill 草案
+- PowerShell 脚本：前置检查、默认人物运行启动、目录创建、任务队列校验
+- 任务队列模板和历史运行记录
 
-## Standard route
+## 标准路线
 
-1. Clone the repository.
-2. Run the prerequisite check.
-3. Drag multi-angle photos of one character into Codex.
-4. Trigger the `gpt-magazine-portrait` workflow.
-5. Codex creates default folders, generates a multiview reference, asks Claude Code + Doubao-Seed-2.0-Pro to generate a prompt queue, validates it, then uses Codex image generation to create final magazine portraits.
+1. 克隆仓库。
+2. 运行前置检查。
+3. 把同一人物的多角度照片拖给 Codex。
+4. 触发 `gpt-magazine-portrait` 工作流。
+5. Codex 自动创建默认目录，生成多视图参考图。
+6. Claude Code + Doubao-Seed-2.0-Pro 读取人物图和风格库，生成提示词队列。
+7. Codex 校验队列，并使用 Codex 生图能力生成最终杂志写真。
 
-## Requirements
+## 前置要求
 
-- Codex with image generation capability
-- Claude Code with CC Switch, or equivalent access to Doubao-Seed-2.0-Pro
-- DeepSeek V4 Pro is not used in the current workflow
+- Codex 具备可用的生图能力
+- Claude Code 已通过 CC Switch，或等价方式接入 Doubao-Seed-2.0-Pro
+- 当前工作流不使用 DeepSeek V4 Pro
 
-## Important boundary
+## 重要边界
 
-This project does not use browser automation, ChatGPT web, or GPT desktop automation as a workflow route.
+本项目不把浏览器自动化、ChatGPT 网页版或 GPT 桌面端自动化作为工作流路线。
 
-## MVP limitations
+## MVP 限制
 
-- This is not a one-click desktop app or SaaS.
-- It does not guarantee equivalent results on non-GPT Image-style models.
-- Real image quality still depends on the provided character photos, style queue quality, and Codex image generation behavior.
+- 这不是一键桌面软件，也不是 SaaS。
+- 不保证其他生图模型能达到同等效果。
+- 最终图片质量仍取决于人物参考照片、提示词队列质量和 Codex 生图表现。
 ```
 
 ## 明天给外部试跑者的指令
