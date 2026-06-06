@@ -1,8 +1,10 @@
 # GPT Magazine Portrait Workflow
 
-一套基于 Codex 生图能力和 GPT Image 效果基准的人物杂志写真资产化工作流。
+一套基于 Codex 生图能力和 GPT Image 效果基准的人物杂志写真资产化工作流：配置一次，之后把同一人物的多角度照片拖给 Codex，就按仓库内置风格资产生成杂志写真。
 
 它不是通用 AI 生图工具，也不是前端项目。它的目标很具体：用户把一个人物的多角度参考图拖给 Codex，复用本仓库里的风格资产、提示词规则和任务模板，经由 Claude Code / Doubao-Seed-2.0-Pro 做图片理解和提示词队列整理，由 Codex 调度、最终生图和落盘，生成高质量杂志写真。
+
+**仓库定位**：资产库 + 工作流文档 + Codex skill 草案 + 默认脚本。当前版本是 MVP，不是独立软件。
 
 ## 你能用它做什么
 
@@ -10,6 +12,13 @@
 - 直接使用仓库自带的风格参考库，不用重新收集海报和参考图。
 - 把每次生图任务沉淀成任务队列、人物资料、运行记录和可复用提示词规则。
 - 配合 `skills/gpt-magazine-portrait/`，逐步把流程变成 Codex 可执行的自动化工作流。
+
+## GitHub 信息
+
+- 仓库名：`gpt-magazine-portrait-workflow`
+- 简介：`Codex + Doubao workflow for generating GPT Image-style magazine portraits from multi-angle character photos.`
+- 推荐 topics：`codex`、`gpt-image`、`ai-image-generation`、`portrait-generation`、`magazine-cover`、`prompt-engineering`、`doubao`、`workflow`、`powershell`、`character-reference`
+- 当前发布版本建议：`v0.1.0-mvp`
 
 ## 项目结构
 

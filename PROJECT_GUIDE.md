@@ -24,7 +24,7 @@
 - `assets/`：随仓库发布的风格参考、人物资产和生成样张。
 - `assets/ASSET_MANIFEST.md`：资产清单。
 - `workflow-runs/`：历史任务包和风格谱系。
-- `docs/RELEASE_PLAN.md`：开源前发布计划。
+- `docs/RELEASE_PLAN.md`：开源发布计划、GitHub 仓库信息、release 文案和外部试跑指令。
 
 ## 目录边界
 
