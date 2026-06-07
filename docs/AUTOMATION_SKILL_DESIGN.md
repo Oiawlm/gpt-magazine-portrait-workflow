@@ -107,15 +107,18 @@ Codex 应执行：
 
 1. 找到已配置的仓库路径。
 2. 调用 `start_character_run.ps1` 创建默认人物目录并保存用户上传的原始照片。
-3. 使用 Codex 生图能力生成该人物多视图参考图。
-4. 将多视图参考图、人物资料、风格参考图交给 Claude Code / Doubao-Seed-2.0-Pro。
-5. 读取 Claude Code 输出的任务队列 JSON 和 Markdown。
-6. 运行 `validate_queue.ps1` 校验任务队列。
-7. 检查输出是否会覆盖已有文件；如不会覆盖，直接由 Codex 生成最终杂志写真并保存到 `generated/`。
-8. 如果用户没有指定张数，第一轮默认生成 4 张。
-9. 更新人物 Markdown、任务状态和运行记录。
+3. 如果 Codex 能拿到拖入图片的本地路径，传给 `-SourceImagePath`；如果拿不到路径，使用 `assets/inbox/` 默认入口。
+4. 使用 Codex 生图能力生成该人物多视图参考图。
+5. 将多视图参考图、人物资料、风格参考图交给 Claude Code / Doubao-Seed-2.0-Pro。
+6. 读取 Claude Code 输出的任务队列 JSON 和 Markdown。
+7. 运行 `validate_queue.ps1` 校验任务队列。
+8. 检查输出是否会覆盖已有文件；如不会覆盖，直接由 Codex 生成最终杂志写真并保存到 `generated/`。
+9. 如果用户没有指定张数，第一轮默认生成 4 张。
+10. 更新人物 Markdown、任务状态和运行记录。
 
 触发语和拖入照片本身视为执行授权；公开 MVP 不再二次询问人物名、路径、张数或是否开始。只有缺少 Codex 生图能力、缺少 Doubao 接入、队列校验无法修复、输入路径不存在或输出会覆盖旧文件时，才暂停并说明原因。
+
+前置检查脚本只检查仓库本地文件和模板，不代表外部 AI 能力已经配置完成。
 
 ## 默认路径
 
@@ -128,6 +131,7 @@ assets/characters/<auto-character-id>/
   tasks/          Doubao 生成的任务队列
   runs/           run manifest
   <auto-character-id>.md
+assets/inbox/      拖图无法暴露本地路径时的默认原图入口
 ```
 
 ## 当前优先级

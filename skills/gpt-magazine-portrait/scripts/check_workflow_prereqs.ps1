@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
 检查 gpt-magazine-portrait 工作流的本地仓库前置条件
 .DESCRIPTION
@@ -21,6 +21,7 @@ $requiredPaths = @(
     "templates/generation_task.template.json",
     "assets/style-reference",
     "assets/characters",
+    "assets/inbox",
     "skills/gpt-magazine-portrait/SKILL.md",
     "skills/gpt-magazine-portrait/scripts/validate_queue.ps1",
     "skills/gpt-magazine-portrait/scripts/start_character_run.ps1"
@@ -44,9 +45,10 @@ $validator = Join-Path $repoRoot "skills/gpt-magazine-portrait/scripts/validate_
 & powershell -ExecutionPolicy Bypass -File $validator -QueuePath $templateQueue
 
 Write-Host ""
-Write-Host "Prerequisite check passed."
-Write-Host "Required external capabilities:"
-Write-Host "- Codex image generation capability for multiview reference and final images."
-Write-Host "- Claude Code + CC Switch, or equivalent access to Doubao-Seed-2.0-Pro, for image understanding and prompt queues."
-Write-Host "- DeepSeek V4 Pro is not used in the current workflow."
-Write-Host "Forbidden route: browser automation, ChatGPT web, or GPT desktop automation."
+Write-Host "仓库本地检查已通过。"
+Write-Host "注意：本脚本只检查仓库文件、模板和队列校验脚本；不会验证以下外部能力："
+Write-Host "- Codex 是否具备生图能力。"
+Write-Host "- Claude Code 是否已通过 CC Switch 或等价方式接入 Doubao-Seed-2.0-Pro。"
+Write-Host "- 当前 Codex 环境是否能把拖入图片暴露为本地文件路径。"
+Write-Host "当前工作流不使用 DeepSeek V4 Pro。"
+Write-Host "禁止路线：浏览器自动化、ChatGPT 网页版、GPT 桌面端自动化。"

@@ -14,6 +14,8 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 
 预期结果：脚本能找到关键目录、模板和校验脚本，并成功校验任务模板。
 
+注意：这个检查只证明仓库本地文件可用，不证明 Codex 生图能力或 Doubao 接入已经可用。
+
 ## 2. 启动一次默认测试运行
 
 ```powershell
@@ -47,6 +49,22 @@ Test-Path .\assets\characters\demo_character\demo_character.md
 ```
 
 六行结果都应为 `True`。
+
+## 3.1 可选：测试默认 inbox 入口
+
+如果 Codex 环境拿不到拖入图片的本地路径，可以把图片放到默认入口目录：
+
+```text
+assets/inbox/
+```
+
+脚本在没有 `-SourceImagePath` 参数时会自动扫描该目录。真实使用时建议放 3-5 张同一人物的多角度照片。
+
+PowerShell 传多个路径时，建议使用 `-Command` 调用方式：
+
+```powershell
+powershell -ExecutionPolicy Bypass -Command "& '.\skills\gpt-magazine-portrait\scripts\start_character_run.ps1' -SourceImagePath 'D:\input\front.png','D:\input\side.png','D:\input\three-quarter.png'"
+```
 
 ## 4. 校验任务模板
 
@@ -95,4 +113,4 @@ Remove-Item -LiteralPath $tmpImage -Force
 3. 能复制用户拖入图片到 `reference/originals/`。
 4. 能读取任务模板。
 5. 能校验任务队列。
-6. 能进入后续“拖入人物参考图 -> Codex 生成多视图 -> Doubao 生成任务队列 -> Codex 自动生图”的主流程。
+6. 能进入后续“拖入人物参考图 -> Codex 生成多视图 -> Doubao 生成任务队列 -> Codex 自动生图”的主流程入口；真正生成图片仍需要 Codex 生图能力和 Doubao 接入。

@@ -128,9 +128,11 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 请按 README 的“配置一次，之后拖图即跑”流程操作：
 1. 克隆仓库并进入目录。
 2. 运行 README 里的前置检查命令。
-3. 准备同一人物的 3-5 张多角度照片。
-4. 把这些照片拖给 Codex。
-5. 对 Codex 说：按 gpt-magazine-portrait 工作流处理这些照片。
+3. 注意：前置检查只验证仓库文件和模板，不验证 Codex 生图能力，也不验证 Doubao 接入。
+4. 准备同一人物的 3-5 张多角度照片。
+5. 把这些照片拖给 Codex。
+6. 如果 Codex 拿不到拖图的本地路径，把这些照片放到 assets/inbox/ 后继续。
+7. 对 Codex 说：按 gpt-magazine-portrait 工作流处理这些照片。
 
 注意：
 - 不要改仓库结构。
@@ -144,13 +146,16 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 2. README 里哪句话看不懂。
 3. 哪个脚本报错，报错原文是什么。
 4. 有没有被要求做多余的手动操作。
+5. 如果卡在多视图或提示词队列阶段，记录是缺 Codex 生图能力，还是缺 Doubao 接入。
 ```
 
 ## 发布后第一轮验证标准
 
 - 新用户能理解仓库不是前端软件，而是资产化工作流。
 - 新用户能完成 clone 和前置检查。
+- 新用户能理解前置检查只验证仓库，不验证 Codex 生图能力或 Doubao 接入。
 - 新用户能理解“拖图给 Codex + 触发语”的日常入口。
+- 新用户能理解拖图路径不可用时使用 `assets/inbox/`。
 - Codex 不应要求用户手动输入人物名、目录、路径、张数或是否开始。
 - 流程不应引导用户去控制浏览器、ChatGPT 网页版或 GPT 桌面端。
 - 如果失败，失败点应能被记录为明确的文档或脚本问题。

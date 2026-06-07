@@ -16,12 +16,13 @@
 
 1. 用户把同一人物的多角度照片拖给 Codex，并触发 `gpt-magazine-portrait` 工作流。
 2. Codex 调用 `skills/gpt-magazine-portrait/scripts/start_character_run.ps1`，自动创建目录：`assets/characters/<auto-character-id>/`。
-3. 原始照片默认保存到 `reference/originals/`。
-4. 多视图参考图默认保存到 `reference/multiview/`。
-5. 任务队列默认保存到 `tasks/`。
-6. 最终图片默认保存到 `generated/`。
-7. 运行 manifest 默认保存到 `runs/`。
-8. 人物 Markdown 由 Codex 根据图片可观察信息先自动草拟，不要求用户手动填写。
+3. 如果 Codex 能拿到拖入图片的本地路径，将路径传给 `-SourceImagePath`；如果拿不到路径，使用 `assets/inbox/` 作为默认原图入口。
+4. 原始照片默认保存到 `reference/originals/`。
+5. 多视图参考图默认保存到 `reference/multiview/`。
+6. 任务队列默认保存到 `tasks/`。
+7. 最终图片默认保存到 `generated/`。
+8. 运行 manifest 默认保存到 `runs/`。
+9. 人物 Markdown 由 Codex 根据图片可观察信息先自动草拟，不要求用户手动填写。
 
 ## 阶段 1.5：生成多视图人物参考图
 
@@ -79,6 +80,8 @@ Codex 只在以下情况停下来说明问题：
 - 任务队列 JSON 校验失败且无法自动修正。
 - 人物参考图或风格参考图路径不存在。
 - 输出文件会覆盖已有图片。
+
+`check_workflow_prereqs.ps1` 只检查仓库本地文件、模板和队列校验脚本，不验证 Codex 生图能力、Doubao 接入或拖图路径暴露能力。
 
 ## 阶段 6：Codex 生图执行
 

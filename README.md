@@ -18,6 +18,8 @@
 - Claude Code 已通过 CC Switch，或等价方式接入 Doubao-Seed-2.0-Pro。
 - 同一个人的 3-5 张多角度照片，建议包含正脸、45 度侧脸、侧脸或半身/全身照。
 
+注意：仓库脚本只能检查文件、模板和任务队列格式，不能自动验证你的 Codex 是否真的能生图，也不能自动验证 Doubao 是否已接入。
+
 ### 3. 你不需要做什么
 
 - 不需要重新收集风格图，仓库已带风格参考资产。
@@ -28,6 +30,8 @@
 ## 快速开始
 本项目按“配置一次，之后拖图即跑”设计。普通用户不需要自己填写路径、人物名或任务参数。
 
+如果你只想验证仓库脚本能不能跑，不消耗生图额度，先看 [无生图快速测试](docs/QUICKSTART_TEST.md)。
+
 ### 配置一次
 
 ```powershell
@@ -36,6 +40,8 @@ cd gpt-magazine-portrait-workflow
 powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\check_workflow_prereqs.ps1
 ```
 
+这个命令只代表“仓库文件和模板正常”，不代表 Codex 生图能力或 Doubao 接入已经可用。
+
 ### 日常使用
 
 把同一个人物的多角度照片拖给 Codex，然后发一句：
@@ -43,6 +49,14 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 ```text
 按 gpt-magazine-portrait 工作流处理这些照片。
 ```
+
+如果当前 Codex 环境不能把拖入图片暴露为本地文件路径，请把 3-5 张图片放入：
+
+```text
+assets/inbox/
+```
+
+然后仍然使用同一句触发语。`start_character_run.ps1` 会在没有 `-SourceImagePath` 参数时自动扫描这个目录。
 
 Codex 默认执行：
 
@@ -55,6 +69,8 @@ Codex 默认执行：
 7. 更新人物资料、任务状态和运行 manifest。
 
 触发语和图片本身视为本轮执行授权；MVP 默认不再二次询问人物名、目录、张数或是否开始。只有缺少关键前置条件，或即将覆盖已有输出文件时，Codex 才停下来说明问题。
+
+如果 Codex 当前没有生图能力，流程会停在“生成多视图参考图”。如果 Claude Code / Doubao-Seed-2.0-Pro 不可用，流程会停在“生成提示词队列”。这两种情况不是脚本错误，而是外部能力未配置。
 
 ## 你能用它做什么
 
