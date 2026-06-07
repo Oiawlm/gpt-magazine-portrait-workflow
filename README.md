@@ -6,6 +6,56 @@
 
 **仓库定位**：资产库 + 工作流文档 + Codex skill 草案 + 默认脚本。当前版本是 MVP，不是独立软件。
 
+## 先看这三件事
+
+### 1. 这是什么
+
+把同一个人的 3-5 张多角度照片拖给 Codex，触发本仓库的 `gpt-magazine-portrait` 工作流，生成带杂志封面、写真、男刊、高奢、生活方式气质的人物图片。
+
+### 2. 你需要什么
+
+- Codex 具备可用生图能力。
+- Claude Code 已通过 CC Switch，或等价方式接入 Doubao-Seed-2.0-Pro。
+- 同一个人的 3-5 张多角度照片，建议包含正脸、45 度侧脸、侧脸或半身/全身照。
+
+### 3. 你不需要做什么
+
+- 不需要重新收集风格图，仓库已带风格参考资产。
+- 不需要手动填写人物名、目录、路径、生成张数或“是否开始”。
+- 不使用浏览器自动化、ChatGPT 网页版或 GPT 桌面端。
+- 不使用 DeepSeek V4 Pro。
+
+## 快速开始
+本项目按“配置一次，之后拖图即跑”设计。普通用户不需要自己填写路径、人物名或任务参数。
+
+### 配置一次
+
+```powershell
+git clone https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
+cd gpt-magazine-portrait-workflow
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\check_workflow_prereqs.ps1
+```
+
+### 日常使用
+
+把同一个人物的多角度照片拖给 Codex，然后发一句：
+
+```text
+按 gpt-magazine-portrait 工作流处理这些照片。
+```
+
+Codex 默认执行：
+
+1. 自动创建人物运行目录。
+2. 保存用户拖入的原始照片。
+3. 用 Codex 生图能力生成多视图参考图。
+4. 让 Claude Code + Doubao-Seed-2.0-Pro 读取多视图和风格库，生成第一轮 4 个任务。
+5. 校验任务队列。
+6. 由 Codex 自动生成最终杂志写真并保存。
+7. 更新人物资料、任务状态和运行 manifest。
+
+触发语和图片本身视为本轮执行授权；MVP 默认不再二次询问人物名、目录、张数或是否开始。只有缺少关键前置条件，或即将覆盖已有输出文件时，Codex 才停下来说明问题。
+
 ## 你能用它做什么
 
 - 固定一个人物形象，生成多种杂志封面、写真、男刊、高奢、生活方式风格图片。
@@ -44,44 +94,13 @@ output-records/           试跑记录、复盘和交接记录
 | Claude Code + Doubao-Seed-2.0-Pro | 读人物图、读风格图、提取风格、生成提示词队列 |
 | 用户 | 提供人物参考图；后续可选给审美反馈 |
 
-## 🔴 v1.0.0 MVP 版本重要说明
+## v0.1.0-mvp 版本重要说明
 当前为首个开源MVP版本，有以下客观限制，请知晓：
 1. **Codex 生图依赖**：标准路线要求 Codex 具备可用的生图能力，用于生成多视图参考图和最终杂志写真。
 2. **Doubao 依赖**：自动生成任务队列需要 Claude Code 已配置 CC Switch，或通过等价方式接入 Doubao-Seed-2.0-Pro。
 3. **DeepSeek 边界**：当前工作流不使用 DeepSeek V4 Pro；不要把它作为任务队列、文本整理、fallback 或可选步骤写入本项目流程。
 4. **禁止 UI 自动化路线**：本项目不使用控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端作为工作流、fallback 或未来规划。
 5. **效果基准**：本工作流的提示词和风格优化以 GPT Image 效果为基准，使用其他生图模型效果不做保证。
-
-## 🚀 快速开始
-本项目按“配置一次，之后拖图即跑”设计。普通用户不需要自己填写路径、人物名或任务参数。
-
-### 配置一次
-
-```powershell
-git clone https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
-cd gpt-magazine-portrait-workflow
-powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\check_workflow_prereqs.ps1
-```
-
-### 日常使用
-
-把同一个人物的多角度照片拖给 Codex，然后发一句：
-
-```text
-按 gpt-magazine-portrait 工作流处理这些照片。
-```
-
-Codex 默认执行：
-
-1. 自动创建人物运行目录。
-2. 保存用户拖入的原始照片。
-3. 用 Codex 生图能力生成多视图参考图。
-4. 让 Claude Code + Doubao-Seed-2.0-Pro 读取多视图和风格库，生成第一轮 4 个任务。
-5. 校验任务队列。
-6. 由 Codex 自动生成最终杂志写真并保存。
-7. 更新人物资料、任务状态和运行 manifest。
-
-触发语和图片本身视为本轮执行授权；MVP 默认不再二次询问人物名、目录、张数或是否开始。只有缺少关键前置条件，或即将覆盖已有输出文件时，Codex 才停下来说明问题。
 
 默认目录结构：
 
