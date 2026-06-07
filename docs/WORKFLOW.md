@@ -12,12 +12,14 @@
 
 把一个人物的多角度参考图，转化为一组高质量杂志写真图片。当前主线是跑通“用户拖图 -> Codex 自动创建默认运行目录 -> Codex 生成多视图参考图 -> Doubao 生成任务队列 -> Codex 校验并最终生图 -> 结果记录”的闭环。
 
+这条主线有一个硬前置：当前 Codex 环境必须能把用户拖入的图片附件暴露给 agent，至少提供可传给 `start_character_run.ps1 -SourceImagePath ...` 的本地文件路径。如果工具列表中没有附件读取、附件保存或路径暴露能力，流程只能停在输入读取阶段。
+
 ## 阶段 1：人物资料准备
 
 1. 用户把同一人物的多角度照片拖给 Codex，并触发 `gpt-magazine-portrait` 工作流。
 2. Codex 调用 `skills/gpt-magazine-portrait/scripts/start_character_run.ps1`，自动创建目录：`assets/characters/<auto-character-id>/`。
 3. Codex 必须优先从本轮拖入图片附件、文件列表或环境暴露的本地路径中提取图片路径，并传给 `-SourceImagePath`。
-4. 如果当前 Codex 环境完全不能读取拖入图片路径，流程停在输入读取阶段，明确说明环境缺少附件路径能力；不要要求普通用户手动把图片放进某个文件夹。
+4. 如果当前 Codex 环境完全不能读取拖入图片路径，流程停在输入读取阶段，明确说明环境缺少附件路径能力；不要声称能把对话图片自动保存到临时目录，也不要要求普通用户手动把图片放进某个文件夹。
 5. 原始照片默认保存到 `reference/originals/`。
 6. 多视图参考图默认保存到 `reference/multiview/`。
 7. 任务队列默认保存到 `tasks/`。

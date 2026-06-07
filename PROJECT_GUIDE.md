@@ -35,6 +35,7 @@
 - 新增资产应放入 `assets/` 对应子目录，并同步更新清单或人物 Markdown。
 - 用户拖入人物照片并触发 `gpt-magazine-portrait` 工作流，视为授权按默认 MVP 自动执行；正常新人物运行不再二次确认。
 - 公开 MVP 的用户主流程是直接把图片拖给 Codex；不要要求普通用户把图片放入 `assets/inbox/` 或任何仓库目录。
+- 拖图即跑依赖当前 Codex 环境能把拖入图片附件暴露为本地文件路径；如果没有附件路径能力，流程停在输入读取阶段，不要声称可以把对话图片自动保存到临时目录。
 - 默认路径为 `assets/characters/<auto-character-id>/reference/originals/`、`reference/multiview/`、`tasks/`、`generated/`、`runs/`。
 - 只有缺少关键前置能力、任务队列无法修复、输入路径不存在或输出会覆盖旧图时，才暂停并说明原因。
 - `check_workflow_prereqs.ps1` 只检查仓库文件和模板，不证明 Codex 生图能力、Doubao 接入或拖图路径暴露能力可用。
