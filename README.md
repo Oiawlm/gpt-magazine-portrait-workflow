@@ -13,13 +13,6 @@
 - 把每次生图任务沉淀成任务队列、人物资料、运行记录和可复用提示词规则。
 - 配合 `skills/gpt-magazine-portrait/`，逐步把流程变成 Codex 可执行的自动化工作流。
 
-## GitHub 信息
-
-- 仓库名：`gpt-magazine-portrait-workflow`
-- 简介：`Codex + Doubao workflow for generating GPT Image-style magazine portraits from multi-angle character photos.`
-- 推荐 topics：`codex`、`gpt-image`、`ai-image-generation`、`portrait-generation`、`magazine-cover`、`prompt-engineering`、`doubao`、`workflow`、`powershell`、`character-reference`
-- 当前发布版本建议：`v0.1.0-mvp`
-
 ## 项目结构
 
 ```text
