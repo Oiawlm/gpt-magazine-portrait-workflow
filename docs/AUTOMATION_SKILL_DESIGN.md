@@ -100,25 +100,28 @@ gpt-magazine-portrait-workflow/
 用户隔天或隔一段时间再次使用时，只需要把人物多角度照片拖给 Codex，并输入触发语：
 
 ```text
-按 gpt-magazine-portrait 工作流处理这些照片，生成 6 张高级杂志写真。
+按 gpt-magazine-portrait 工作流处理这些照片。
 ```
 
 Codex 应执行：
 
 1. 找到已配置的仓库路径。
-2. 调用 `start_character_run.ps1` 创建默认人物目录并保存用户上传的原始照片。
-3. 如果 Codex 能拿到拖入图片的本地路径，传给 `-SourceImagePath`；如果拿不到路径，使用 `assets/inbox/` 默认入口。
-4. 使用 Codex 生图能力生成该人物多视图参考图。
-5. 将多视图参考图、人物资料、风格参考图交给 Claude Code / Doubao-Seed-2.0-Pro。
-6. 读取 Claude Code 输出的任务队列 JSON 和 Markdown。
-7. 运行 `validate_queue.ps1` 校验任务队列。
-8. 检查输出是否会覆盖已有文件；如不会覆盖，直接由 Codex 生成最终杂志写真并保存到 `generated/`。
-9. 如果用户没有指定张数，第一轮默认生成 4 张。
-10. 更新人物 Markdown、任务状态和运行记录。
+2. 从本轮拖入图片附件、文件列表或 Codex 暴露的本地路径中提取原始照片路径。
+3. 调用 `start_character_run.ps1 -SourceImagePath ...` 创建默认人物目录并保存用户上传的原始照片。
+4. 如果当前 Codex 环境完全不能读取拖入图片路径，停在输入读取阶段并说明环境限制；不要要求普通用户把图片放进仓库目录。
+5. 使用 Codex 生图能力生成该人物多视图参考图。
+6. 将多视图参考图、人物资料、风格参考图交给 Claude Code / Doubao-Seed-2.0-Pro。
+7. 读取 Claude Code 输出的任务队列 JSON 和 Markdown。
+8. 运行 `validate_queue.ps1` 校验任务队列。
+9. 检查输出是否会覆盖已有文件；如不会覆盖，直接由 Codex 生成最终杂志写真并保存到 `generated/`。
+10. 第一轮默认生成 4 张；后续版本再支持用户自定义张数。
+11. 更新人物 Markdown、任务状态和运行记录。
 
 触发语和拖入照片本身视为执行授权；公开 MVP 不再二次询问人物名、路径、张数或是否开始。只有缺少 Codex 生图能力、缺少 Doubao 接入、队列校验无法修复、输入路径不存在或输出会覆盖旧文件时，才暂停并说明原因。
 
 前置检查脚本只检查仓库本地文件和模板，不代表外部 AI 能力已经配置完成。
+
+`assets/inbox/` 只用于开发者自测、无生图 quickstart 或用户明确要求的环境兜底，不是公开 MVP 的普通用户入口。
 
 ## 默认路径
 
@@ -131,7 +134,7 @@ assets/characters/<auto-character-id>/
   tasks/          Doubao 生成的任务队列
   runs/           run manifest
   <auto-character-id>.md
-assets/inbox/      拖图无法暴露本地路径时的默认原图入口
+assets/inbox/      仅用于开发者自测和环境兜底
 ```
 
 ## 当前优先级

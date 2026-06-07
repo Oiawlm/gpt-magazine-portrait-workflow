@@ -141,7 +141,7 @@ v0.1.1：MVP 入口和外部能力边界修复
 ## 主要修复
 
 - 明确 `check_workflow_prereqs.ps1` 只检查仓库文件、模板和队列校验脚本，不代表 Codex 生图能力或 Doubao 接入已经配置成功。
-- 新增 `assets/inbox/` 默认图片入口：当 Codex 环境不能把拖入图片暴露为本地文件路径时，可以把 3-5 张人物照片放到这里。
+- 新增 `assets/inbox/` 脚本兜底入口；后续 `v0.1.2` 已进一步明确它不是普通用户主流程。
 - `start_character_run.ps1` 支持无 `-SourceImagePath` 时自动扫描 `assets/inbox/`。
 - 修正 PowerShell 多路径参数说明，推荐使用 `-Command` 方式传数组路径。
 - 修复新 PowerShell 脚本在旧版 `powershell.exe` 下中文输出乱码的问题。
@@ -162,6 +162,41 @@ v0.1.1：MVP 入口和外部能力边界修复
 Release 只用于维护者版本留档、问题回溯和反馈定位。
 ```
 
+## v0.1.2 Release 文案
+
+定位：
+
+```text
+拖图入口收敛修复版
+```
+
+标题：
+
+```text
+v0.1.2：收敛拖图即跑主入口
+```
+
+正文：
+
+```markdown
+## 这个版本修了什么
+
+`v0.1.2` 修正公开 MVP 的用户入口口径：普通用户只需要把图片拖给 Codex，不需要把图片放进仓库目录。
+
+## 主要修复
+
+- README 的日常使用路径改为“拖图给 Codex + 触发语”。
+- `assets/inbox/` 降级为开发者自测、无生图 quickstart 或环境兜底，不再作为普通用户主流程。
+- SKILL、WORKFLOW、AUTOMATION_SKILL_DESIGN 同步要求：Codex 应从本轮拖入附件读取本地路径，并传给 `start_character_run.ps1 -SourceImagePath ...`。
+- 如果当前 Codex 环境不能暴露拖入图片路径，流程应停在输入读取阶段并说明环境限制，不应把额外文件夹操作转嫁给用户。
+
+## 不变内容
+
+- 标准路线仍然是 Codex 主控和最终生图。
+- 提示词队列仍然依赖 Claude Code + Doubao-Seed-2.0-Pro。
+- 不使用浏览器自动化、ChatGPT 网页版、GPT 桌面端或 DeepSeek V4 Pro。
+```
+
 ## 明天给外部试跑者的指令
 
 只让对方验证仓库能否理解和启动，不让对方做审美反馈。
@@ -178,14 +213,14 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 3. 注意：前置检查只验证仓库文件和模板，不验证 Codex 生图能力，也不验证 Doubao 接入。
 4. 准备同一人物的 3-5 张多角度照片。
 5. 把这些照片拖给 Codex。
-6. 如果 Codex 拿不到拖图的本地路径，把这些照片放到 assets/inbox/ 后继续。
-7. 对 Codex 说：按 gpt-magazine-portrait 工作流处理这些照片。
+6. 对 Codex 说：按 gpt-magazine-portrait 工作流处理这些照片。
 
 注意：
 - 不要改仓库结构。
 - 不要新增自己的风格库。
 - 不要使用浏览器自动化、ChatGPT 网页版或 GPT 桌面端。
 - 不要让用户手动输入人物名、目录、路径、张数或“是否开始”；这个 MVP 应该默认拖图即跑。
+- 如果 Codex 拿不到拖图的本地路径，记录为“当前 Codex 环境无法读取拖入附件路径”，不要继续要求用户把图片放进仓库目录。
 - 如果卡住，只记录卡在哪一步、报错原文、看不懂哪句话。
 
 请最后反馈：
@@ -202,7 +237,7 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 - 新用户能完成 clone 和前置检查。
 - 新用户能理解前置检查只验证仓库，不验证 Codex 生图能力或 Doubao 接入。
 - 新用户能理解“拖图给 Codex + 触发语”的日常入口。
-- 新用户能理解拖图路径不可用时使用 `assets/inbox/`。
+- 新用户不应被要求把图片放入 `assets/inbox/` 或其他仓库目录。
 - Codex 不应要求用户手动输入人物名、目录、路径、张数或是否开始。
 - 流程不应引导用户去控制浏览器、ChatGPT 网页版或 GPT 桌面端。
 - 如果失败，失败点应能被记录为明确的文档或脚本问题。
@@ -210,8 +245,8 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 ## v0.1.1 后下一轮验证标准
 
 - 新用户能理解 `check_workflow_prereqs.ps1` 只检查本地仓库，不检查外部 AI 能力。
-- 新用户能理解拖图路径不可用时使用 `assets/inbox/`。
-- `start_character_run.ps1` 在 `-SourceImagePath` 和默认 `assets/inbox/` 两种方式下都能启动人物运行。
+- 新用户只需要拖图给 Codex，不需要手动准备路径或仓库目录。
+- `start_character_run.ps1` 在 `-SourceImagePath` 方式下能启动人物运行；默认 `assets/inbox/` 入口只用于开发者自测和 quickstart，不作为用户主流程。
 - Codex 没有生图能力时，流程能清楚停在“生成多视图参考图”。
 - Doubao 不可用时，流程能清楚停在“生成提示词队列”。
 

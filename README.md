@@ -50,18 +50,14 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 按 gpt-magazine-portrait 工作流处理这些照片。
 ```
 
-如果当前 Codex 环境不能把拖入图片暴露为本地文件路径，请把 3-5 张图片放入：
+Codex 会从本轮拖入的图片附件中读取本地路径，并自动传给 `start_character_run.ps1`。普通用户不需要把图片放进仓库目录，也不需要手动填写路径。
 
-```text
-assets/inbox/
-```
-
-然后仍然使用同一句触发语。`start_character_run.ps1` 会在没有 `-SourceImagePath` 参数时自动扫描这个目录。
+如果当前 Codex 环境完全不能读取拖入图片的本地路径，流程会停在“读取用户拖入图片”阶段。这不是用户操作错误，而是当前 Codex 环境没有暴露附件路径；此时应由 agent 或维护者处理环境问题，不应把“手动放入某个文件夹”写成公开主流程。
 
 Codex 默认执行：
 
 1. 自动创建人物运行目录。
-2. 保存用户拖入的原始照片。
+2. 读取并保存用户拖入的原始照片。
 3. 用 Codex 生图能力生成多视图参考图。
 4. 让 Claude Code + Doubao-Seed-2.0-Pro 读取多视图和风格库，生成第一轮 4 个任务。
 5. 校验任务队列。

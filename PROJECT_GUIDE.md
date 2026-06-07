@@ -22,7 +22,7 @@
 - `skills/gpt-magazine-portrait/scripts/`：前置检查、默认运行启动、人物目录创建和任务队列校验脚本。
 - `templates/`：人物资料、任务队列、风格包模板。
 - `assets/`：随仓库发布的风格参考、人物资产和生成样张。
-- `assets/inbox/`：当 Codex 无法把拖入图片暴露为本地路径时，用作默认原图入口目录。
+- `assets/inbox/`：开发者自测、无生图 quickstart 或环境兜底目录；不是公开 MVP 的普通用户入口。
 - `assets/ASSET_MANIFEST.md`：资产清单。
 - `workflow-runs/`：历史任务包和风格谱系。
 - `docs/RELEASE_PLAN.md`：维护者发布计划、GitHub 仓库信息、release 文案和外部试跑指令；普通用户入口仍是 README。
@@ -34,6 +34,7 @@
 - 原始工作区中的 `人物资料库`、`风格参考库` 只作为历史复制来源；对外发布后应使用仓库内的 `assets/characters/` 和 `assets/style-reference/`。
 - 新增资产应放入 `assets/` 对应子目录，并同步更新清单或人物 Markdown。
 - 用户拖入人物照片并触发 `gpt-magazine-portrait` 工作流，视为授权按默认 MVP 自动执行；正常新人物运行不再二次确认。
+- 公开 MVP 的用户主流程是直接把图片拖给 Codex；不要要求普通用户把图片放入 `assets/inbox/` 或任何仓库目录。
 - 默认路径为 `assets/characters/<auto-character-id>/reference/originals/`、`reference/multiview/`、`tasks/`、`generated/`、`runs/`。
 - 只有缺少关键前置能力、任务队列无法修复、输入路径不存在或输出会覆盖旧图时，才暂停并说明原因。
 - `check_workflow_prereqs.ps1` 只检查仓库文件和模板，不证明 Codex 生图能力、Doubao 接入或拖图路径暴露能力可用。
