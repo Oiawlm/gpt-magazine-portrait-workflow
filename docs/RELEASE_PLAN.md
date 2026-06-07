@@ -269,6 +269,41 @@ v0.1.4：将 assets/inbox 设为当前稳定图片入口
 - 不使用浏览器自动化、ChatGPT 网页版、GPT 桌面端或 DeepSeek V4 Pro。
 ```
 
+## v0.1.5 Release 文案
+
+定位：
+
+```text
+输入规则澄清版
+```
+
+标题：
+
+```text
+v0.1.5：澄清 Codex 生图能力和 inbox 文件名规则
+```
+
+正文：
+
+```markdown
+## 这个版本修了什么
+
+`v0.1.5` 澄清两个容易误解的点：标准路线不要求用户配置 OpenAI API Key；`assets/inbox/` 中的客户图片文件名可以任意。
+
+## 主要修复
+
+- README 明确：Codex 生图能力指当前 Codex 会话自带的生图能力，不是 OpenAI API 前置要求。
+- SKILL 和 PROJECT_GUIDE 同步说明：不要把缺少 Codex 生图能力误写成用户必须接 API。
+- README、SKILL、WORKFLOW、ASSET_MANIFEST 明确：`assets/inbox/` 中的图片文件名可以是微信导出名、截图名、相机原始名等任意名称；脚本按常见图片扩展名识别并复制重命名。
+
+## 不变内容
+
+- 当前稳定 MVP 仍使用 `assets/inbox/` 作为默认图片入口。
+- 拖图即跑仍是最终目标。
+- Codex 仍然是主控和最终生图执行者。
+- 提示词队列仍然依赖 Claude Code + Doubao-Seed-2.0-Pro。
+```
+
 ## 明天给外部试跑者的指令
 
 只让对方验证仓库能否理解和启动，不让对方做审美反馈。

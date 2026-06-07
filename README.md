@@ -15,11 +15,10 @@
 ### 2. 你需要什么
 
 - Codex 具备可用生图能力。
-- 当前 Codex 环境能把用户拖入的图片附件暴露给 agent，至少能提供可传给脚本的本地文件路径。
 - Claude Code 已通过 CC Switch，或等价方式接入 Doubao-Seed-2.0-Pro。
 - 同一个人的 3-5 张多角度照片，建议包含正脸、45 度侧脸、侧脸或半身/全身照。
 
-注意：仓库脚本只能检查文件、模板和任务队列格式，不能自动验证你的 Codex 是否真的能生图，不能自动验证 Doubao 是否已接入，也不能自动验证 Codex Desktop 是否会把拖入图片暴露为文件路径。
+注意：这里说的 Codex 生图能力，是 Codex 当前会话本身可用的生图能力；标准路线不要求用户配置 OpenAI API Key。仓库脚本只能检查文件、模板和任务队列格式，不能自动验证你的 Codex 是否真的能生图，也不能自动验证 Doubao 是否已接入。
 
 ### 3. 你不需要做什么
 
@@ -50,6 +49,8 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 ```text
 assets/inbox/
 ```
+
+图片文件名可以是任意名称，例如微信导出的文件名、截图文件名或相机原始文件名；脚本只要求它们是常见图片扩展名，例如 `.png`、`.jpg`、`.jpeg`、`.webp`。
 
 然后对 Codex 发一句：
 
