@@ -29,7 +29,7 @@
 - 不使用 DeepSeek V4 Pro。
 
 ## 快速开始
-本项目按“配置一次，之后拖图即跑”设计。普通用户不需要自己填写路径、人物名或任务参数。
+本项目的最终目标是“配置一次，之后拖图即跑”。在当前 Codex Desktop 无法稳定暴露拖入附件路径的情况下，稳定 MVP 使用仓库内固定图片入口 `assets/inbox/`。普通用户不需要填写人物名、生成张数或任务参数。
 
 如果你只想验证仓库脚本能不能跑，不消耗生图额度，先看 [无生图快速测试](docs/QUICKSTART_TEST.md)。
 
@@ -43,22 +43,28 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 
 这个命令只代表“仓库文件和模板正常”，不代表 Codex 生图能力或 Doubao 接入已经可用。
 
-### 日常使用
+### 当前稳定 MVP
 
-把同一个人物的多角度照片拖给 Codex，然后发一句：
+把同一个人物的 3-5 张多角度照片放入：
+
+```text
+assets/inbox/
+```
+
+然后对 Codex 发一句：
 
 ```text
 按 gpt-magazine-portrait 工作流处理这些照片。
 ```
 
-标准路线要求 Codex 从本轮拖入的图片附件中读取本地路径，并自动传给 `start_character_run.ps1`。普通用户不需要把图片放进仓库目录，也不需要手动填写路径。
+Codex 会自动扫描 `assets/inbox/`，调用 `start_character_run.ps1` 创建人物运行目录。用户不需要手动填写人物名、目录名、生成张数或“是否开始”。
 
-如果当前 Codex 环境完全不能读取拖入图片的本地路径，流程会停在“读取用户拖入图片”阶段。这不是用户操作错误，而是当前 Codex 环境没有暴露附件路径；此时应由 agent 或维护者处理环境问题，不应把“手动放入某个文件夹”写成公开主流程。
+如果当前 Codex 环境能把拖入图片附件暴露为本地路径，也可以直接拖图给 Codex；这是最终目标路线。当前稳定 MVP 先以 `assets/inbox/` 保证流程能真实启动。
 
 Codex 默认执行：
 
 1. 自动创建人物运行目录。
-2. 读取并保存用户拖入的原始照片。
+2. 读取并保存 `assets/inbox/` 中的原始照片。
 3. 用 Codex 生图能力生成多视图参考图。
 4. 让 Claude Code + Doubao-Seed-2.0-Pro 读取多视图和风格库，生成第一轮 4 个任务。
 5. 校验任务队列。

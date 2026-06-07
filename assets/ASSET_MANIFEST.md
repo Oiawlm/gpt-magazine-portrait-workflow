@@ -44,11 +44,11 @@
 
 包含原工作区根目录中的补充图片素材和临时导出图。
 
-## 调试图片入口
+## 默认图片入口
 
 位置：`assets/inbox/`
 
-此目录仅用于开发者自测、无生图 quickstart 或环境兜底。公开 MVP 的普通用户主流程是直接把人物照片拖给 Codex，由 Codex 读取附件路径并传给 `start_character_run.ps1 -SourceImagePath ...`。
+当前稳定 MVP 使用此目录作为默认图片入口。用户把同一人物的 3-5 张多角度照片放入此目录后，`start_character_run.ps1` 会在没有 `-SourceImagePath` 参数时自动扫描并启动人物运行。拖图即跑仍是最终目标；只有当前 Codex 环境能暴露拖图本地路径时才走纯拖图路线。
 
 ## 运行记录
 

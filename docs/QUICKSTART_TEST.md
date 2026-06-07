@@ -50,15 +50,15 @@ Test-Path .\assets\characters\demo_character\demo_character.md
 
 六行结果都应为 `True`。
 
-## 3.1 可选：测试开发者 inbox 兜底
+## 3.1 测试默认 inbox 入口
 
-`assets/inbox/` 只用于开发者自测、无生图 quickstart 或环境兜底，不是公开 MVP 的普通用户入口。需要验证脚本默认扫描能力时，可以临时把测试图片放到：
+当前稳定 MVP 使用 `assets/inbox/` 作为默认图片入口。需要验证脚本默认扫描能力时，可以临时把测试图片放到：
 
 ```text
 assets/inbox/
 ```
 
-脚本在没有 `-SourceImagePath` 参数时会自动扫描该目录。真实用户使用时应直接把 3-5 张同一人物的多角度照片拖给 Codex，由 Codex 读取附件路径并传给 `-SourceImagePath`。
+脚本在没有 `-SourceImagePath` 参数时会自动扫描该目录。拖图即跑仍是最终目标；只有当前 Codex 环境能暴露拖图本地路径时才走 `-SourceImagePath` 路线。
 
 PowerShell 传多个路径时，建议使用 `-Command` 调用方式：
 

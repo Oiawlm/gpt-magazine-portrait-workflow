@@ -78,7 +78,7 @@ gpt-magazine-portrait-workflow/
 第一版 skill 不需要全自动控制所有软件。它只要把流程固定下来：
 
 - 能接新人物图片。
-- 当前 Codex 环境必须能把拖入图片暴露为可传给脚本的本地路径；如果没有这项能力，流程停在输入读取阶段。
+- 当前稳定 MVP 使用 `assets/inbox/` 作为固定图片入口；当 Codex 环境能把拖入图片暴露为可传给脚本的本地路径时，再走纯拖图路线。
 - 能创建人物目录。
 - 能准备 Claude Code / Doubao 任务包。
 - 能审核返回的任务队列。
@@ -98,7 +98,7 @@ gpt-magazine-portrait-workflow/
 
 ### 日常拖图生成阶段
 
-用户隔天或隔一段时间再次使用时，只需要把人物多角度照片拖给 Codex，并输入触发语：
+用户隔天或隔一段时间再次使用时，在当前稳定 MVP 中只需要把人物多角度照片放入 `assets/inbox/`，并输入触发语：
 
 ```text
 按 gpt-magazine-portrait 工作流处理这些照片。
@@ -107,9 +107,9 @@ gpt-magazine-portrait-workflow/
 Codex 应执行：
 
 1. 找到已配置的仓库路径。
-2. 从本轮拖入图片附件、文件列表或 Codex 暴露的本地路径中提取原始照片路径；不要假设可以在没有工具支持时把对话图片另存为本地临时文件。
-3. 调用 `start_character_run.ps1 -SourceImagePath ...` 创建默认人物目录并保存用户上传的原始照片。
-4. 如果当前 Codex 环境完全不能读取拖入图片路径，停在输入读取阶段并说明环境限制；不要要求普通用户把图片放进仓库目录。
+2. 默认运行 `start_character_run.ps1`，让脚本扫描 `assets/inbox/` 创建默认人物目录并保存用户上传的原始照片。
+3. 如果当前 Codex 环境明确暴露拖入图片本地路径，也可以调用 `start_character_run.ps1 -SourceImagePath ...`。
+4. 如果 `assets/inbox/` 没有图片，且当前 Codex 环境完全不能读取拖入图片路径，停在输入读取阶段并说明缺少可用图片路径；不要假设可以在没有工具支持时把对话图片另存为本地临时文件。
 5. 使用 Codex 生图能力生成该人物多视图参考图。
 6. 将多视图参考图、人物资料、风格参考图交给 Claude Code / Doubao-Seed-2.0-Pro。
 7. 读取 Claude Code 输出的任务队列 JSON 和 Markdown。
@@ -122,7 +122,7 @@ Codex 应执行：
 
 前置检查脚本只检查仓库本地文件和模板，不代表外部 AI 能力已经配置完成。
 
-`assets/inbox/` 只用于开发者自测、无生图 quickstart 或用户明确要求的环境兜底，不是公开 MVP 的普通用户入口。
+`assets/inbox/` 是当前稳定 MVP 的默认图片入口。拖图即跑是最终目标，不应被删除；但在附件路径能力未稳定前，不把它写成唯一可执行方式。
 
 ## 默认路径
 
@@ -135,7 +135,7 @@ assets/characters/<auto-character-id>/
   tasks/          Doubao 生成的任务队列
   runs/           run manifest
   <auto-character-id>.md
-assets/inbox/      仅用于开发者自测和环境兜底
+assets/inbox/      当前稳定 MVP 的默认图片入口
 ```
 
 ## 当前优先级

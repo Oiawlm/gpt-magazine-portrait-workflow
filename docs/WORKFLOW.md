@@ -10,16 +10,16 @@
 
 ## 目标
 
-把一个人物的多角度参考图，转化为一组高质量杂志写真图片。当前主线是跑通“用户拖图 -> Codex 自动创建默认运行目录 -> Codex 生成多视图参考图 -> Doubao 生成任务队列 -> Codex 校验并最终生图 -> 结果记录”的闭环。
+把一个人物的多角度参考图，转化为一组高质量杂志写真图片。最终目标是跑通“用户拖图 -> Codex 自动创建默认运行目录 -> Codex 生成多视图参考图 -> Doubao 生成任务队列 -> Codex 校验并最终生图 -> 结果记录”的闭环。
 
-这条主线有一个硬前置：当前 Codex 环境必须能把用户拖入的图片附件暴露给 agent，至少提供可传给 `start_character_run.ps1 -SourceImagePath ...` 的本地文件路径。如果工具列表中没有附件读取、附件保存或路径暴露能力，流程只能停在输入读取阶段。
+当前稳定 MVP 在 Codex Desktop 尚不能稳定暴露拖入附件路径时，使用 `assets/inbox/` 作为固定图片入口。用户把 3-5 张人物照片放入该目录后，Codex 直接运行 `start_character_run.ps1` 扫描该目录启动流程。如果当前环境能暴露拖图路径，也可以走 `-SourceImagePath` 路线。
 
 ## 阶段 1：人物资料准备
 
-1. 用户把同一人物的多角度照片拖给 Codex，并触发 `gpt-magazine-portrait` 工作流。
-2. Codex 调用 `skills/gpt-magazine-portrait/scripts/start_character_run.ps1`，自动创建目录：`assets/characters/<auto-character-id>/`。
-3. Codex 必须优先从本轮拖入图片附件、文件列表或环境暴露的本地路径中提取图片路径，并传给 `-SourceImagePath`。
-4. 如果当前 Codex 环境完全不能读取拖入图片路径，流程停在输入读取阶段，明确说明环境缺少附件路径能力；不要声称能把对话图片自动保存到临时目录，也不要要求普通用户手动把图片放进某个文件夹。
+1. 当前稳定 MVP：用户把同一人物的多角度照片放入 `assets/inbox/`，并触发 `gpt-magazine-portrait` 工作流。
+2. Codex 调用 `skills/gpt-magazine-portrait/scripts/start_character_run.ps1`，自动扫描 `assets/inbox/` 并创建目录：`assets/characters/<auto-character-id>/`。
+3. 可选增强路线：如果当前 Codex 环境明确暴露拖入图片的本地路径，Codex 可将路径传给 `-SourceImagePath`。
+4. 如果 `assets/inbox/` 没有图片，且当前 Codex 环境也不能读取拖入图片路径，流程停在输入读取阶段，明确说明缺少可用图片路径；不要声称能把对话图片自动保存到临时目录。
 5. 原始照片默认保存到 `reference/originals/`。
 6. 多视图参考图默认保存到 `reference/multiview/`。
 7. 任务队列默认保存到 `tasks/`。
@@ -86,7 +86,7 @@ Codex 只在以下情况停下来说明问题：
 
 `check_workflow_prereqs.ps1` 只检查仓库本地文件、模板和队列校验脚本，不验证 Codex 生图能力、Doubao 接入或拖图路径暴露能力。
 
-`assets/inbox/` 只作为开发者自测、无生图 quickstart 或极端环境兜底，不是公开 MVP 的普通用户入口。
+`assets/inbox/` 是当前稳定 MVP 的默认图片入口。拖图即跑仍是最终目标；只有当前 Codex 环境能暴露拖入附件路径时，才走纯拖图路线。
 
 ## 阶段 6：Codex 生图执行
 
