@@ -115,6 +115,53 @@ v0.1.0-mvp：拖图即跑的人物杂志写真工作流
 - 最终图片质量仍取决于人物参考照片、提示词队列质量和 Codex 生图表现。
 ```
 
+## v0.1.1 Release 文案
+
+定位：
+
+```text
+外部试跑反馈修复版
+```
+
+标题：
+
+```text
+v0.1.1：MVP 入口和外部能力边界修复
+```
+
+正文：
+
+```markdown
+## 这个版本修了什么
+
+`v0.1.1` 是基于外部 MVP 试跑反馈做的可用性修复版。
+
+这次不新增风格资产，不做生图效果优化，不改变标准路线；重点修复普通用户按 README 试跑时遇到的入口问题。
+
+## 主要修复
+
+- 明确 `check_workflow_prereqs.ps1` 只检查仓库文件、模板和队列校验脚本，不代表 Codex 生图能力或 Doubao 接入已经配置成功。
+- 新增 `assets/inbox/` 默认图片入口：当 Codex 环境不能把拖入图片暴露为本地文件路径时，可以把 3-5 张人物照片放到这里。
+- `start_character_run.ps1` 支持无 `-SourceImagePath` 时自动扫描 `assets/inbox/`。
+- 修正 PowerShell 多路径参数说明，推荐使用 `-Command` 方式传数组路径。
+- 修复新 PowerShell 脚本在旧版 `powershell.exe` 下中文输出乱码的问题。
+- README、SKILL、WORKFLOW、QUICKSTART_TEST 同步说明：多视图生成依赖 Codex 生图能力，提示词队列生成依赖 Claude Code + Doubao-Seed-2.0-Pro。
+
+## 仍然没有做什么
+
+- 没有验证真实生图效果。
+- 没有验证真实 Doubao 调用。
+- 没有把项目做成一键软件或 SaaS。
+- 没有引入浏览器自动化、ChatGPT 网页版或 GPT 桌面端路线。
+- 当前工作流仍不使用 DeepSeek V4 Pro。
+
+## 用户入口
+
+普通用户仍然只需要从仓库 README 开始，不需要先阅读 Release 页面。
+
+Release 只用于维护者版本留档、问题回溯和反馈定位。
+```
+
 ## 明天给外部试跑者的指令
 
 只让对方验证仓库能否理解和启动，不让对方做审美反馈。
@@ -159,6 +206,14 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 - Codex 不应要求用户手动输入人物名、目录、路径、张数或是否开始。
 - 流程不应引导用户去控制浏览器、ChatGPT 网页版或 GPT 桌面端。
 - 如果失败，失败点应能被记录为明确的文档或脚本问题。
+
+## v0.1.1 后下一轮验证标准
+
+- 新用户能理解 `check_workflow_prereqs.ps1` 只检查本地仓库，不检查外部 AI 能力。
+- 新用户能理解拖图路径不可用时使用 `assets/inbox/`。
+- `start_character_run.ps1` 在 `-SourceImagePath` 和默认 `assets/inbox/` 两种方式下都能启动人物运行。
+- Codex 没有生图能力时，流程能清楚停在“生成多视图参考图”。
+- Doubao 不可用时，流程能清楚停在“生成提示词队列”。
 
 ## 后续增强
 
