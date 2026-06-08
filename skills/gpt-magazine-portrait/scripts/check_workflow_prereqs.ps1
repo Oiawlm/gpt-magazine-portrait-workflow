@@ -24,7 +24,8 @@ $requiredPaths = @(
     "assets/inbox",
     "skills/gpt-magazine-portrait/SKILL.md",
     "skills/gpt-magazine-portrait/scripts/validate_queue.ps1",
-    "skills/gpt-magazine-portrait/scripts/start_character_run.ps1"
+    "skills/gpt-magazine-portrait/scripts/start_character_run.ps1",
+    "skills/gpt-magazine-portrait/scripts/install_codex_skill.ps1"
 )
 
 $missing = @()

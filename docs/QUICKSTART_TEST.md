@@ -16,6 +16,14 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 
 注意：这个检查只证明仓库本地文件可用，不证明 Codex 生图能力或 Doubao 接入已经可用。
 
+可选：如果只是想确认 skill 安装脚本路径和参数没问题，可以用 `-WhatIf` 做无副作用检查：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\install_codex_skill.ps1 -WhatIf
+```
+
+这不会真的复制 skill。真正安装是可选增强，不是无生图测试必需步骤。
+
 ## 2. 启动一次默认测试运行
 
 ```powershell

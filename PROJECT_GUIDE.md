@@ -19,7 +19,7 @@
 - `docs/HANDOFF_TO_CLAUDE_CODE.md`：交接给 Claude Code 的当前状态和下一步。
 - `docs/CLAUDE_CODE_NEXT_PROMPT.md`：可直接复制给 Claude Code 的下一步指令。
 - `skills/gpt-magazine-portrait/SKILL.md`：配套 Codex skill 主文档。
-- `skills/gpt-magazine-portrait/scripts/`：前置检查、默认运行启动、人物目录创建和任务队列校验脚本。
+- `skills/gpt-magazine-portrait/scripts/`：前置检查、可选 skill 安装、默认运行启动、人物目录创建和任务队列校验脚本。
 - `templates/`：人物资料、任务队列、风格包模板。
 - `assets/`：随仓库发布的风格参考、人物资产和生成样张。
 - `assets/inbox/`：当前稳定 MVP 的默认图片入口；用户把 3-5 张人物照片放入此目录后触发工作流。
@@ -32,6 +32,7 @@
 - 本项目是独立开源仓库目录，不要把 `agent_vault` 其他项目混进来。
 - 普通用户可通过 `git clone` 或 GitHub **Download ZIP** 获取仓库；ZIP 解压目录名可能带 `-main`，只要包含 `README.md`、`assets/`、`docs/`、`skills/` 就视为项目根目录。
 - 运行公开 MVP 时，用户应在 Codex 中打开项目根目录后再发送触发语；不要假设用户知道需要先把 Codex 工作目录切到仓库目录。
+- 安装 `gpt-magazine-portrait` 到本机 Codex skills 目录是可选增强，不是公开 MVP 的必经步骤；安装脚本为 `skills/gpt-magazine-portrait/scripts/install_codex_skill.ps1`。
 - `agent_vault` 是作者的原始工作区名，新用户不需要创建或拥有这个目录。
 - 原始工作区中的 `人物资料库`、`风格参考库` 只作为历史复制来源；对外发布后应使用仓库内的 `assets/characters/` 和 `assets/style-reference/`。
 - 新增资产应放入 `assets/` 对应子目录，并同步更新清单或人物 Markdown。

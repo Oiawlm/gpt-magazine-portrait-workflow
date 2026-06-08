@@ -234,11 +234,26 @@ skills/gpt-magazine-portrait/
 
 - `SKILL.md`：Codex 执行这套工作流时的说明
 - `scripts/check_workflow_prereqs.ps1`：检查仓库前置条件
+- `scripts/install_codex_skill.ps1`：可选，把本仓库 skill 安装到本机 Codex skills 目录
 - `scripts/start_character_run.ps1`：按默认目录启动新人物运行并复制拖入图片
 - `scripts/make_character_dirs.ps1`：创建新人物目录
 - `scripts/validate_queue.ps1`：校验任务队列 JSON
 
-当前仓库内的 skill 是流程说明和脚本集合。MVP 阶段可以直接让 Codex/Claude Code 阅读 `skills/gpt-magazine-portrait/SKILL.md` 执行；如果要安装成 Codex 本地 skill，可在后续把 `skills/gpt-magazine-portrait/` 复制到 Codex skills 目录。
+当前仓库内的 skill 是流程说明和脚本集合。MVP 阶段不安装也可以用：用 Codex 打开项目根目录后，发送“按 gpt-magazine-portrait 工作流处理这些照片”即可。
+
+如果你想配置一次、后续在新 Codex 会话里更容易触发，可以可选安装到本机 Codex skills 目录：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\install_codex_skill.ps1
+```
+
+如果本机已经安装过旧版本，要覆盖安装：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\install_codex_skill.ps1 -Force
+```
+
+安装后建议重新打开 Codex 新会话，再用项目根目录和 `assets/inbox/` 跑当前稳定 MVP。
 
 ## 无生图测试
 

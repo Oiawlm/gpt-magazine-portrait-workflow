@@ -487,6 +487,42 @@ v0.1.10：补充用 Codex 打开项目根目录的步骤
 - 标准路线不要求用户配置 OpenAI API Key。
 ```
 
+## v0.1.11 Release 文案
+
+定位：
+
+```text
+可选 Codex skill 安装脚本版
+```
+
+标题：
+
+```text
+v0.1.11：增加可选 Codex skill 安装脚本
+```
+
+正文：
+
+```markdown
+## 这个版本修了什么
+
+`v0.1.11` 增加一个可选安装脚本，用于把仓库内的 `gpt-magazine-portrait` skill 复制到本机 Codex skills 目录。这个安装不是公开 MVP 的必经步骤，只是让后续新 Codex 会话更容易触发工作流。
+
+## 主要修复
+
+- 新增 `skills/gpt-magazine-portrait/scripts/install_codex_skill.ps1`。
+- README 的 Codex Skill 用法补充“无需安装也可运行”和“可选安装”两种方式。
+- `check_workflow_prereqs.ps1` 把安装脚本纳入本地文件检查。
+- QUICKSTART_TEST 增加 `install_codex_skill.ps1 -WhatIf` 的无副作用检查示例。
+
+## 不变内容
+
+- 当前稳定 MVP 仍然是用 Codex 打开项目根目录，放照片到 `assets/inbox/`，再发送触发语。
+- 安装 skill 不是必需步骤。
+- 多视图参考图仍必须由 Codex 生图能力生成，原图拼版不算成功。
+- 标准路线不要求用户配置 OpenAI API Key。
+```
+
 ## 明天给外部试跑者的指令
 
 只让对方验证仓库能否启动并走到多视图阶段，不让对方做审美反馈，不让对方继续 Doubao 队列或最终写真。
