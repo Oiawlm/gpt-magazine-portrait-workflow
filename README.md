@@ -64,7 +64,7 @@ assets/inbox/
 
 图片文件名可以是任意名称，例如微信导出的文件名、截图文件名或相机原始文件名；脚本只要求它们是常见图片扩展名，例如 `.png`、`.jpg`、`.jpeg`、`.webp`。
 
-然后对 Codex 发一句：
+然后用 Codex 打开这个项目根目录，也就是能看到 `README.md`、`assets/`、`docs/`、`skills/` 的那个文件夹。在 Codex 里发一句：
 
 ```text
 按 gpt-magazine-portrait 工作流处理这些照片。

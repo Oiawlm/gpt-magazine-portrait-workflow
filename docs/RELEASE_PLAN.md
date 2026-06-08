@@ -452,6 +452,41 @@ v0.1.9：补充 Download ZIP 使用路径
 - 不使用浏览器自动化、ChatGPT 网页版或 GPT 桌面端。
 ```
 
+## v0.1.10 Release 文案
+
+定位：
+
+```text
+Codex 打开项目目录说明补充版
+```
+
+标题：
+
+```text
+v0.1.10：补充用 Codex 打开项目根目录的步骤
+```
+
+正文：
+
+```markdown
+## 这个版本修了什么
+
+`v0.1.10` 补充小白用户容易漏掉的一步：下载或解压仓库后，需要用 Codex 打开项目根目录，再发送触发语。
+
+## 主要修复
+
+- README 明确：项目根目录是能看到 `README.md`、`assets/`、`docs/`、`skills/` 的文件夹。
+- README 当前稳定 MVP 步骤中补充“用 Codex 打开项目根目录”。
+- 外部试跑指令同步补充 Codex 打开目录步骤，避免测试者只在普通文件夹或错误目录里发送触发语。
+
+## 不变内容
+
+- 当前稳定 MVP 仍使用 `assets/inbox/` 作为默认图片入口。
+- 不要求用户手动输入人物名、目录、路径、张数或是否开始。
+- 多视图参考图仍必须由 Codex 生图能力生成，原图拼版不算成功。
+- 标准路线不要求用户配置 OpenAI API Key。
+```
+
 ## 明天给外部试跑者的指令
 
 只让对方验证仓库能否启动并走到多视图阶段，不让对方做审美反馈，不让对方继续 Doubao 队列或最终写真。
@@ -468,7 +503,8 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 3. 注意：前置检查只验证仓库文件和模板，不验证 Codex 生图能力，也不验证 Doubao 接入。
 4. 准备同一人物的 3-5 张多角度照片。
 5. 把这些照片放入 assets/inbox/。
-6. 对 Codex 说：按 gpt-magazine-portrait 工作流处理这些照片。先只执行到“生成 AI 标准化多视图参考图并保存到 reference/multiview/”这一步，不要继续生成提示词队列，也不要生成最终写真。
+6. 用 Codex 打开这个项目根目录，也就是能看到 `README.md`、`assets/`、`docs/`、`skills/` 的那个文件夹。
+7. 对 Codex 说：按 gpt-magazine-portrait 工作流处理这些照片。先只执行到“生成 AI 标准化多视图参考图并保存到 reference/multiview/”这一步，不要继续生成提示词队列，也不要生成最终写真。
 
 注意：
 - 不要改仓库结构。
