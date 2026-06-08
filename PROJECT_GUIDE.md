@@ -41,7 +41,7 @@
 - 不要声称可以在没有工具支持时把对话图片自动保存到临时目录。
 - 默认路径为 `assets/characters/<auto-character-id>/reference/originals/`、`reference/multiview/`、`tasks/`、`generated/`、`runs/`。
 - 只有缺少关键前置能力、任务队列无法修复、输入路径不存在或输出会覆盖旧图时，才暂停并说明原因。
-- `check_workflow_prereqs.ps1` 只检查仓库文件和模板，不证明 Codex 生图能力、Doubao 接入或拖图路径暴露能力可用。
+- `check_workflow_prereqs.ps1` 只检查仓库文件、模板、队列校验脚本和多视图失败策略是否保留，不证明 Codex 生图能力、Doubao 接入或拖图路径暴露能力可用。
 - 本项目标准路线由 Codex 生图能力执行最终出图；不要把控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端写入工作流、计划、fallback 或未来规划。
 - Codex 生图能力指当前 Codex 会话自带的生图能力；使用者账号/组织必须有 Codex 图片生成权限和可用额度。标准路线不要求用户配置 OpenAI API Key 或额外接入 OpenAI API。
 - 多视图参考图必须由 Codex 生图能力生成；原图横向拼版、截图拼版或手工拼接图不算成功结果。Codex 生图工具服务器错误、超时或不可用时，停在多视图阶段并提示稍后重试，不得创建拼版 fallback，不得继续进入 Doubao 队列或最终写真。
@@ -78,6 +78,7 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 
 - Codex 生图能力可能出现文字漂移，尤其是大型背景字、小字和中文标语。
 - Codex 生图工具可能临时返回服务器错误；这时多视图阶段应明确失败并稍后重试，不能用原图拼版替代。
+- 前置检查会验证多视图失败策略是否仍在脚本和模板中，但不能验证真实 Codex 生图服务是否可用。
 - 风格迁移不是简单抄参考图，必须提取构图、光影、色彩、字体、服装和气质。
 - 当前工作流不使用 DeepSeek V4 Pro；不要把它写入执行路线、fallback 或可选步骤。
 - Codex 额度有限，不能为测试而生图。

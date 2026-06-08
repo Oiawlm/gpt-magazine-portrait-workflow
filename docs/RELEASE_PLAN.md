@@ -662,3 +662,39 @@ v0.1.13：把多视图失败策略写入每次运行 manifest
 - 多视图参考图仍必须由 Codex 生图能力生成。
 - Codex 生图工具失败时，流程停在多视图阶段。
 ```
+
+## v0.1.14 Release 文案
+
+定位：
+
+```text
+前置检查防回归版
+```
+
+标题：
+
+```text
+v0.1.14：让前置检查守住多视图失败策略
+```
+
+正文：
+
+```markdown
+## 这个版本修了什么
+
+`v0.1.14` 把多视图失败策略纳入 `check_workflow_prereqs.ps1`。以后本地前置检查不仅确认仓库文件和队列模板存在，也会检查运行 manifest 生成脚本和多视图提示词模板是否仍保留“禁止拼版 fallback”的关键规则。
+
+## 主要修复
+
+- `check_workflow_prereqs.ps1` 检查 `start_character_run.ps1` 是否保留 `stage_status_rules` 和 `multiview_failure_policy`。
+- 前置检查会确认 manifest 策略中仍禁止原图拼版 fallback、禁止失败后继续 Doubao 队列和最终写真。
+- 前置检查会确认多视图提示词模板仍禁止原图拼版和 fallback collage。
+- `PROJECT_GUIDE.md` 同步说明前置检查的新覆盖范围。
+
+## 不变内容
+
+- 前置检查仍不调用 Codex 生图能力。
+- 前置检查仍不调用 Doubao。
+- 前置检查仍不证明外部 AI 能力已经可用。
+- 完整流程仍需要真实 Codex 生图权限和 Doubao-Seed-2.0-Pro 接入。
+```

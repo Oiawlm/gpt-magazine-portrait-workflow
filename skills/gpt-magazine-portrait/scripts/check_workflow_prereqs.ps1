@@ -45,7 +45,51 @@ $templateQueue = Join-Path $repoRoot "templates/generation_task.template.json"
 $validator = Join-Path $repoRoot "skills/gpt-magazine-portrait/scripts/validate_queue.ps1"
 & powershell -ExecutionPolicy Bypass -File $validator -QueuePath $templateQueue
 
+$startRunScript = Join-Path $repoRoot "skills/gpt-magazine-portrait/scripts/start_character_run.ps1"
+$startRunContent = Get-Content -LiteralPath $startRunScript -Encoding UTF8 -Raw
+$requiredStartRunPatterns = @(
+    "stage_status_rules",
+    "multiview_failure_policy",
+    "allow_raw_photo_collage_fallback = `$false",
+    "allow_continue_to_doubao_queue = `$false",
+    "allow_continue_to_final_portraits = `$false",
+    "不要创建拼版 fallback"
+)
+
+$missingStartRunPatterns = @()
+foreach ($pattern in $requiredStartRunPatterns) {
+    if ($startRunContent -notlike "*$pattern*") {
+        $missingStartRunPatterns += $pattern
+    }
+}
+
+if ($missingStartRunPatterns.Count -gt 0) {
+    Write-Error "多视图失败策略缺失或被弱化: $($missingStartRunPatterns -join ', ')"
+    exit 1
+}
+
+$multiviewTemplate = Join-Path $repoRoot "templates/multiview_reference_prompt.template.md"
+$multiviewTemplateContent = Get-Content -LiteralPath $multiviewTemplate -Encoding UTF8 -Raw
+$requiredTemplatePatterns = @(
+    "不要把输入原图简单横向拼接成拼版",
+    "fallback collage",
+    "必须是 AI 标准化多视图参考图，而不是原始照片拼版"
+)
+
+$missingTemplatePatterns = @()
+foreach ($pattern in $requiredTemplatePatterns) {
+    if ($multiviewTemplateContent -notlike "*$pattern*") {
+        $missingTemplatePatterns += $pattern
+    }
+}
+
+if ($missingTemplatePatterns.Count -gt 0) {
+    Write-Error "多视图提示词模板缺少禁止拼版规则: $($missingTemplatePatterns -join ', ')"
+    exit 1
+}
+
 Write-Host ""
+Write-Host "多视图失败策略检查已通过。"
 Write-Host "仓库本地检查已通过。"
 Write-Host "注意：本脚本只检查仓库文件、模板和队列校验脚本；不会验证以下外部能力："
 Write-Host "- Codex 是否具备生图能力。"
