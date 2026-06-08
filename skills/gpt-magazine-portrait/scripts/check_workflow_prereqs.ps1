@@ -50,6 +50,9 @@ $startRunContent = Get-Content -LiteralPath $startRunScript -Encoding UTF8 -Raw
 $requiredStartRunPatterns = @(
     "stage_status_rules",
     "multiview_failure_policy",
+    "multiview_prompt",
+    "templates/multiview_reference_prompt.template.md",
+    "expected_outputs.stage_status",
     "allow_raw_photo_collage_fallback = `$false",
     "allow_continue_to_doubao_queue = `$false",
     "allow_continue_to_final_portraits = `$false",

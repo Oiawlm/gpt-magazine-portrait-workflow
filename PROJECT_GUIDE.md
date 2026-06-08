@@ -39,6 +39,7 @@
 - 新增资产应放入 `assets/` 对应子目录，并同步更新清单或人物 Markdown。
 - 用户把人物照片放入 `assets/inbox/` 或拖入人物照片并触发 `gpt-magazine-portrait` 工作流，视为授权按默认 MVP 自动执行；正常新人物运行不再二次确认。
 - 当前稳定 MVP 使用 `assets/inbox/` 作为默认图片入口；拖图即跑是最终目标，只有当前 Codex 环境能把拖入图片附件暴露为本地文件路径时才走纯拖图路线。
+- 新人物测试前，`assets/inbox/` 应只保留本轮同一个人物的 3-5 张原始照片；不要混入风格参考图、海报图、AI 生成图、截图或上一轮残留图片。
 - 不要声称可以在没有工具支持时把对话图片自动保存到临时目录。
 - 默认路径为 `assets/characters/<auto-character-id>/reference/originals/`、`reference/multiview/`、`tasks/`、`generated/`、`runs/`。
 - 只有缺少关键前置能力、任务队列无法修复、输入路径不存在或输出会覆盖旧图时，才暂停并说明原因。
@@ -48,6 +49,7 @@
 - 多视图参考图必须由 Codex 生图能力生成；原图横向拼版、截图拼版或手工拼接图不算成功结果。Codex 生图工具服务器错误、超时或不可用时，停在多视图阶段并提示稍后重试，不得创建拼版 fallback，不得继续进入 Doubao 队列或最终写真。
 - 验证和汇报时必须区分“启动链路成功”“多视图生图成功”“多视图生图失败”。人物目录、原图副本和 manifest 生成成功，只代表启动链路成功，不代表多视图参考图已成功。
 - `start_character_run.ps1` 生成的 run manifest 必须保留多视图失败策略；不要移除 `stage_status_rules` 或 `multiview_failure_policy`，它们用于阻止接手 agent 把原图拼版当作 fallback。
+- run manifest 必须记录 `multiview_prompt.template_path = templates/multiview_reference_prompt.template.md`，并要求成功或失败都写入 `expected_outputs.stage_status`。这用于证明 Codex 确实按内置多视图提示词尝试生图。
 - 提示词队列生成标准路线依赖 Claude Code + CC Switch 或等价方式接入 Doubao-Seed-2.0-Pro；当前工作流不使用 DeepSeek V4 Pro。
 - 当前阶段优先完善仓库和文档，不继续消耗生图额度。
 - 谢孟伟/XIEMENGWEI 红绳重做任务已取消，不再执行。

@@ -733,3 +733,41 @@ v0.1.15：明确安装 skill 后仍需打开项目根目录
 - 安装 skill 仍然是可选增强，不是必需步骤。
 - 完整流程仍需要真实 Codex 生图权限和 Doubao-Seed-2.0-Pro 接入。
 ```
+
+## v0.1.16 Release 文案
+
+定位：
+
+```text
+多视图提示词使用记录版
+```
+
+标题：
+
+```text
+v0.1.16：记录多视图生图是否使用内置提示词模板
+```
+
+正文：
+
+```markdown
+## 这个版本修了什么
+
+`v0.1.16` 针对外部测试反馈补充两类证据：测试者必须清空 `assets/inbox/` 并只放同一人物原始照片；Codex 生成多视图前必须读取并使用 `templates/multiview_reference_prompt.template.md`，成功或失败都要把模板路径和原图数量写入阶段状态。
+
+## 主要修复
+
+- README 增加“小白只测多视图”操作指南。
+- README 明确：`assets/inbox/` 不要混入风格图、海报图、AI 生成图、截图或上一轮残留图片。
+- `start_character_run.ps1` 的 manifest 新增 `multiview_prompt`，记录内置提示词模板路径和原图数量。
+- manifest 的 `expected_outputs` 新增 `stage_status` 路径。
+- SKILL 要求多视图成功或失败都写 `runs/*-stage-status.json`，并记录模板路径、原图数量、错误和后续阶段是否继续。
+- 前置检查新增对 `multiview_prompt`、内置模板路径和 `expected_outputs.stage_status` 的防回归检查。
+
+## 不变内容
+
+- 当前稳定 MVP 仍使用 `assets/inbox/` 作为默认图片入口。
+- 多视图参考图仍必须由 Codex 生图能力生成。
+- 原图拼版仍不算成功结果。
+- 不进入 Doubao 队列，不生成最终写真，直到真正 AI 多视图成功。
+```

@@ -178,8 +178,16 @@ $manifest = [pscustomobject]@{
     copied_source_images = $copiedImages
     expected_outputs = [pscustomobject]@{
         multiview_reference = ("assets/characters/{0}/reference/multiview/{0}-multiview-reference.png" -f $characterSlug)
+        stage_status = ("assets/characters/{0}/runs/{1}-stage-status.json" -f $characterSlug, $RunId)
         first_round_queue = ("assets/characters/{0}/tasks/{1}-first-round-prompt_queue.json" -f $characterSlug, $RunId)
         generated_dir = ("assets/characters/{0}/generated/" -f $characterSlug)
+    }
+    multiview_prompt = [pscustomobject]@{
+        template_path = "templates/multiview_reference_prompt.template.md"
+        must_read_before_generation = $true
+        must_use_with_source_images = $true
+        source_image_count = $copiedImages.Count
+        required_record_on_success_or_failure = "Record template_path, source_image_count, stage, status, tool, error if any, and continuation flags in expected_outputs.stage_status."
     }
     stage_status_rules = [pscustomobject]@{
         startup_success = "Only means the character directory, copied originals, and manifest were created."
@@ -196,7 +204,9 @@ $manifest = [pscustomobject]@{
         failure_message = "多视图参考图生成失败，稍后重试。不要创建原图拼版 fallback，不要继续 Doubao 队列或最终写真。"
     }
     next_agent_steps = @(
+        "Codex：先读取 multiview_prompt.template_path 指定的多视图提示词模板，并把该模板与 copied_source_images 中的同一人物原图一起用于生图。",
         "Codex：使用 Codex 生图能力把 AI 标准化多视图参考图生成到 expected_outputs.multiview_reference 指定路径。",
+        "无论多视图成功或失败，都把阶段状态写入 expected_outputs.stage_status；必须记录使用的模板路径、原图数量、状态、错误和是否继续后续阶段。",
         "如果 Codex 生图工具服务器错误、超时或不可用，停在多视图阶段并记录 multiview_failure_policy.failure_message；不要创建拼版 fallback。",
         "只有 multiview_success 成立后，Claude Code + Doubao-Seed-2.0-Pro 才能生成第一轮 4 个任务的提示词队列，并写入 expected_outputs.first_round_queue 指定路径。",
         "Codex：校验任务队列；如果不会覆盖旧文件且外部能力可用，继续生成最终图片。"

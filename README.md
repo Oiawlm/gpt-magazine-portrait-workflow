@@ -64,6 +64,8 @@ assets/inbox/
 
 图片文件名可以是任意名称，例如微信导出的文件名、截图文件名或相机原始文件名；脚本只要求它们是常见图片扩展名，例如 `.png`、`.jpg`、`.jpeg`、`.webp`。
 
+每次测试新人物前，先确认 `assets/inbox/` 里只有本轮这个人的照片。不要混入风格参考图、海报图、AI 生成图、截图或上一轮残留图片；否则 Codex 会把它们也当作人物参考输入。
+
 然后用 Codex 打开这个项目根目录，也就是能看到 `README.md`、`assets/`、`docs/`、`skills/` 的那个文件夹。在 Codex 里发一句：
 
 ```text
@@ -83,6 +85,35 @@ Codex 默认执行：
 5. 校验任务队列。
 6. 由 Codex 自动生成最终杂志写真并保存。
 7. 更新人物资料、任务状态和运行 manifest。
+
+多视图这一步必须读取并使用仓库内置提示词：
+
+```text
+templates/multiview_reference_prompt.template.md
+```
+
+Codex 应把这份模板和 `assets/inbox/` 里的同一人物原图一起用于生图。无论成功或失败，都应在本轮 `runs/*-stage-status.json` 里记录使用的模板路径、原图数量、状态和错误原因。
+
+## 小白只测多视图
+
+如果只是帮忙测试，不要跑完整流程。按下面做：
+
+1. 用 GitHub **Download ZIP** 下载仓库并解压。
+2. 打开解压后的内层项目文件夹，确认能看到 `README.md`、`assets/`、`docs/`、`skills/`。
+3. 打开 `assets/inbox/`，删除里面除 `.gitkeep` 之外的旧图片。
+4. 放入同一个人物的 3-5 张照片，只放真人原始照片，不放海报、风格图、AI 图或截图。
+5. 用 Codex 打开这个项目文件夹。
+6. 对 Codex 发送：
+
+```text
+按 gpt-magazine-portrait 工作流处理这些照片。先只执行到“读取 templates/multiview_reference_prompt.template.md，并用这份提示词和 assets/inbox/ 里的原图生成 AI 标准化多视图参考图，保存到 reference/multiview/”这一步。无论成功或失败，都把阶段状态写入 runs/*-stage-status.json。不要继续生成提示词队列，也不要生成最终写真。
+```
+
+反馈时只需要看三件事：
+
+- 是否读取并使用了 `templates/multiview_reference_prompt.template.md`。
+- 是否生成了真正的 AI 标准化多视图参考图。
+- 如果失败，`runs/*-stage-status.json` 是否记录了错误，并且没有创建原图拼版 fallback。
 
 触发语和图片本身视为本轮执行授权；MVP 默认不再二次询问人物名、目录、张数或是否开始。只有缺少关键前置条件，或即将覆盖已有输出文件时，Codex 才停下来说明问题。
 
