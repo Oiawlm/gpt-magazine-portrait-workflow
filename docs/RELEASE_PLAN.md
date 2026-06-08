@@ -416,6 +416,42 @@ v0.1.8：明确多视图失败时不得用拼版 fallback 冒充成功
 - 当前工作流不使用 DeepSeek V4 Pro。
 ```
 
+## v0.1.9 Release 文案
+
+定位：
+
+```text
+小白下载入口补充版
+```
+
+标题：
+
+```text
+v0.1.9：补充 Download ZIP 使用路径
+```
+
+正文：
+
+```markdown
+## 这个版本修了什么
+
+`v0.1.9` 补充小白用户和外部试跑者的下载入口说明：不会使用 git 的用户可以直接通过 GitHub 的 Download ZIP 下载仓库并解压使用。
+
+## 主要修复
+
+- README 的“配置一次”同时提供 `git clone` 和 Download ZIP 两种方式。
+- 明确 ZIP 解压后的目录名可能是 `gpt-magazine-portrait-workflow-main`，这是正常情况。
+- QUICKSTART_TEST 说明从“仓库克隆后”改为“仓库下载后”，同时支持 git 和 ZIP。
+- 外部试跑指令同步：测试者可用 git clone，也可用 Download ZIP。
+
+## 不变内容
+
+- 当前稳定 MVP 仍使用 `assets/inbox/` 作为默认图片入口。
+- 多视图参考图仍必须由 Codex 生图能力生成，原图拼版不算成功。
+- 标准路线不要求用户配置 OpenAI API Key。
+- 不使用浏览器自动化、ChatGPT 网页版或 GPT 桌面端。
+```
+
 ## 明天给外部试跑者的指令
 
 只让对方验证仓库能否启动并走到多视图阶段，不让对方做审美反馈，不让对方继续 Doubao 队列或最终写真。
@@ -427,7 +463,7 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 目标：只验证仓库的 MVP 使用说明能不能跑到“Codex 生成 AI 标准化多视图参考图并保存”。不评价图片审美，不设计新流程。
 
 请按 README 的当前稳定 MVP 流程操作：
-1. 克隆仓库并进入目录。
+1. 下载仓库并进入项目根目录。会用 git 的话运行 `git clone https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git`；不会 git 的话，在 GitHub 页面点绿色 Code 按钮，选择 Download ZIP，下载后解压。ZIP 解压目录可能叫 `gpt-magazine-portrait-workflow-main`，这是正常的。
 2. 运行 README 里的前置检查命令。
 3. 注意：前置检查只验证仓库文件和模板，不验证 Codex 生图能力，也不验证 Doubao 接入。
 4. 准备同一人物的 3-5 张多角度照片。

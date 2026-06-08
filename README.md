@@ -36,11 +36,21 @@
 
 ### 配置一次
 
+如果你会用 git，运行：
+
 ```powershell
 git clone https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 cd gpt-magazine-portrait-workflow
 powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\check_workflow_prereqs.ps1
 ```
+
+如果你不会用 git，打开仓库页面，点击绿色 **Code** 按钮，选择 **Download ZIP**，下载后解压。然后在解压后的项目根目录打开 PowerShell，运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\check_workflow_prereqs.ps1
+```
+
+ZIP 解压后的文件夹名可能是 `gpt-magazine-portrait-workflow-main`，这是正常的；只要里面能看到 `README.md`、`assets/`、`docs/`、`skills/`，就是项目根目录。
 
 这个命令只代表“仓库文件和模板正常”，不代表 Codex 生图能力或 Doubao 接入已经可用。
 
