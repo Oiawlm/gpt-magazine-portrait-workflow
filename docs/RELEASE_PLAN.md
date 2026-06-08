@@ -698,3 +698,38 @@ v0.1.14：让前置检查守住多视图失败策略
 - 前置检查仍不证明外部 AI 能力已经可用。
 - 完整流程仍需要真实 Codex 生图权限和 Doubao-Seed-2.0-Pro 接入。
 ```
+
+## v0.1.15 Release 文案
+
+定位：
+
+```text
+Skill 安装边界澄清版
+```
+
+标题：
+
+```text
+v0.1.15：明确安装 skill 后仍需打开项目根目录
+```
+
+正文：
+
+```markdown
+## 这个版本修了什么
+
+`v0.1.15` 澄清 Codex skill 安装边界：安装 `gpt-magazine-portrait` skill 只会复制流程说明和脚本副本，不会复制完整资产仓库。真正运行工作流时，仍必须用 Codex 打开 `gpt-magazine-portrait-workflow` 项目根目录。
+
+## 主要修复
+
+- README 明确：安装 skill 不会复制 `assets/` 风格库、人物样张和模板。
+- SKILL 明确：不要把 `.codex/skills/gpt-magazine-portrait/` 当作项目根目录。
+- SKILL 要求执行仓库脚本前先定位包含 `README.md`、`assets/`、`docs/`、`skills/` 的项目根目录。
+- PROJECT_GUIDE 同步该边界，避免后续 agent 从安装目录运行相对路径脚本。
+
+## 不变内容
+
+- 当前稳定 MVP 仍使用 `assets/inbox/` 作为默认图片入口。
+- 安装 skill 仍然是可选增强，不是必需步骤。
+- 完整流程仍需要真实 Codex 生图权限和 Doubao-Seed-2.0-Pro 接入。
+```

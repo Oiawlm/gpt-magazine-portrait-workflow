@@ -33,6 +33,7 @@
 - 普通用户可通过 `git clone` 或 GitHub **Download ZIP** 获取仓库；ZIP 解压目录名可能带 `-main`，只要包含 `README.md`、`assets/`、`docs/`、`skills/` 就视为项目根目录。
 - 运行公开 MVP 时，用户应在 Codex 中打开项目根目录后再发送触发语；不要假设用户知道需要先把 Codex 工作目录切到仓库目录。
 - 安装 `gpt-magazine-portrait` 到本机 Codex skills 目录是可选增强，不是公开 MVP 的必经步骤；安装脚本为 `skills/gpt-magazine-portrait/scripts/install_codex_skill.ps1`。
+- 安装 skill 不等于安装完整资产仓库。安装目录 `.codex/skills/gpt-magazine-portrait/` 不能当作项目根目录；执行仓库脚本前必须定位到包含 `README.md`、`assets/`、`docs/`、`skills/` 的项目根目录。
 - `agent_vault` 是作者的原始工作区名，新用户不需要创建或拥有这个目录。
 - 原始工作区中的 `人物资料库`、`风格参考库` 只作为历史复制来源；对外发布后应使用仓库内的 `assets/characters/` 和 `assets/style-reference/`。
 - 新增资产应放入 `assets/` 对应子目录，并同步更新清单或人物 Markdown。

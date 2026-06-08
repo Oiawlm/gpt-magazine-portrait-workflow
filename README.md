@@ -261,6 +261,8 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\install_codex_skill.ps1 -Force
 ```
 
+安装只会把 skill 说明和脚本副本复制到本机 Codex skills 目录，不会复制本仓库的 `assets/` 风格库、人物样张和模板。安装后仍然要用 Codex 打开项目根目录，也就是能看到 `README.md`、`assets/`、`docs/`、`skills/` 的那个文件夹；照片仍放 `assets/inbox/`，不要在 `.codex/skills/gpt-magazine-portrait/` 里运行仓库脚本。
+
 安装后建议重新打开 Codex 新会话，再用项目根目录和 `assets/inbox/` 跑当前稳定 MVP。
 
 ## 无生图测试
