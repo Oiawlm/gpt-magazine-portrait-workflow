@@ -24,10 +24,10 @@
 4. 不要写素材声明类文档。
 5. 不要继续谢孟伟/XIEMENGWEI 红绳任务，T013 已取消。
 6. 不要把控制浏览器、ChatGPT 网页版或 GPT 桌面端写入工作流、计划或 fallback。
-7. 不要把人物名、目录、张数、路径或“是否开始”设计成公开 MVP 的用户必填项；拖图并触发工作流即视为授权默认执行。
+7. 不要把人物名、目录、张数、路径或“是否开始”设计成公开 MVP 的用户必填项；当前稳定 MVP 中，用户把照片放入 `assets/inbox/` 并触发工作流即视为授权默认执行。
 
 请先做这几件事：
-1. 检查 README.md 里的教程是否足够清楚，尤其是“配置一次，之后拖图即跑”的日常使用路径。
+1. 检查 README.md 里的教程是否足够清楚，尤其是“当前稳定 MVP 使用 `assets/inbox/`，纯拖图即跑是最终目标”的日常使用路径。
 2. 检查 skills/gpt-magazine-portrait/SKILL.md 是否能让 Codex 正确触发和执行这套流程。
 3. 检查 scripts/check_workflow_prereqs.ps1、scripts/start_character_run.ps1、scripts/make_character_dirs.ps1 和 scripts/validate_queue.ps1 是否仍然可用。
 4. 只做文档和脚本层面的修正，不调用 GPT Image。

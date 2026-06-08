@@ -25,7 +25,7 @@
 - `assets/inbox/`：当前稳定 MVP 的默认图片入口；用户把 3-5 张人物照片放入此目录后触发工作流。
 - `assets/ASSET_MANIFEST.md`：资产清单。
 - `workflow-runs/`：历史任务包和风格谱系。
-- `docs/RELEASE_PLAN.md`：维护者发布计划、GitHub 仓库信息、release 文案和外部试跑指令；普通用户入口仍是 README。
+- `docs/RELEASE_PLAN.md`：维护者发布计划、GitHub 仓库信息、release 文案和外部试跑指令；包含历史版本记录，普通用户入口和当前执行口径仍以 README 为准。
 
 ## 目录边界
 
