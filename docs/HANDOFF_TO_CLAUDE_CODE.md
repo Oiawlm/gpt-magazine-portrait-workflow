@@ -76,6 +76,7 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 - 当前工作流不使用 DeepSeek V4 Pro；不要把它写入任务队列、文本整理、fallback 或可选步骤。
 - 最终出图由 Codex 生图能力执行，视觉效果以 GPT Image 经验为基准。
 - Claude Code 必须通过 CC Switch 或等价方式使用 Doubao-Seed-2.0-Pro 做图片理解和提示词队列生成。
+- 多视图参考图成功后，Codex 应优先调用 `skills/gpt-magazine-portrait/scripts/invoke_claude_prompt_queue.ps1`，由脚本生成交接提示词并通过 `claude -p` 调用 Claude Code；人工复制长提示词只作为 CLI 不可用时的降级路线。
 - 不要把控制浏览器、ChatGPT 网页版或 GPT 桌面端作为工作流、fallback 或未来路线。
 - 多视图参考图必须由 Codex 生图能力生成；原图横向拼版、截图拼版或手工拼接图不算成功结果。Codex 生图失败时停在多视图阶段，不继续 Doubao 队列或最终写真。
 
@@ -89,6 +90,7 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 4. 维护三个关键脚本：
    - `check_workflow_prereqs.ps1`：检查仓库前置条件。
    - `start_character_run.ps1`：按默认路径启动新人物运行。
+   - `invoke_claude_prompt_queue.ps1`：多视图成功后由 Codex 调用 Claude Code / Doubao 生成提示词队列。
    - `validate_queue.ps1`：校验任务队列 JSON。
 5. 后续用一个新人物做端到端验证，但不要为验证消耗不必要生图额度。
 

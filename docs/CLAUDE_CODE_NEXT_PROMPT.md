@@ -1,6 +1,12 @@
 # Claude Code Next Prompt
 
-把下面这段直接复制给 Claude Code 使用。
+默认不要人工复制长提示词。多视图成功后，Codex 应优先运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\invoke_claude_prompt_queue.ps1
+```
+
+下面这段只作为 `claude` CLI 不可用、必须人工交接时的降级提示词。
 
 ```text
 请在当前仓库根目录接手 gpt-magazine-portrait-workflow 项目。
@@ -26,11 +32,12 @@
 6. 不要把控制浏览器、ChatGPT 网页版或 GPT 桌面端写入工作流、计划或 fallback。
 7. 不要把人物名、目录、张数、路径或“是否开始”设计成公开 MVP 的用户必填项；当前稳定 MVP 中，用户把照片放入 `assets/inbox/` 并触发工作流即视为授权默认执行。
 8. 不要用原图横向拼版、截图拼版或手工拼接图冒充多视图参考图；Codex 生图失败时应停在多视图阶段并提示稍后重试。
+9. 多视图成功后的标准路线是 Codex 调用 `invoke_claude_prompt_queue.ps1`，由脚本通过 `claude -p` 调用 Claude Code / Doubao 生成提示词队列；不要把人工复制粘贴当成默认流程。
 
 请先做这几件事：
 1. 检查 README.md 里的教程是否足够清楚，尤其是“当前稳定 MVP 使用 `assets/inbox/`，纯拖图即跑是最终目标”的日常使用路径。
 2. 检查 skills/gpt-magazine-portrait/SKILL.md 是否能让 Codex 正确触发和执行这套流程，尤其是“拼版 fallback 不算多视图成功”的失败处理。
-3. 检查 scripts/check_workflow_prereqs.ps1、scripts/start_character_run.ps1、scripts/make_character_dirs.ps1 和 scripts/validate_queue.ps1 是否仍然可用。
+3. 检查 scripts/check_workflow_prereqs.ps1、scripts/start_character_run.ps1、scripts/invoke_claude_prompt_queue.ps1、scripts/make_character_dirs.ps1 和 scripts/validate_queue.ps1 是否仍然可用。
 4. 只做文档和脚本层面的修正，不调用 GPT Image。
 5. 修改后运行项目 PROJECT_GUIDE.md 里的检查命令。
 6. 输出你修改了哪些文件、跑了哪些验证、还有哪些未确认事项。

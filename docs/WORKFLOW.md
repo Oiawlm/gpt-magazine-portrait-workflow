@@ -64,9 +64,17 @@
 
 ## 阶段 4：提示词队列生成
 
-1. Claude Code 通过 CC Switch 选择 Doubao-Seed-2.0-Pro。
-2. Doubao 读取人物参考图、风格参考图和人物谱系。
-3. 生成结构化任务队列，任务至少包含：
+1. 只有阶段 1.5 生成了真正的 AI 标准化多视图参考图，才进入本阶段。
+2. Codex 在项目根目录调用标准脚本：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\invoke_claude_prompt_queue.ps1
+```
+
+3. 该脚本读取最近一次 run manifest，确认 `expected_outputs.multiview_reference` 存在，生成 Claude Code / Doubao 交接提示词，并在本机存在 `claude` CLI 时用 `claude -p` 非交互调用 Claude Code。
+4. Claude Code 通过 CC Switch 或等价方式选择 Doubao-Seed-2.0-Pro。
+5. Doubao 读取人物多视图参考图、人物 Markdown、风格参考库和任务模板。
+6. 生成结构化任务队列，任务至少包含：
    - `task_id`
    - `character`
    - `style_pack_id`
@@ -78,9 +86,16 @@
    - `output_filename`
    - `status`
    - `priority`
-5. 任务队列文件统一输出到：`assets/characters/<人物名>/tasks/` 目录，命名建议为 `first_round_prompt_queue.json`、`second_round_prompt_queue.json` 等。
-6. 第一轮默认生成 4 个任务；不要让用户输入张数，后续版本再支持自定义数量。
-7. Codex 校验任务队列，只修正明显规则问题，不随意扩张任务数量。
+7. 任务队列文件统一输出到 manifest 中 `expected_outputs.first_round_queue` 指定路径，默认在 `assets/characters/<人物名>/tasks/`。
+8. 第一轮默认生成 4 个任务；不要让用户输入张数，后续版本再支持自定义数量。
+9. 如果只需要生成交接提示词而不立即启动 Claude Code，Codex 可运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\invoke_claude_prompt_queue.ps1 -NoInvoke
+```
+
+10. Codex 校验任务队列，只修正明显规则问题，不随意扩张任务数量。
+11. 如果 Claude Code 或 Doubao-Seed-2.0-Pro 不可用，停在本阶段；不要用 DeepSeek、浏览器自动化、ChatGPT 网页版或 GPT 桌面端替代。
 
 ## 阶段 5：自动执行前检查
 

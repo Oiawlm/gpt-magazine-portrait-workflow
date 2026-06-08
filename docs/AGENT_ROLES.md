@@ -11,6 +11,7 @@
 - 保存生成图片。
 - 更新人物 Markdown、任务队列和运行记录。
 - 把用户反馈写回规则。
+- 多视图成功后，优先运行 `skills/gpt-magazine-portrait/scripts/invoke_claude_prompt_queue.ps1` 调用 Claude Code 生成提示词队列。
 
 Codex 不应在额度紧张时做无意义测试。
 
@@ -21,11 +22,13 @@ Codex 不得把控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端作为
 负责长文本整理和模型切换协作：
 
 - 通过 CC Switch 或等价方式选择 Doubao-Seed-2.0-Pro。
-- 接收 Codex 或用户给出的任务说明。
+- 接收 Codex 通过 `invoke_claude_prompt_queue.ps1` 生成的任务说明。
 - 生成风格包、任务队列、复盘草案。
 - 适合处理较长 Markdown 和 JSON 文件。
 
 标准提示词队列生成路线要求 Claude Code 能接入 Doubao-Seed-2.0-Pro；没有 CC Switch 时，需要具备等价的 Doubao-Seed-2.0-Pro 接入方式。
+
+如果本机存在 `claude` CLI，Codex 应优先用 `claude -p` 非交互调用 Claude Code。不要把“复制长提示词给 Claude Code”作为默认路线；它只是在 CLI 不可用时的降级说明。
 
 ## Doubao-Seed-2.0-Pro
 

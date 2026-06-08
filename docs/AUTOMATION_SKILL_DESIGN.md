@@ -17,7 +17,7 @@
 2. 保存用户拖入的人物参考图到固定位置。
 3. 生成或整理人物核心设定。
 4. 调用现有风格参考库和 style pack。
-5. 把人物设定、风格包、用户需求交给 Claude Code / Doubao-Seed-2.0-Pro 生成提示词队列。
+5. 多视图成功后，调用 `invoke_claude_prompt_queue.ps1`，把人物设定、风格包、用户需求交给 Claude Code / Doubao-Seed-2.0-Pro 生成提示词队列。
 6. 读取并校验提示词队列。
 7. 检查是否缺少关键前置条件或覆盖已有输出。
 8. 如果不存在阻塞问题，使用 Codex 生图能力按默认数量批量生图。
@@ -80,7 +80,7 @@ gpt-magazine-portrait-workflow/
 - 能接新人物图片。
 - 当前稳定 MVP 使用 `assets/inbox/` 作为固定图片入口；当 Codex 环境能把拖入图片暴露为可传给脚本的本地路径时，再走纯拖图路线。
 - 能创建人物目录。
-- 能准备 Claude Code / Doubao 任务包。
+- 能通过标准脚本准备并调用 Claude Code / Doubao 任务包。
 - 能审核返回的任务队列。
 - 能让 Codex 执行最终生图并落盘。
 
@@ -112,7 +112,7 @@ Codex 应执行：
 4. 如果 `assets/inbox/` 没有图片，且当前 Codex 环境完全不能读取拖入图片路径，停在输入读取阶段并说明缺少可用图片路径；不要假设可以在没有工具支持时把对话图片另存为本地临时文件。
 5. 使用 Codex 生图能力生成该人物多视图参考图。
 6. 如果 Codex 生图工具服务器错误、超时或不可用，停在多视图阶段并提示稍后重试；不要创建原图拼版 fallback，不要继续后续阶段。
-7. 将 AI 标准化多视图参考图、人物资料、风格参考图交给 Claude Code / Doubao-Seed-2.0-Pro；原图横向拼版、截图拼版或手工拼接图不算可用输入。
+7. 运行 `invoke_claude_prompt_queue.ps1`，将 AI 标准化多视图参考图、人物资料、风格参考图交给 Claude Code / Doubao-Seed-2.0-Pro；原图横向拼版、截图拼版或手工拼接图不算可用输入。
 8. 读取 Claude Code 输出的任务队列 JSON 和 Markdown。
 9. 运行 `validate_queue.ps1` 校验任务队列。
 10. 检查输出是否会覆盖已有文件；如不会覆盖，直接由 Codex 生成最终杂志写真并保存到 `generated/`。

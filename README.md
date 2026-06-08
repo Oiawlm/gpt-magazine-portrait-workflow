@@ -81,7 +81,7 @@ Codex 默认执行：
 1. 自动创建人物运行目录。
 2. 读取并保存 `assets/inbox/` 中的原始照片。
 3. 用 Codex 生图能力生成 AI 标准化多视图参考图。
-4. 让 Claude Code + Doubao-Seed-2.0-Pro 读取多视图和风格库，生成第一轮 4 个任务。
+4. 多视图成功后，Codex 调用 `invoke_claude_prompt_queue.ps1`，把多视图、人物资料、风格库和任务模板交给 Claude Code + Doubao-Seed-2.0-Pro，生成第一轮 4 个任务。
 5. 校验任务队列。
 6. 由 Codex 自动生成最终杂志写真并保存。
 7. 更新人物资料、任务状态和运行 manifest。
@@ -118,6 +118,14 @@ Codex 应把这份模板和 `assets/inbox/` 里的同一人物原图一起用于
 触发语和图片本身视为本轮执行授权；MVP 默认不再二次询问人物名、目录、张数或是否开始。只有缺少关键前置条件，或即将覆盖已有输出文件时，Codex 才停下来说明问题。
 
 如果 Codex 当前没有生图能力，或生图工具返回服务器错误、超时、不可用，流程会停在“生成多视图参考图失败”，稍后重试。原图横向拼版不算多视图参考图成功结果，不得继续进入 Doubao 提示词队列或最终写真生成。如果 Claude Code / Doubao-Seed-2.0-Pro 不可用，流程会停在“生成提示词队列”。这些情况不是脚本错误，而是外部能力未就绪或临时失败。
+
+多视图成功后，标准命令是：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\invoke_claude_prompt_queue.ps1
+```
+
+这个脚本会生成 Claude Code 交接提示词，并在本机存在 `claude` CLI 时尝试用 `claude -p` 调用 Claude Code。它不会生图，不会使用 DeepSeek，也不会操作浏览器、ChatGPT 网页版或 GPT 桌面端。
 
 请把下面三种状态分开判断：
 

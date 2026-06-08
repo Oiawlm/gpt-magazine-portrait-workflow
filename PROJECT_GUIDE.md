@@ -19,7 +19,7 @@
 - `docs/HANDOFF_TO_CLAUDE_CODE.md`：交接给 Claude Code 的当前状态和下一步。
 - `docs/CLAUDE_CODE_NEXT_PROMPT.md`：可直接复制给 Claude Code 的下一步指令。
 - `skills/gpt-magazine-portrait/SKILL.md`：配套 Codex skill 主文档。
-- `skills/gpt-magazine-portrait/scripts/`：前置检查、可选 skill 安装、默认运行启动、人物目录创建和任务队列校验脚本。
+- `skills/gpt-magazine-portrait/scripts/`：前置检查、可选 skill 安装、默认运行启动、Claude Code 提示词队列调用、人物目录创建和任务队列校验脚本。
 - `templates/`：人物资料、任务队列、风格包模板。
 - `assets/`：随仓库发布的风格参考、人物资产和生成样张。
 - `assets/inbox/`：当前稳定 MVP 的默认图片入口；用户把 3-5 张人物照片放入此目录后触发工作流。
@@ -51,6 +51,7 @@
 - `start_character_run.ps1` 生成的 run manifest 必须保留多视图失败策略；不要移除 `stage_status_rules` 或 `multiview_failure_policy`，它们用于阻止接手 agent 把原图拼版当作 fallback。
 - run manifest 必须记录 `multiview_prompt.template_path = templates/multiview_reference_prompt.template.md`，并要求成功或失败都写入 `expected_outputs.stage_status`。这用于证明 Codex 确实按内置多视图提示词尝试生图。
 - 提示词队列生成标准路线依赖 Claude Code + CC Switch 或等价方式接入 Doubao-Seed-2.0-Pro；当前工作流不使用 DeepSeek V4 Pro。
+- 多视图参考图成功后，Codex 应优先运行 `skills/gpt-magazine-portrait/scripts/invoke_claude_prompt_queue.ps1`。该脚本读取 run manifest，生成 Claude Code / Doubao 交接提示词，并在本机存在 `claude` CLI 时用 `claude -p` 非交互调用 Claude Code；CLI 不可用时停在提示词队列阶段并报告交接提示词路径。
 - 当前阶段优先完善仓库和文档，不继续消耗生图额度。
 - 谢孟伟/XIEMENGWEI 红绳重做任务已取消，不再执行。
 
@@ -87,3 +88,4 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 - Codex 额度有限，不能为测试而生图。
 - 公开 MVP 的当前稳定入口是 `assets/inbox/`；不要把人物名、目录、张数和“是否开始”变成用户必填项。拖图即跑仍是最终目标。
 - `templates/generation_task.template.json` 必须保持合法 JSON；字段说明写入 `_field_notes`，不要使用 `/* ... */` 注释。
+- `invoke_claude_prompt_queue.ps1` 只能证明本地调用链和交接提示词存在；它不能保证 Claude Code 当前已由 CC Switch 切到 Doubao-Seed-2.0-Pro。

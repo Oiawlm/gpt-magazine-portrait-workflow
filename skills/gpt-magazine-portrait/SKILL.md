@@ -69,18 +69,29 @@ powershell -ExecutionPolicy Bypass -Command "& '.\skills\gpt-magazine-portrait\s
 8. 记录状态时必须区分：启动链路成功、多视图生图成功、多视图生图失败。人物目录和 manifest 生成成功，只能说明启动链路成功，不能写成多视图完成。
 9. 无论成功或失败，都把阶段状态写入 manifest 中 `expected_outputs.stage_status` 指定路径；必须包含 `template_path`、`source_image_count`、`stage`、`status`、`tool`、`error`、`continued_to_prompt_queue`、`continued_to_final_portraits`、`created_raw_photo_collage_fallback`。
 
-### 3. 生成提示词队列
+### 3. 调用 Claude Code 生成提示词队列
 
-1. 选择 `assets/style-reference/` 中适合人物气质的风格参考图。
-2. 将以下材料交给 Claude Code / Doubao-Seed-2.0-Pro：
+1. 只有多视图阶段明确成功后，才能进入本阶段。原图拼版、截图拼版、手工拼接图或多视图失败状态都不得进入本阶段。
+2. Codex 在项目根目录运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\invoke_claude_prompt_queue.ps1
+```
+
+3. 该脚本会读取最近的 run manifest，检查多视图参考图是否存在，生成 `tasks/<run-id>-claude-doubao-prompt.md`，并在本机存在 `claude` CLI 时用 `claude -p` 调用 Claude Code。
+4. Claude Code 必须通过 CC Switch 或等价方式接入 Doubao-Seed-2.0-Pro，读取：
    - 人物多视图参考图
    - 人物 Markdown
-   - 风格参考图
+   - `assets/style-reference/` 风格参考库
    - `templates/generation_task.template.json`
-3. 要求 Claude Code 输出任务队列 JSON 到 `assets/characters/<人物名>/tasks/`。
-4. 第一轮默认生成 4 个任务。
-5. 任务队列命名建议：`[run-id]-first-round-prompt_queue.json`。
-6. 如果当前环境无法调用 Claude Code + Doubao-Seed-2.0-Pro，必须在这里暂停，明确说明“缺少 Doubao 提示词队列生成能力”。
+5. Claude Code 输出第一轮 4 个任务的 JSON 到 manifest 中 `expected_outputs.first_round_queue` 指定路径。
+6. 如果只想生成交接提示词而不启动 Claude Code，可运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\invoke_claude_prompt_queue.ps1 -NoInvoke
+```
+
+7. 如果当前环境无法调用 Claude Code + Doubao-Seed-2.0-Pro，必须在这里暂停，明确说明“缺少 Doubao 提示词队列生成能力”；不要用 DeepSeek、普通文本模型、浏览器或 ChatGPT 网页/桌面端替代。
 
 ### 4. 校验和自动执行前检查
 

@@ -841,3 +841,40 @@ v0.1.18：多视图参考图不再指定固定分辨率
 - 多视图参考图仍必须由 Codex 生图能力生成。
 - 原图拼版和四个半身头像视角仍不算成功结果。
 ```
+
+## v0.1.19 Release 文案
+
+定位：
+
+```text
+Claude Code 提示词队列调用脚本版
+```
+
+标题：
+
+```text
+v0.1.19：Codex 可脚本化调用 Claude Code 生成提示词队列
+```
+
+正文：
+
+```markdown
+## 这个版本修了什么
+
+`v0.1.19` 把“多视图成功后交给 Claude Code / Doubao-Seed-2.0-Pro 生成提示词队列”从文档描述推进为仓库脚本。Codex 现在可以调用标准脚本读取 run manifest、生成 Claude Code 交接提示词，并在本机存在 `claude` CLI 时用 `claude -p` 非交互执行。
+
+## 主要修复
+
+- 新增 `skills/gpt-magazine-portrait/scripts/invoke_claude_prompt_queue.ps1`。
+- `start_character_run.ps1` 的 manifest 增加 `expected_outputs.claude_doubao_prompt`，并把下一步明确为调用 Claude Code 提示词队列脚本。
+- README、WORKFLOW、SKILL、AGENT_ROLES、PROJECT_GUIDE 同步说明：多视图成功后优先由 Codex 调脚本调用 Claude Code，不把人工复制长提示词作为默认路线。
+- `check_workflow_prereqs.ps1` 增加对 Claude Code 调用脚本的防回归检查。
+
+## 不变内容
+
+- 多视图参考图仍必须由 Codex 生图能力生成。
+- 提示词队列仍依赖 Claude Code + CC Switch 或等价方式接入 Doubao-Seed-2.0-Pro。
+- 当前工作流仍不使用 DeepSeek V4 Pro。
+- 不使用浏览器自动化、ChatGPT 网页版或 GPT 桌面端。
+- 脚本不会生图，也不能保证 Claude Code 当前已经切到 Doubao-Seed-2.0-Pro；外部能力不可用时停在提示词队列阶段。
+```

@@ -179,6 +179,7 @@ $manifest = [pscustomobject]@{
     expected_outputs = [pscustomobject]@{
         multiview_reference = ("assets/characters/{0}/reference/multiview/{0}-multiview-reference.png" -f $characterSlug)
         stage_status = ("assets/characters/{0}/runs/{1}-stage-status.json" -f $characterSlug, $RunId)
+        claude_doubao_prompt = ("assets/characters/{0}/tasks/{1}-claude-doubao-prompt.md" -f $characterSlug, $RunId)
         first_round_queue = ("assets/characters/{0}/tasks/{1}-first-round-prompt_queue.json" -f $characterSlug, $RunId)
         generated_dir = ("assets/characters/{0}/generated/" -f $characterSlug)
     }
@@ -208,7 +209,8 @@ $manifest = [pscustomobject]@{
         "Codex：使用 Codex 生图能力把 AI 标准化多视图参考图生成到 expected_outputs.multiview_reference 指定路径。",
         "无论多视图成功或失败，都把阶段状态写入 expected_outputs.stage_status；必须记录使用的模板路径、原图数量、状态、错误和是否继续后续阶段。",
         "如果 Codex 生图工具服务器错误、超时或不可用，停在多视图阶段并记录 multiview_failure_policy.failure_message；不要创建拼版 fallback。",
-        "只有 multiview_success 成立后，Claude Code + Doubao-Seed-2.0-Pro 才能生成第一轮 4 个任务的提示词队列，并写入 expected_outputs.first_round_queue 指定路径。",
+        "只有 multiview_success 成立后，Codex 才能调用 skills/gpt-magazine-portrait/scripts/invoke_claude_prompt_queue.ps1，把多视图、人物资料、风格库和任务模板交给 Claude Code + Doubao-Seed-2.0-Pro。",
+        "Claude Code + Doubao-Seed-2.0-Pro 生成第一轮 4 个任务的提示词队列，并写入 expected_outputs.first_round_queue 指定路径；交接提示词写入 expected_outputs.claude_doubao_prompt。",
         "Codex：校验任务队列；如果不会覆盖旧文件且外部能力可用，继续生成最终图片。"
     )
 }

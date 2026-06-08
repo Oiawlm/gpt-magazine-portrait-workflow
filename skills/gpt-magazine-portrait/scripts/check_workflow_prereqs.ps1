@@ -25,6 +25,7 @@ $requiredPaths = @(
     "skills/gpt-magazine-portrait/SKILL.md",
     "skills/gpt-magazine-portrait/scripts/validate_queue.ps1",
     "skills/gpt-magazine-portrait/scripts/start_character_run.ps1",
+    "skills/gpt-magazine-portrait/scripts/invoke_claude_prompt_queue.ps1",
     "skills/gpt-magazine-portrait/scripts/install_codex_skill.ps1"
 )
 
@@ -122,8 +123,36 @@ if ($foundForbiddenResolutionPatterns.Count -gt 0) {
     exit 1
 }
 
+$claudeInvokeScript = Join-Path $repoRoot "skills/gpt-magazine-portrait/scripts/invoke_claude_prompt_queue.ps1"
+$claudeInvokeContent = Get-Content -LiteralPath $claudeInvokeScript -Encoding UTF8 -Raw
+$requiredClaudeInvokePatterns = @(
+    "claude",
+    "-p",
+    "Doubao-Seed-2.0-Pro",
+    "CC Switch",
+    "expected_outputs.first_round_queue",
+    "templates/generation_task.template.json",
+    "不使用 DeepSeek",
+    "不要操作浏览器",
+    "不要生成最终图片",
+    "NoInvoke"
+)
+
+$missingClaudeInvokePatterns = @()
+foreach ($pattern in $requiredClaudeInvokePatterns) {
+    if ($claudeInvokeContent -notlike "*$pattern*") {
+        $missingClaudeInvokePatterns += $pattern
+    }
+}
+
+if ($missingClaudeInvokePatterns.Count -gt 0) {
+    Write-Error "Claude Code 提示词队列调用脚本缺少关键规则: $($missingClaudeInvokePatterns -join ', ')"
+    exit 1
+}
+
 Write-Host ""
 Write-Host "多视图失败策略检查已通过。"
+Write-Host "Claude Code 提示词队列调用脚本检查已通过。"
 Write-Host "仓库本地检查已通过。"
 Write-Host "注意：本脚本只检查仓库文件、模板和队列校验脚本；不会验证以下外部能力："
 Write-Host "- Codex 是否具备生图能力。"
