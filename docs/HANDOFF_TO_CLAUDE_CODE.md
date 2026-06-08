@@ -77,6 +77,7 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 - 最终出图由 Codex 生图能力执行，视觉效果以 GPT Image 经验为基准。
 - Claude Code 必须通过 CC Switch 或等价方式使用 Doubao-Seed-2.0-Pro 做图片理解和提示词队列生成。
 - 不要把控制浏览器、ChatGPT 网页版或 GPT 桌面端作为工作流、fallback 或未来路线。
+- 多视图参考图必须由 Codex 生图能力生成；原图横向拼版、截图拼版或手工拼接图不算成功结果。Codex 生图失败时停在多视图阶段，不继续 Doubao 队列或最终写真。
 
 ## 下一步建议
 

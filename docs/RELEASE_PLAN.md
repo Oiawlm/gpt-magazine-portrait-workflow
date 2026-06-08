@@ -378,15 +378,53 @@ v0.1.7：收敛 README 首屏和接手文档的 inbox MVP 口径
 - 不使用浏览器自动化、ChatGPT 网页版或 GPT 桌面端。
 ```
 
+## v0.1.8 Release 文案
+
+定位：
+
+```text
+多视图失败处理收敛版
+```
+
+标题：
+
+```text
+v0.1.8：明确多视图失败时不得用拼版 fallback 冒充成功
+```
+
+正文：
+
+```markdown
+## 这个版本修了什么
+
+`v0.1.8` 收敛外部测试暴露出的多视图失败处理问题：Codex 生图工具服务器错误、超时或不可用时，流程必须停在多视图阶段，不能用原始照片拼版冒充 AI 标准化多视图参考图。
+
+## 主要修复
+
+- README、SKILL、WORKFLOW 明确：多视图参考图必须由 Codex 生图能力生成。
+- 原图横向拼版、截图拼版或手工拼接图不算成功结果。
+- Codex 生图工具报服务器错误、超时或不可用时，停止流程并提示稍后重试。
+- 不得创建 fallback 拼版，不得把拼版保存为正式多视图结果，不得继续进入 Doubao 队列或最终写真。
+- 外部测试指令补充：如果 `reference/multiview/` 中出现的是原图拼版，测试结论写“不通过”。
+
+## 不变内容
+
+- 当前稳定 MVP 仍使用 `assets/inbox/` 作为默认图片入口。
+- 完整出图仍要求使用者自己的 Codex 账号/组织具备图片生成权限和可用额度。
+- 标准路线不要求用户配置 OpenAI API Key。
+- 提示词队列仍然依赖 Claude Code + CC Switch 或等价方式接入 Doubao-Seed-2.0-Pro。
+- 当前工作流不使用 DeepSeek V4 Pro。
+```
+
 ## 明天给外部试跑者的指令
 
-只让对方验证仓库能否理解和启动，不让对方做审美反馈。
+只让对方验证仓库能否启动并走到多视图阶段，不让对方做审美反馈，不让对方继续 Doubao 队列或最终写真。
 
 ```text
 请打开这个仓库并从 README 开始：
 https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 
-目标：只验证仓库的 MVP 使用说明能不能跑通，不评价图片审美，不设计新流程。
+目标：只验证仓库的 MVP 使用说明能不能跑到“Codex 生成 AI 标准化多视图参考图并保存”。不评价图片审美，不设计新流程。
 
 请按 README 的当前稳定 MVP 流程操作：
 1. 克隆仓库并进入目录。
@@ -394,7 +432,7 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 3. 注意：前置检查只验证仓库文件和模板，不验证 Codex 生图能力，也不验证 Doubao 接入。
 4. 准备同一人物的 3-5 张多角度照片。
 5. 把这些照片放入 assets/inbox/。
-6. 对 Codex 说：按 gpt-magazine-portrait 工作流处理这些照片。
+6. 对 Codex 说：按 gpt-magazine-portrait 工作流处理这些照片。先只执行到“生成 AI 标准化多视图参考图并保存到 reference/multiview/”这一步，不要继续生成提示词队列，也不要生成最终写真。
 
 注意：
 - 不要改仓库结构。
@@ -402,6 +440,8 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 - 不要使用浏览器自动化、ChatGPT 网页版或 GPT 桌面端。
 - 不要让用户手动输入人物名、目录、路径、张数或“是否开始”。
 - 当前稳定 MVP 使用 assets/inbox/；拖图即跑仍是最终目标，但这轮先验证固定入口能否真实启动。
+- 多视图参考图必须是 Codex 生图能力生成的 AI 标准化 reference sheet；原图横向拼版、截图拼版或手工拼接图不算成功。
+- 如果 Codex 生图工具服务器错误、超时或不可用，请停在多视图阶段并记录失败，不要创建拼版 fallback，不要继续进入 Doubao 队列或最终写真。
 - 如果卡住，只记录卡在哪一步、报错原文、看不懂哪句话。
 
 请最后反馈：
@@ -409,7 +449,9 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 2. README 里哪句话看不懂。
 3. 哪个脚本报错，报错原文是什么。
 4. 有没有被要求做多余的手动操作。
-5. 如果卡在多视图或提示词队列阶段，记录是缺 Codex 生图能力，还是缺 Doubao 接入。
+5. 是否成功生成 AI 标准化多视图参考图。
+6. 如果 `reference/multiview/` 里出现的是原图横向拼版，请写：不通过，生成了拼版 fallback，不是 AI 标准化多视图。
+7. 如果卡在多视图阶段，记录是缺 Codex 生图能力，还是 Codex 生图工具服务器错误、超时或不可用。
 ```
 
 ## 发布后第一轮验证标准
@@ -421,6 +463,7 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 - 新用户能理解拖图即跑是最终目标，当前环境能暴露拖图路径时才走纯拖图路线。
 - Codex 不应要求用户手动输入人物名、目录、路径、张数或是否开始。
 - 流程不应引导用户去控制浏览器、ChatGPT 网页版或 GPT 桌面端。
+- 原图拼版不应被写成多视图参考图成功结果。
 - 如果失败，失败点应能被记录为明确的文档或脚本问题。
 
 ## v0.1.1 后下一轮验证标准

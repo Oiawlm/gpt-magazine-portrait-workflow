@@ -41,6 +41,7 @@
 - `check_workflow_prereqs.ps1` 只检查仓库文件和模板，不证明 Codex 生图能力、Doubao 接入或拖图路径暴露能力可用。
 - 本项目标准路线由 Codex 生图能力执行最终出图；不要把控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端写入工作流、计划、fallback 或未来规划。
 - Codex 生图能力指当前 Codex 会话自带的生图能力；使用者账号/组织必须有 Codex 图片生成权限和可用额度。标准路线不要求用户配置 OpenAI API Key 或额外接入 OpenAI API。
+- 多视图参考图必须由 Codex 生图能力生成；原图横向拼版、截图拼版或手工拼接图不算成功结果。Codex 生图工具服务器错误、超时或不可用时，停在多视图阶段并提示稍后重试，不得创建拼版 fallback，不得继续进入 Doubao 队列或最终写真。
 - 提示词队列生成标准路线依赖 Claude Code + CC Switch 或等价方式接入 Doubao-Seed-2.0-Pro；当前工作流不使用 DeepSeek V4 Pro。
 - 当前阶段优先完善仓库和文档，不继续消耗生图额度。
 - 谢孟伟/XIEMENGWEI 红绳重做任务已取消，不再执行。
@@ -71,6 +72,7 @@ powershell -ExecutionPolicy Bypass -File .\skills\gpt-magazine-portrait\scripts\
 ## 剩余风险
 
 - Codex 生图能力可能出现文字漂移，尤其是大型背景字、小字和中文标语。
+- Codex 生图工具可能临时返回服务器错误；这时多视图阶段应明确失败并稍后重试，不能用原图拼版替代。
 - 风格迁移不是简单抄参考图，必须提取构图、光影、色彩、字体、服装和气质。
 - 当前工作流不使用 DeepSeek V4 Pro；不要把它写入执行路线、fallback 或可选步骤。
 - Codex 额度有限，不能为测试而生图。
