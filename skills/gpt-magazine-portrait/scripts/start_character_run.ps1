@@ -181,9 +181,24 @@ $manifest = [pscustomobject]@{
         first_round_queue = ("assets/characters/{0}/tasks/{1}-first-round-prompt_queue.json" -f $characterSlug, $RunId)
         generated_dir = ("assets/characters/{0}/generated/" -f $characterSlug)
     }
+    stage_status_rules = [pscustomobject]@{
+        startup_success = "Only means the character directory, copied originals, and manifest were created."
+        multiview_success = "Only valid when Codex image generation creates an AI-standardized character reference sheet at expected_outputs.multiview_reference."
+        multiview_failure = "Use this status when Codex image generation is unavailable, times out, returns a server error, or only a raw-photo collage exists."
+    }
+    multiview_failure_policy = [pscustomobject]@{
+        stop_on_codex_image_error = $true
+        retry_later = $true
+        allow_raw_photo_collage_fallback = $false
+        allow_screenshot_or_manual_collage = $false
+        allow_continue_to_doubao_queue = $false
+        allow_continue_to_final_portraits = $false
+        failure_message = "多视图参考图生成失败，稍后重试。不要创建原图拼版 fallback，不要继续 Doubao 队列或最终写真。"
+    }
     next_agent_steps = @(
-        "Codex：把多视图参考图生成到 expected_outputs.multiview_reference 指定路径。",
-        "Claude Code + Doubao-Seed-2.0-Pro：生成第一轮 4 个任务的提示词队列，并写入 expected_outputs.first_round_queue 指定路径。",
+        "Codex：使用 Codex 生图能力把 AI 标准化多视图参考图生成到 expected_outputs.multiview_reference 指定路径。",
+        "如果 Codex 生图工具服务器错误、超时或不可用，停在多视图阶段并记录 multiview_failure_policy.failure_message；不要创建拼版 fallback。",
+        "只有 multiview_success 成立后，Claude Code + Doubao-Seed-2.0-Pro 才能生成第一轮 4 个任务的提示词队列，并写入 expected_outputs.first_round_queue 指定路径。",
         "Codex：校验任务队列；如果不会覆盖旧文件且外部能力可用，继续生成最终图片。"
     )
 }

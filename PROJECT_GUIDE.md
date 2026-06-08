@@ -46,6 +46,7 @@
 - Codex 生图能力指当前 Codex 会话自带的生图能力；使用者账号/组织必须有 Codex 图片生成权限和可用额度。标准路线不要求用户配置 OpenAI API Key 或额外接入 OpenAI API。
 - 多视图参考图必须由 Codex 生图能力生成；原图横向拼版、截图拼版或手工拼接图不算成功结果。Codex 生图工具服务器错误、超时或不可用时，停在多视图阶段并提示稍后重试，不得创建拼版 fallback，不得继续进入 Doubao 队列或最终写真。
 - 验证和汇报时必须区分“启动链路成功”“多视图生图成功”“多视图生图失败”。人物目录、原图副本和 manifest 生成成功，只代表启动链路成功，不代表多视图参考图已成功。
+- `start_character_run.ps1` 生成的 run manifest 必须保留多视图失败策略；不要移除 `stage_status_rules` 或 `multiview_failure_policy`，它们用于阻止接手 agent 把原图拼版当作 fallback。
 - 提示词队列生成标准路线依赖 Claude Code + CC Switch 或等价方式接入 Doubao-Seed-2.0-Pro；当前工作流不使用 DeepSeek V4 Pro。
 - 当前阶段优先完善仓库和文档，不继续消耗生图额度。
 - 谢孟伟/XIEMENGWEI 红绳重做任务已取消，不再执行。

@@ -626,3 +626,39 @@ https://github.com/Oiawlm/gpt-magazine-portrait-workflow.git
 - 增加一键清点资产的脚本。
 - 继续收敛 `gpt-magazine-portrait` Codex skill。
 - 未来再继续外部风格迁移测试。
+
+## v0.1.13 Release 文案
+
+定位：
+
+```text
+运行 manifest 失败策略收敛版
+```
+
+标题：
+
+```text
+v0.1.13：把多视图失败策略写入每次运行 manifest
+```
+
+正文：
+
+```markdown
+## 这个版本修了什么
+
+`v0.1.13` 把多视图失败处理从文档规则推进到每次运行生成的 manifest。这样外部 agent 不只依赖 README 记忆，也能从当前 run manifest 里直接读到“服务器错误就停、禁止拼版 fallback、禁止继续 Doubao 队列”的执行边界。
+
+## 主要修复
+
+- `start_character_run.ps1` 生成的 manifest 新增 `stage_status_rules`。
+- manifest 新增 `multiview_failure_policy`，明确禁止原图拼版、截图拼版、手工拼接图和继续后续阶段。
+- manifest 的 `next_agent_steps` 改为：只有 AI 标准化多视图成功后，才能进入 Doubao 队列。
+- 多视图提示词模板补充禁止输出 fallback collage 或原始照片拼版。
+
+## 不变内容
+
+- 当前稳定 MVP 仍使用 `assets/inbox/` 作为默认图片入口。
+- 不生图、不调用 Doubao 的本地检查仍只验证仓库和脚本可用。
+- 多视图参考图仍必须由 Codex 生图能力生成。
+- Codex 生图工具失败时，流程停在多视图阶段。
+```
