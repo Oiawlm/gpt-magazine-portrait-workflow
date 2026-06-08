@@ -74,9 +74,17 @@ if ($missingStartRunPatterns.Count -gt 0) {
 $multiviewTemplate = Join-Path $repoRoot "templates/multiview_reference_prompt.template.md"
 $multiviewTemplateContent = Get-Content -LiteralPath $multiviewTemplate -Encoding UTF8 -Raw
 $requiredTemplatePatterns = @(
+    "人物 AI 生成专用多视角参考图",
+    "纯白色背景",
+    "上排从左至右共 4 张",
+    "下排从左至右共 4 张",
+    "右侧列从上至下共 4 块",
+    "全身站姿",
+    "正面坐姿",
+    "人物信息文字区",
     "不要把输入原图简单横向拼接成拼版",
     "fallback collage",
-    "必须是 AI 标准化多视图参考图，而不是原始照片拼版"
+    "不要只生成 4 个半身头像视角"
 )
 
 $missingTemplatePatterns = @()
@@ -87,7 +95,7 @@ foreach ($pattern in $requiredTemplatePatterns) {
 }
 
 if ($missingTemplatePatterns.Count -gt 0) {
-    Write-Error "多视图提示词模板缺少禁止拼版规则: $($missingTemplatePatterns -join ', ')"
+    Write-Error "多视图提示词模板缺少固定布局或禁止拼版规则: $($missingTemplatePatterns -join ', ')"
     exit 1
 }
 

@@ -60,12 +60,12 @@ powershell -ExecutionPolicy Bypass -Command "& '.\skills\gpt-magazine-portrait\s
 ### 2. 生成多视图参考图
 
 1. 读取 `templates/multiview_reference_prompt.template.md`。
-2. 使用 Codex 生图能力，基于用户多角度照片生成标准化多视图参考图。
+2. 使用 Codex 生图能力，基于用户多角度照片生成标准化多视图参考图。输出必须遵循模板里的固定结构：纯白色背景、细黑色分区、上排 4 张全身站姿、下排 4 张坐姿/特写/身体细节、右侧列 3 张头部特写和 1 个人物信息区。
 3. 保存到 `assets/characters/<人物名>/reference/multiview/`，文件名建议包含 `multiview` 或 `多视图`。
 4. 生成多视图后再进入提示词队列阶段；不得跳过。
 5. 如果当前 Codex 会话没有生图能力，必须在这里暂停，明确说明“缺少 Codex 生图能力”，不要伪装继续执行。
 6. 如果 Codex 生图工具返回服务器错误、超时或不可用，必须在这里暂停，明确说明“多视图参考图生成失败，稍后重试”，不要用原始照片拼版替代。
-7. 如果 `reference/multiview/` 中只有原图横向拼版、截图拼版或手工拼接图，视为多视图失败，不得进入提示词队列。
+7. 如果 `reference/multiview/` 中只有原图横向拼版、截图拼版、手工拼接图，或只生成 4 个半身头像视角，视为多视图失败，不得进入提示词队列。
 8. 记录状态时必须区分：启动链路成功、多视图生图成功、多视图生图失败。人物目录和 manifest 生成成功，只能说明启动链路成功，不能写成多视图完成。
 9. 无论成功或失败，都把阶段状态写入 manifest 中 `expected_outputs.stage_status` 指定路径；必须包含 `template_path`、`source_image_count`、`stage`、`status`、`tool`、`error`、`continued_to_prompt_queue`、`continued_to_final_portraits`、`created_raw_photo_collage_fallback`。
 

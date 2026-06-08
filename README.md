@@ -190,10 +190,10 @@ assets/characters/<auto-character-id>/
 **这步是人物不崩的核心，由 Codex 生图能力生成：**
 1. 读取提示词：`templates/multiview_reference_prompt.template.md`
 2. 使用你准备的多角度人物照片作为参考
-3. 生成包含"正面+左侧面+右侧面+三分之四侧脸"的多视图参考图
+3. 生成固定多面板参考图：纯白背景、细黑色分区、上排 4 张全身站姿、下排 4 张坐姿/特写/身体细节、右侧列 3 张头部特写和 1 个人物信息区。
 4. 保存到 `assets/characters/<auto-character-id>/reference/multiview/` 目录
 
-⚠️ 重要提示：Doubao-Seed 只负责读图，不负责生成这张图。多视图参考图必须是 Codex 生图能力生成的 AI 标准化 reference sheet；把原始照片横向拼在一起的图片只是拼版，不算成功结果。如果 Codex 生图服务器错误或超时，必须停在这里并提示稍后重试，不要创建拼版 fallback，不要继续任务队列或最终写真。
+⚠️ 重要提示：Doubao-Seed 只负责读图，不负责生成这张图。多视图参考图必须是 Codex 生图能力按内置模板生成的 AI 标准化 reference sheet；四个半身头像、原始照片横向拼版、截图拼版或相册拼贴都不算成功结果。如果 Codex 生图服务器错误或超时，必须停在这里并提示稍后重试，不要创建拼版 fallback，不要继续任务队列或最终写真。
 
 ### 任务队列
 Claude Code 会通过 Doubao-Seed-2.0-Pro 自动：
