@@ -46,7 +46,7 @@
 - `check_workflow_prereqs.ps1` 只检查仓库文件、模板、队列校验脚本和多视图失败策略是否保留，不证明 Codex 生图能力、Doubao 接入或拖图路径暴露能力可用。
 - 本项目标准路线由 Codex 生图能力执行最终出图；不要把控制浏览器、操作 ChatGPT 网页版或 GPT 桌面端写入工作流、计划、fallback 或未来规划。
 - Codex 生图能力指当前 Codex 会话自带的生图能力；使用者账号/组织必须有 Codex 图片生成权限和可用额度。标准路线不要求用户配置 OpenAI API Key 或额外接入 OpenAI API。
-- 多视图参考图必须由 Codex 生图能力按 `templates/multiview_reference_prompt.template.md` 生成；目标结构是纯白色背景、细黑色分区、上排 4 张全身站姿、下排 4 张坐姿/特写/身体细节、右侧列 3 张头部特写和 1 个人物信息区。原图横向拼版、截图拼版、手工拼接图或只包含 4 个半身头像视角的简化参考表不算成功结果。Codex 生图工具服务器错误、超时或不可用时，停在多视图阶段并提示稍后重试，不得创建拼版 fallback，不得继续进入 Doubao 队列或最终写真。
+- 多视图参考图必须由 Codex 生图能力按 `templates/multiview_reference_prompt.template.md` 生成；目标结构是纯白色背景、细黑色分区、上排 4 张全身站姿、下排 4 张坐姿/特写/身体细节、右侧列 3 张头部特写和 1 个人物信息区。多视图模板不得指定固定分辨率，不要写 2048x1536、4K、8K 或其他具体尺寸。原图横向拼版、截图拼版、手工拼接图或只包含 4 个半身头像视角的简化参考表不算成功结果。Codex 生图工具服务器错误、超时或不可用时，停在多视图阶段并提示稍后重试，不得创建拼版 fallback，不得继续进入 Doubao 队列或最终写真。
 - 验证和汇报时必须区分“启动链路成功”“多视图生图成功”“多视图生图失败”。人物目录、原图副本和 manifest 生成成功，只代表启动链路成功，不代表多视图参考图已成功。
 - `start_character_run.ps1` 生成的 run manifest 必须保留多视图失败策略；不要移除 `stage_status_rules` 或 `multiview_failure_policy`，它们用于阻止接手 agent 把原图拼版当作 fallback。
 - run manifest 必须记录 `multiview_prompt.template_path = templates/multiview_reference_prompt.template.md`，并要求成功或失败都写入 `expected_outputs.stage_status`。这用于证明 Codex 确实按内置多视图提示词尝试生图。

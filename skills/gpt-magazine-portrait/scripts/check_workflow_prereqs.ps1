@@ -82,6 +82,8 @@ $requiredTemplatePatterns = @(
     "全身站姿",
     "正面坐姿",
     "人物信息文字区",
+    "不要指定固定分辨率",
+    "不要写任何具体尺寸",
     "不要把输入原图简单横向拼接成拼版",
     "fallback collage",
     "不要只生成 4 个半身头像视角"
@@ -96,6 +98,27 @@ foreach ($pattern in $requiredTemplatePatterns) {
 
 if ($missingTemplatePatterns.Count -gt 0) {
     Write-Error "多视图提示词模板缺少固定布局或禁止拼版规则: $($missingTemplatePatterns -join ', ')"
+    exit 1
+}
+
+$forbiddenResolutionPatterns = @(
+    "分辨率不低于",
+    "不低于 2048",
+    "不低于2048",
+    "2048*1536",
+    "分辨率 ≥",
+    "分辨率>="
+)
+
+$foundForbiddenResolutionPatterns = @()
+foreach ($pattern in $forbiddenResolutionPatterns) {
+    if ($multiviewTemplateContent -like "*$pattern*") {
+        $foundForbiddenResolutionPatterns += $pattern
+    }
+}
+
+if ($foundForbiddenResolutionPatterns.Count -gt 0) {
+    Write-Error "多视图提示词模板不得指定固定分辨率: $($foundForbiddenResolutionPatterns -join ', ')"
     exit 1
 }
 
